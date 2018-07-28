@@ -1,19 +1,38 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+const cookieSession = require("cookie-session");
+const bcrypt = require("bcryptjs");
+const PORT = 8080;
+const path = require('path');
 
-new WebpackDevServer(webpack(config), {
-    publicPath: config.output.publicPath,
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000,
-      ignored: /node_modules/
-    }
-  })
-  .listen(3000, '0.0.0.0', function (err, result) {
-    if (err) {
-      console.log(err);
-    }
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
-    console.log('Running at http://0.0.0.0:3000');
-  });
+app.use(cookieSession({
+  name: "cookies",
+  keys: ["user_id"]
+}));
+
+app.use(express.static('dist'))
+
+// View routes
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get("/sam", (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+})
+
+
+// Data routes
+app.get('/turtles', (req, res) => {
+  // res.send({ turtles: ['turtle', 'different turtle'] })
+  res.send({ turtles: ['🐢', '🐢', '🐢', '🐢', '🐢'] })
+});
+
+app.listen(PORT, function() {
+  console.log(`Example app listening on port ${PORT}!`);
+});
