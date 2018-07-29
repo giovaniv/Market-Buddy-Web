@@ -2,9 +2,29 @@ import React, {Component} from 'react';
 import { withRouter } from 'react-router'
 
 class Register extends Component{
+
   submitHandle(e){
     e.preventDefault();
-    this.props.history.push('/');
+    var newEmail = e.target[0].value;
+    var newPassword = e.target[1].value;
+
+    var data = JSON.stringify({
+        email: newEmail,
+        password: newPassword
+      })
+
+    //redirect if its a cookie
+
+    fetch("/register", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: data
+    })
+    .then(response => response.json())
+    .then(b => console.log(b));
   }
 
   render() {

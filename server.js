@@ -10,6 +10,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use(bodyParser.json());
+
 app.use(cookieSession({
   name: "cookies",
   keys: ["user_id"]
@@ -24,6 +26,19 @@ app.get("/", (req, res) => {
 
 app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.post("/register", (req, res) => {
+  console.log(req.body);
+
+  var registerfailed = false;
+
+  if(registerfailed){
+    res.send({ turtles: ['🐢', '🐢', '🐢', '🐢', '🐢'] });
+  }
+  // set the cookies here
+
+  res.send(req.body);
 });
 
 app.get("/sam", (req, res) => {
