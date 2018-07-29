@@ -22,6 +22,23 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get("/user_id", (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get("/user_id/lists", (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get("/user_id/list_id", (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Test route
+// app.get("/test", (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
+
 app.get("/sam", (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 })

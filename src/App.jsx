@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-import Test from './components/Test.jsx';
-import Test1 from './components/Test1.jsx';
+import NavBar from './components/NavBar.jsx';
+import UserProfile from './components/UserProfile.jsx';
+import Showlists from './components/Showlists.jsx';
+import ViewList from './components/ViewList.jsx';
+
 
 // import route Components here
 import {
@@ -31,7 +34,6 @@ class App extends Component {
       <Router>
         <div>
         <div>
-          <h1>Hello React :)</h1>
           <button onClick={this.handleThatOneButton.bind(this)}>Click this</button>
           {
             this.state.turtles &&
@@ -43,13 +45,12 @@ class App extends Component {
           }
         </div>
         <div>
-          <ul>
-            <li><Link to="/test">Test</Link></li>
-            <li><Link to="/test1">Test1</Link></li>
-          </ul>
+        <Route path="/" component={NavBar} />
         </div>
-        <Route path="/test" component={Test} />
-        <Route path="/test1" component={Test1} />
+        <Route path="/user_id" exact={true} component={UserProfile} />
+        <Route path="/user_id/lists" component={Showlists} />
+        <Route path="/user_id/list_id" component={ViewList} />
+
       </div>
       </Router>
     );
