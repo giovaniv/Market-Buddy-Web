@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import Test from './components/Test.jsx';
-import Test1 from './components/Test1.jsx';
-import Register from './components/Register.jsx';
+import NavBar from './components/NavBar.jsx';
+import UserProfile from './components/UserProfile.jsx';
+import Showlists from './components/Showlists.jsx';
+import ViewList from './components/ViewList.jsx';
 
 // import route Components here
 import {
@@ -30,36 +31,26 @@ class App extends Component {
   render() {
     return (
       <Router>
-
         <div>
-          <div>
-            <h1>Hello React :)</h1>
-            <button onClick={this.handleThatOneButton.bind(this)}>Click this</button>
-            {
-              this.state.turtles &&
-              <table>
-                <tbody>
-                  {this.state.turtles.map(turtle => <tr><td>{turtle}</td></tr>)}
-                </tbody>
-              </table>
-            }
+          <button onClick={this.handleThatOneButton.bind(this)}>Click this</button>
+          {
+            this.state.turtles &&
+            <table>
+              <tbody>
+                {this.state.turtles.map(turtle => <tr><td>{turtle}</td></tr>)}
+              </tbody>
+            </table>
+          }
           </div>
-
           <div>
-            <ul>
-              <li><Link to="/"> Home </Link></li>
-              <li><Link to="/register">Sign up</Link></li>
-              <li><Link to="/test">Sign up 2</Link></li>
-            </ul>
+          <Route path="/" component={NavBar} />
           </div>
-
-            <Route exact path="/test" component={Test} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/" component={Test1} />
+          <Route path="/user_id" exact={true} component={UserProfile} />
+          <Route path="/user_id/lists" component={Showlists} />
+          <Route path="/user_id/list_id" component={ViewList} />
+          <Route exact path="/register" component={Register} />
 
         </div>
-
-
       </Router>
     );
   }
