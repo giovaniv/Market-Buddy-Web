@@ -3,6 +3,7 @@ import NavBar from './components/NavBar.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import Showlists from './components/Showlists.jsx';
 import ViewList from './components/ViewList.jsx';
+import Register from './components/Register.jsx'
 
 // import route Components here
 import {
@@ -41,7 +42,7 @@ class App extends Component {
               </tbody>
             </table>
           }
-          </div>
+
           <div>
           <Route path="/" component={NavBar} />
           </div>
