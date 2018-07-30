@@ -14,6 +14,24 @@ import {
   Redirect
 } from 'react-router-dom'
 
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      fakeAuth.isAuthenticated ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/register",
+            state: { from: props.location }
+          }}
+        />
+      )
+    }
+  />
+);
+
 class App extends Component {
   constructor() {
     super();
@@ -30,6 +48,7 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <Router>
         <div>
@@ -44,7 +63,7 @@ class App extends Component {
           }
 
           <div>
-          <Route path="/" component={NavBar} />
+            <Route path="/" component={NavBar} />
           </div>
 
           <Route path="/user_id" exact={true} component={UserProfile} />

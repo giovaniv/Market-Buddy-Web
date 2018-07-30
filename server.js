@@ -17,7 +17,20 @@ app.use(cookieSession({
   keys: ["user_id"]
 }));
 
-app.use(express.static('dist'))
+app.use(express.static('dist'));
+
+
+// Fake Database
+var Userid = 1;
+
+const users = {
+  1: {
+    id: 1,
+    email: "123@123",
+    password: "123"
+  },
+}
+
 
 // View routes (static, to do: use variables)
 app.get("/", (req, res) => {
@@ -25,6 +38,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/user_id", (req, res) => {
+  console.log(req.session);
+  if(!req.session.user_id){
+    res.redirect("/register");
+    return;
+  }
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -41,18 +59,32 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  console.log(req.body);
-
   var registerfailed = false;
+  if(req.body.password !== req.body.confirmPassword){
+    registerfailed = true;
+  }
 
   if(registerfailed){
-    res.send({ turtles: ['🐢', '🐢', '🐢', '🐢', '🐢'] });
+    res.send({message: "Register Failed."});
   }
   // set the cookies here
+  else {
+    Userid += 1;
+    req.session.user_id = Userid;
+    users[Userid] = {
+      id: Userid,
+      email: req.body.email,
+      password: req.body.password
+    }
 
-  res.send(req.body);
+    res.send(users[req.session.user_id]);
+  }
 });
 
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect("/login");
+});
 // Test routes
 // app.get("/test", (req, res) => {
 //   res.sendFile(path.join(__dirname, 'index.html'));

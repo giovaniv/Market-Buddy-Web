@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router'
+import {post} from 'axios';
 
 class Register extends Component{
 
@@ -7,24 +8,28 @@ class Register extends Component{
     e.preventDefault();
     var newEmail = e.target[0].value;
     var newPassword = e.target[1].value;
+    var newPasswordConfirm = e.target[2].value;
 
-    var data = JSON.stringify({
+    var data = {
         email: newEmail,
-        password: newPassword
-      })
+        password: newPassword,
+        confirmPassword: newPasswordConfirm
+      }
 
     //redirect if its a cookie
+    post('/register', data)
+      .then(response => response.data)
+      .then(user => {
+        if(user.message){
+          console.log(user.message);
+        } else {
+          this.props.history.push({
+            pathname: '/user_id',
+            state: {detail: user}
+          })
+        }
+      });
 
-    fetch("/register", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: data
-    })
-    .then(response => response.json())
-    .then(b => console.log(b));
   }
 
   render() {
@@ -54,3 +59,7 @@ class Register extends Component{
   }
 }
 export default withRouter(Register);
+
+
+
+
