@@ -22,8 +22,6 @@ class App extends Component {
     this.state = {
       turtles: [],
       currUser: null
-      cookies: null,
-      testLists: ["Movie Night", "Camping", "Something Healthy"]
     };
     this.setCurrUser = this.setCurrUser.bind(this);
   }
