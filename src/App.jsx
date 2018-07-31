@@ -23,13 +23,9 @@ class App extends Component {
     // const { cookies } = props;
     this.state = {
       turtles: [],
-<<<<<<< HEAD
-      currUser: null
-=======
       // currUser: cookies.get('session') || null,
       currUser: localStorage.getItem('user_id'),
       testLists: ["Movie Night", "Camping", "Something Healthy"]
->>>>>>> user-cookies
     };
     this.setCurrUser = this.setCurrUser.bind(this);
     // console.log(this.state.currUser);
