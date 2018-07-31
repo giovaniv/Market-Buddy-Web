@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import NavBar from './components/NavBar.jsx';
 import UserProfile from './components/UserProfile.jsx';
-import Showlists from './components/Showlists.jsx';
+import ShowLists from './components/Showlists.jsx';
 import ViewList from './components/ViewList.jsx';
 import Register from './components/Register.jsx'
 import Login from './components/Login.jsx'
@@ -22,6 +22,8 @@ class App extends Component {
     this.state = {
       turtles: [],
       currUser: null
+      cookies: null,
+      testLists: ["Movie Night", "Camping", "Something Healthy"]
     };
     this.setCurrUser = this.setCurrUser.bind(this);
   }
@@ -38,6 +40,8 @@ class App extends Component {
 
   render() {
  // <Route exact path="/register" component={Register} />
+    const { testLists } = this.state;
+
     return (
       <Router>
         <div>
@@ -56,8 +60,8 @@ class App extends Component {
           </div>
 
           <Route path="/user_id" exact={true} render={() => <UserProfile currUser={this.state.currUser} />} />
-          <Route path="/user_id/lists" component={Showlists} />
-          <Route path="/user_id/list_id" component={ViewList} />
+          <Route path="/user_id/lists" render={() => <ShowLists test={testLists}/>} />
+          <Route path="/user_id/list_id" render={() => <ViewList/>} />
           <Route path="/register" render={()=><Register setCurrUser={this.setCurrUser} />}/>
           <Route path="/login" render={()=><Login setCurrUser={this.setCurrUser} /> } />
           <Route path="/logout" render={() => <Logout setCurrUser={this.setCurrUser} />} />
