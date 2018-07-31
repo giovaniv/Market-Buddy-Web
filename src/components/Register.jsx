@@ -25,6 +25,7 @@ class Register extends Component{
     post('/register', data)
       .then(response => response.data)
       .then(user => {
+        localStorage.setItem('user_id', user);
         if(user.message){
           console.log(user.message);
         } else {
