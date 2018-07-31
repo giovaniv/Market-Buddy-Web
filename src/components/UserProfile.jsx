@@ -11,19 +11,7 @@ class UserProfile extends Component {
 
   constructor() {
     super();
-    this.state = {
-      currUser: null
-    };
-
     this.pageConstruct = this.pageConstruct.bind(this);
-  }
-
-  componentWillMount() {
-    if(this.state.currUser === null && this.props.location.state) {
-      this.setState( { currUser: this.props.location.state.detail.email } );
-      console.log(this.state);
-    }
-    // console.log(this.state.currUser);
   }
 
   pageConstruct(currState) {
@@ -35,7 +23,7 @@ class UserProfile extends Component {
 
   render() {
     // console.log(this.state.currUser);
-    var page = this.pageConstruct(this.props.location.state);
+    var page = this.pageConstruct(this.props.currUser);
     return(
       <div>
         {page}

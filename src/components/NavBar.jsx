@@ -12,6 +12,7 @@ const NavBar = () => {
               <li><Link to="/user_id/lists">Show Lists</Link></li>
               <li><Link to="/user_id/list_id">A list</Link></li>
               <li><Link to="/register">Register</Link></li>
+              <li><Link to="/login">Log In</Link></li>
             </ul>
         </div>
     );

@@ -14,7 +14,7 @@ class Register extends Component{
         email: newEmail,
         password: newPassword,
         confirmPassword: newPasswordConfirm
-      }
+      };
 
     //redirect if its a cookie
     post('/register', data)
@@ -23,6 +23,7 @@ class Register extends Component{
         if(user.message){
           console.log(user.message);
         } else {
+          this.props.setCurrUser(data);
           this.props.history.push({
             pathname: '/user_id',
             state: {detail: user}

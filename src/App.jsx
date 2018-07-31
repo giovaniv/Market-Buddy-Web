@@ -4,6 +4,7 @@ import UserProfile from './components/UserProfile.jsx';
 import Showlists from './components/Showlists.jsx';
 import ViewList from './components/ViewList.jsx';
 import Register from './components/Register.jsx'
+import Login from './components/Login.jsx'
 
 // import route Components here
 import {
@@ -37,18 +38,22 @@ class App extends Component {
     super();
     this.state = {
       turtles: [],
-      cookies: null
+      currUser: null
     };
+    this.setCurrUser = this.setCurrUser.bind(this);
   }
-
   handleThatOneButton() {
     fetch('/turtles').then(d => d.json()).then(b => {
       this.setState({turtles: b.turtles})
     }).catch(err => console.warn(err))
   }
 
-  render() {
+  setCurrUser(user){
+    this.setState( {currUser: user} );
+  }
 
+  render() {
+ // <Route exact path="/register" component={Register} />
     return (
       <Router>
         <div>
@@ -66,10 +71,11 @@ class App extends Component {
             <Route path="/" component={NavBar} />
           </div>
 
-          <Route path="/user_id" exact={true} component={UserProfile} />
+          <Route path="/user_id" exact={true} render={() => <UserProfile currUser={this.state.currUser} />} />
           <Route path="/user_id/lists" component={Showlists} />
           <Route path="/user_id/list_id" component={ViewList} />
-          <Route exact path="/register" component={Register} />
+          <Route path="/register" render={()=><Register setCurrUser={this.setCurrUser} />}/>
+          <Route path="/login" render={()=><Login setCurrUser={this.setCurrUser} /> } />
 
         </div>
       </Router>
