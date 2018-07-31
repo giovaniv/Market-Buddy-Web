@@ -16,24 +16,6 @@ import {
   Redirect
 } from 'react-router-dom'
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      fakeAuth.isAuthenticated ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/register",
-            state: { from: props.location }
-          }}
-        />
-      )
-    }
-  />
-);
-
 class App extends Component {
   constructor() {
     super();

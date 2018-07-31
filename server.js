@@ -38,7 +38,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/user_id", (req, res) => {
-  console.log(req.session);
   if(!req.session.user_id){
     res.redirect("/register");
     return;
