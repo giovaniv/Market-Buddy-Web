@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import NavBar from './components/NavBar.jsx';
 import UserProfile from './components/UserProfile.jsx';
-import Showlists from './components/Showlists.jsx';
+import ShowLists from './components/Showlists.jsx';
 import ViewList from './components/ViewList.jsx';
 import Register from './components/Register.jsx'
 
@@ -37,7 +37,8 @@ class App extends Component {
     super();
     this.state = {
       turtles: [],
-      cookies: null
+      cookies: null,
+      testLists: ["Movie Night", "Camping", "Something Healthy"]
     };
   }
 
@@ -48,6 +49,8 @@ class App extends Component {
   }
 
   render() {
+
+    const { testLists } = this.state;
 
     return (
       <Router>
@@ -66,10 +69,10 @@ class App extends Component {
             <Route path="/" component={NavBar} />
           </div>
 
-          <Route path="/user_id" exact={true} component={UserProfile} />
-          <Route path="/user_id/lists" component={Showlists} />
-          <Route path="/user_id/list_id" component={ViewList} />
-          <Route exact path="/register" component={Register} />
+          <Route path="/user_id" exact={true} render={() => <UserProfile />} />
+          <Route path="/user_id/lists"  render={() => <ShowLists test={testLists}/>}/>
+          <Route path="/user_id/list_id"  render={() => <ViewList/>} />
+        <Route exact path="/register" render={() => <Register />} />
 
         </div>
       </Router>

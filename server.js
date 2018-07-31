@@ -30,7 +30,10 @@ const users = {
     password: "123"
   },
 }
-
+//example request
+// request('http://10.30.33.169:7000/api?/walmart/name=something', function (error, response, body) {
+//   res.send(body);
+// }
 
 // View routes (static, to do: use variables)
 app.get("/", (req, res) => {

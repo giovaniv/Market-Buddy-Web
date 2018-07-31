@@ -1,9 +1,19 @@
 import React from 'react';
-const Showlists = () => {
+const ShowLists = (props) => {
+    let lists = props.test.map((item) => {
+        return (
+          <li>
+            {item}
+          </li>
+        )
+      })
     return (
         <div>
-            <h1 >I Will show all the lists the user has </h1>
+            <h1 >I will show all the lists the user has </h1>
+            <ul>
+                {lists}
+            </ul>
         </div>
     );
 }
-export default Showlists;
+export default ShowLists;
