@@ -150,6 +150,16 @@ app.get('/turtles', (req, res) => {
 //   //Add a record to lists database
 // });
 
+app.post("/search", (req, res) => {
+  console.log("in search " + req.body);
+  console.log("in search " + req.body.item);
+
+  var product = req.body.item;
+
+  res.send(product);
+
+});
+
 app.listen(PORT, function() {
   console.log(`Example app listening on port ${PORT}!`);
 });
