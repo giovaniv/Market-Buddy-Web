@@ -5,6 +5,7 @@ import Showlists from './components/Showlists.jsx';
 import ViewList from './components/ViewList.jsx';
 import Register from './components/Register.jsx'
 import Login from './components/Login.jsx'
+import Logout from './components/Logout.jsx'
 
 // import route Components here
 import {
@@ -68,7 +69,7 @@ class App extends Component {
           }
 
           <div>
-            <Route path="/" component={NavBar} />
+            <Route path="/" render={() => <NavBar currUser={this.state.currUser} />} />
           </div>
 
           <Route path="/user_id" exact={true} render={() => <UserProfile currUser={this.state.currUser} />} />
@@ -76,6 +77,7 @@ class App extends Component {
           <Route path="/user_id/list_id" component={ViewList} />
           <Route path="/register" render={()=><Register setCurrUser={this.setCurrUser} />}/>
           <Route path="/login" render={()=><Login setCurrUser={this.setCurrUser} /> } />
+          <Route path="/logout" render={() => <Logout setCurrUser={this.setCurrUser} />} />
 
         </div>
       </Router>

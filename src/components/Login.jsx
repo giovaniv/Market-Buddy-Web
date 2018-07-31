@@ -2,28 +2,26 @@ import React, {Component} from 'react';
 import { withRouter } from 'react-router'
 import {post} from 'axios';
 
-class Register extends Component{
+class Login extends Component{
 
   submitHandle(e){
     e.preventDefault();
     var newEmail = e.target[0].value;
     var newPassword = e.target[1].value;
-    var newPasswordConfirm = e.target[2].value;
 
-    var data = {
+    var loginRequest = {
         email: newEmail,
-        password: newPassword,
-        confirmPassword: newPasswordConfirm
+        password: newPassword
       };
 
     //redirect if its a cookie
-    post('/register', data)
+    post('/login', loginRequest)
       .then(response => response.data)
       .then(user => {
         if(user.message){
           console.log(user.message);
         } else {
-          this.props.setCurrUser(data.email);
+          this.props.setCurrUser(loginRequest.email);
           this.props.history.push({
             pathname: '/user_id'
           })
@@ -36,17 +34,14 @@ class Register extends Component{
     return (
         <form onSubmit={this.submitHandle.bind(this)}>
           <div>
-            <h1>Sign Up</h1>
-            <p>Please fill in this form to create an account.</p>
+            <h1>Sign In</h1>
+            <p>Please fill in this form to sign into your account.</p>
 
             <label><b>Email</b></label>
             <input type="text" placeholder="Enter Email" name="email" />
 
             <label><b>Password</b></label>
             <input placeholder="Enter Password" name="psw" />
-
-            <label><b>Repeat Password</b></label>
-            <input placeholder="Repeat Password" name="psw-repeat" />
 
             <div>
               <button type="button">Cancel</button>
@@ -58,8 +53,4 @@ class Register extends Component{
     );
   }
 }
-export default withRouter(Register);
-
-
-
-
+export default withRouter(Login);

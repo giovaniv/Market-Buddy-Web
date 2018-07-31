@@ -26,8 +26,8 @@ var Userid = 1;
 const users = {
   1: {
     id: 1,
-    email: "123@123",
-    password: "123"
+    email: "2",
+    password: "2"
   },
 }
 
@@ -58,10 +58,24 @@ app.get("/register", (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get("/logout", (req, res) => {
+  res.redirect("/login");
+});
+
 app.post("/register", (req, res) => {
   var registerfailed = false;
-  if(req.body.password !== req.body.confirmPassword){
+
+  if(req.body.password !== req.body.confirmPassword || req.body.email === ""){
     registerfailed = true;
+  }
+  for(var user in users) {
+    if(users[user].email === req.body.email){
+      registerfailed = true;
+    }
   }
 
   if(registerfailed){
@@ -79,6 +93,26 @@ app.post("/register", (req, res) => {
 
     res.send(users[req.session.user_id]);
   }
+});
+
+app.post("/login", (req, res) => {
+  var loginfailed = true;
+
+  for(var user in users) {
+    if(users[user].email === req.body.email){
+      if(users[user].password === String(req.body.password)){
+        loginfailed = false;
+      }
+    }
+  }
+
+  if(loginfailed){
+    res.send( {message: "Your email and password did not match our records, please try again."} );
+    return;
+  }
+
+  res.send(req.body);
+
 });
 
 app.post("/logout", (req, res) => {
