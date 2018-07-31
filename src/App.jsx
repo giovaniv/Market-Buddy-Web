@@ -21,12 +21,9 @@ class App extends Component {
     super();
     this.state = {
       turtles: [],
-<<<<<<< HEAD
       currUser: null
-=======
       cookies: null,
       testLists: ["Movie Night", "Camping", "Something Healthy"]
->>>>>>> viewList-setup
     };
     this.setCurrUser = this.setCurrUser.bind(this);
   }
@@ -40,13 +37,10 @@ class App extends Component {
     this.setState( {currUser: user} );
   }
 
-<<<<<<< HEAD
   render() {
  // <Route exact path="/register" component={Register} />
-=======
     const { testLists } = this.state;
 
->>>>>>> viewList-setup
     return (
       <Router>
         <div>
