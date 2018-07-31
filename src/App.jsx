@@ -6,6 +6,7 @@ import ViewList from './components/ViewList.jsx';
 import Register from './components/Register.jsx'
 import Login from './components/Login.jsx'
 import Logout from './components/Logout.jsx'
+// import { withCookies, Cookies } from 'react-cookie'
 
 // import route Components here
 import {
@@ -17,15 +18,18 @@ import {
 } from 'react-router-dom'
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    // const { cookies } = props;
     this.state = {
       turtles: [],
-      currUser: null
-      cookies: null,
+      // currUser: cookies.get('session') || null,
+      currUser: localStorage.getItem('user_id'),
       testLists: ["Movie Night", "Camping", "Something Healthy"]
     };
     this.setCurrUser = this.setCurrUser.bind(this);
+    // console.log(this.state.currUser);
+
   }
   handleThatOneButton() {
     fetch('/turtles').then(d => d.json()).then(b => {
@@ -36,6 +40,7 @@ class App extends Component {
   setCurrUser(user){
     this.setState( {currUser: user} );
   }
+  
 
   render() {
  // <Route exact path="/register" component={Register} />
@@ -70,4 +75,5 @@ class App extends Component {
     );
   }
 }
+// export default withCookies(App);
 export default App;

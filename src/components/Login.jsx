@@ -18,6 +18,7 @@ class Login extends Component{
     post('/login', loginRequest)
       .then(response => response.data)
       .then(user => {
+        localStorage.setItem('user_id', user);
         if(user.message){
           console.log(user.message);
         } else {
