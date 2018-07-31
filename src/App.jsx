@@ -25,6 +25,7 @@ class App extends Component {
     };
     this.setCurrUser = this.setCurrUser.bind(this);
   }
+
   handleThatOneButton() {
     fetch('/turtles').then(d => d.json()).then(b => {
       this.setState({turtles: b.turtles})
