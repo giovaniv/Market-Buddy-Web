@@ -1,0 +1,91 @@
+body {
+ 
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+.super-blue {
+  background: #0069ff;
+  padding-bottom: 3em;
+}
+
+.super-blue2 {
+  background: #0069ff;
+  padding-bottom: 20em;
+}
+
+h2 {
+  margin:0;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  font-size: 2em;
+  color: #fff;
+}
+
+a {
+  color: #0069ff;
+}
+
+h3 {
+  font-size: 2em;
+  color: #031b4e;
+}
+
+.vertical-form {
+  margin: 0 auto;
+  width: 470px;
+  padding: 2em;
+  border-radius: 3px;
+  background: white;
+  text-align: center;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #0069ff;
+  -webkit-box-shadow: 0 1px 0 0 #0069ff;
+          box-shadow: 0 1px 0 0 #0069ff;
+}
+
+.input-field .prefix.active {
+  color: #0069ff;
+}
+
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+input[type=password]:not(.browser-default):focus:not([readonly]) + label,
+input[type=email]:not(.browser-default):focus:not([readonly]) + label,
+input[type=url]:not(.browser-default):focus:not([readonly]) + label,
+input[type=time]:not(.browser-default):focus:not([readonly]) + label,
+input[type=date]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]) + label,
+input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
+input[type=number]:not(.browser-default):focus:not([readonly]) + label,
+input[type=search]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #0069ff;
+}
+
+.btn {
+  background-color: #031b4e;;
+}
+
+.btn:hover {
+  background-color: #0069ff;;
+}
+
+.space{
+  margin-top: 1em;;
+}

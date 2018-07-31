@@ -13,7 +13,7 @@ class Logout extends Component{
     .then(user => {
       this.props.setCurrUser(null);
       this.props.history.push({
-        pathname: '/user_id'
+        pathname: '/main'
       })
     });
   }

@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router'
 import {post} from 'axios';
+import {
+  Link
+} from 'react-router-dom';
 
 class Login extends Component{
 
@@ -21,7 +24,7 @@ class Login extends Component{
         if(user.message){
           console.log(user.message);
         } else {
-          this.props.setCurrUser(loginRequest.email);
+          this.props.setCurrUser(user);
           this.props.history.push({
             pathname: '/user_id'
           })
@@ -32,24 +35,35 @@ class Login extends Component{
 
   render() {
     return (
-        <form onSubmit={this.submitHandle.bind(this)}>
-          <div>
-            <h1>Sign In</h1>
-            <p>Please fill in this form to sign into your account.</p>
-
-            <label><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" />
-
-            <label><b>Password</b></label>
-            <input placeholder="Enter Password" name="psw" />
-
-            <div>
-              <button type="button">Cancel</button>
-              <button type="submit">Sign Up</button>
-            </div>
-
+      <div className="super-blue2">
+        <h2><i className="material-icons">shopping_cart</i>Market Buddy</h2>
+        <form className="vertical-form" onSubmit={this.submitHandle.bind(this)}>
+          <h3>Login</h3>
+          <div className="row">
+              <div className="input-field col s12">
+                <input id="email" type="email" />
+                <label htmlFor="email">Email</label>
+              </div>
           </div>
+          <div className="row">
+            <div className="input-field col s12">
+              <input id="password" type="password" />
+              <label htmlFor="password">Password</label>
+            </div>
+          </div>
+        <button className="btn waves-effect " type="submit" name="action">Login
+          <i className="material-icons right">send</i>
+        </button>
+        <div className="row">
+          <div className="col s12 space">
+            Don't have an account yet?
+            <div className="input-field inline">
+            <Link to="/register">Register</Link>
+            </div>
+          </div>
+        </div>
         </form>
+      </div>
     );
   }
 }

@@ -18,6 +18,7 @@ app.use(cookieSession({
 }));
 
 app.use(express.static('dist'));
+app.use('/build', express.static('build'));
 
 
 // Fake Database
@@ -26,7 +27,8 @@ var Userid = 1;
 const users = {
   1: {
     id: 1,
-    email: "2",
+    name: "Shark",
+    email: "test@test.com",
     password: "2"
   },
 }
@@ -37,6 +39,10 @@ const users = {
 
 // View routes (static, to do: use variables)
 app.get("/", (req, res) => {
+  res.redirect("/main");
+});
+
+app.get("/main", (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -71,7 +77,7 @@ app.get("/logout", (req, res) => {
 app.post("/register", (req, res) => {
   var registerfailed = false;
 
-  if(req.body.password !== req.body.confirmPassword || req.body.email === ""){
+  if(req.body.password !== req.body.confirmPassword || req.body.email === "" || req.body.name === ""){
     registerfailed = true;
   }
   for(var user in users) {
@@ -89,6 +95,7 @@ app.post("/register", (req, res) => {
     req.session.user_id = Userid;
     users[Userid] = {
       id: Userid,
+      name: req.body.name,
       email: req.body.email,
       password: req.body.password
     }
@@ -104,6 +111,7 @@ app.post("/login", (req, res) => {
     if(users[user].email === req.body.email){
       if(users[user].password === String(req.body.password)){
         loginfailed = false;
+        req.session.user_id = users[user].id;
       }
     }
   }
@@ -113,7 +121,7 @@ app.post("/login", (req, res) => {
     return;
   }
 
-  res.send(req.body);
+  res.send(users[req.session.user_id]);
 
 });
 

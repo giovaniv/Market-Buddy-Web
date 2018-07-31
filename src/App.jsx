@@ -4,8 +4,9 @@ import UserProfile from './components/UserProfile.jsx';
 import ShowLists from './components/Showlists.jsx';
 import ViewList from './components/ViewList.jsx';
 import Register from './components/Register.jsx'
-import Login from './components/Login.jsx'
-import Logout from './components/Logout.jsx'
+import Login from './components/Login.jsx';
+import Logout from './components/Logout.jsx';
+import Main from './components/Main.jsx';
 
 // import route Components here
 import {
@@ -42,29 +43,19 @@ class App extends Component {
 
     return (
       <Router>
-        <div>
-          <button onClick={this.handleThatOneButton.bind(this)}>Click this</button>
-          {
-            this.state.turtles &&
-            <table>
-              <tbody>
-                {this.state.turtles.map(turtle => <tr><td>{turtle}</td></tr>)}
-              </tbody>
-            </table>
-          }
-
-          <div>
+          {/* <div>
             <Route path="/" render={() => <NavBar currUser={this.state.currUser} />} />
-          </div>
-
+          </div> */}
+          
+          <div>
+          <Route path="/main" component={Main} />
           <Route path="/user_id" exact={true} render={() => <UserProfile currUser={this.state.currUser} />} />
           <Route path="/user_id/lists" render={() => <ShowLists test={testLists}/>} />
           <Route path="/user_id/list_id" render={() => <ViewList/>} />
           <Route path="/register" render={()=><Register setCurrUser={this.setCurrUser} />}/>
           <Route path="/login" render={()=><Login setCurrUser={this.setCurrUser} /> } />
           <Route path="/logout" render={() => <Logout setCurrUser={this.setCurrUser} />} />
-
-        </div>
+          </div>
       </Router>
     );
   }
