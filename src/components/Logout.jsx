@@ -11,6 +11,7 @@ class Logout extends Component{
     post("/logout")
     .then(response => response.data)
     .then(user => {
+      localStorage.setItem('user_id', null);
       this.props.setCurrUser(null);
       this.props.history.push({
         pathname: '/user_id'

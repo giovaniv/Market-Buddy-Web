@@ -1,10 +1,22 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const cookieSession = require("cookie-session");
 const bcrypt = require("bcryptjs");
 const PORT = 8080;
 const path = require('path');
+// const cookieSession = require("cookie-session");
+// const uuidv1 = require('uuid/v1');
+
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: ['banana'],
+//   maxAge: 24 * 60 * 60 * 1000 })
+// );
+  
+  // app.use(cookieSession({
+  //   name: "cookies",
+  //   keys: ["user_id"]
+  // }));
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -12,10 +24,6 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-app.use(cookieSession({
-  name: "cookies",
-  keys: ["user_id"]
-}));
 
 app.use(express.static('dist'));
 
@@ -41,10 +49,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/user_id", (req, res) => {
-  if(!req.session.user_id){
-    res.redirect("/register");
-    return;
-  }
+  // if(!req.session.user_id){
+  //   res.redirect("/register");
+  //   return;
+  // }
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -86,14 +94,15 @@ app.post("/register", (req, res) => {
   // set the cookies here
   else {
     Userid += 1;
-    req.session.user_id = Userid;
+    // req.session.user_id = Userid;
     users[Userid] = {
       id: Userid,
       email: req.body.email,
       password: req.body.password
-    }
+    };
 
-    res.send(users[req.session.user_id]);
+    // res.send(users[req.session.user_id]);
+    res.redirect('/');
   }
 });
 
@@ -118,7 +127,7 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  req.session = null;
+  // req.session = null;
   res.redirect("/login");
 });
 // Test routes

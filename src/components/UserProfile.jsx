@@ -15,6 +15,7 @@ class UserProfile extends Component {
   }
 
   pageConstruct(currState) {
+    console.log(currState);
     if(currState){
       return (<p>You are logged in</p>);
     }
