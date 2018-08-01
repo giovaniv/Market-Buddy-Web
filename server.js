@@ -4,6 +4,7 @@ const app = express();
 const bcrypt = require("bcryptjs");
 const PORT = 8080;
 const path = require('path');
+const request = require('request');
 // const cookieSession = require("cookie-session");
 // const uuidv1 = require('uuid/v1');
 
@@ -157,6 +158,29 @@ app.get('/turtles', (req, res) => {
 // app.post('/:user_id/lists,' (req, res) => {
 //   //Add a record to lists database
 // });
+
+app.post("/search", (req, res) => {
+  // console.log("in search " + req.body);
+  // console.log("in search " + req.body.item);
+  let item = req.body.item;
+  // let results = [];
+
+  request("http://10.30.33.169:7000/products?name=" + item, function (error, response, body) {
+    console.log('error:', error); // Print the error if one occurred
+    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    console.log('body:', body); // Print the HTML for the Google homepage.
+    // body.forEach(function(i){
+    //   results.push(body[i].name)
+    // });
+    // res.send(results);
+    let string = JSON.parse(body);
+    res.send(string[0].name)
+  });
+
+  // res.send(product);
+  // res.send(responseJson);
+
+});
 
 app.listen(PORT, function() {
   console.log(`Example app listening on port ${PORT}!`);
