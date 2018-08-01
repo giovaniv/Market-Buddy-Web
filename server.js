@@ -164,8 +164,8 @@ app.post("/search", (req, res) => {
   // console.log("in search " + req.body.item);
   let item = req.body.item;
   // let results = [];
-
-  request("http://10.30.33.169:7000/products?name=" + item, function (error, response, body) {
+  
+  request("http://192.168.88.120:7000/products?name=" + item, function (error, response, body) {
     console.log('error:', error); // Print the error if one occurred
     console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
     console.log('body:', body); // Print the HTML for the Google homepage.
