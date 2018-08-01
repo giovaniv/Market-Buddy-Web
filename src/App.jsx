@@ -30,9 +30,15 @@ class App extends Component {
       testLists: ["Movie Night", "Camping", "Something Healthy"]
     };
     this.setCurrUser = this.setCurrUser.bind(this);
+    // this.logout = this.logout.bind(this);
     // console.log(this.state.currUser);
 
   }
+
+  // logout() {
+  //   console.log("logging out");
+  //   return <Logout setCurrUser={this.setCurrUser } />;
+  // }
 
   handleThatOneButton() {
     fetch('/turtles').then(d => d.json()).then(b => {
@@ -62,7 +68,8 @@ class App extends Component {
           <Route path="/user_id/list_id" render={() => <ViewList/>} />
           <Route path="/register" render={()=><Register setCurrUser={this.setCurrUser} />}/>
           <Route path="/login" render={()=><Login setCurrUser={this.setCurrUser} /> } />
-          <Route path="/logout" render={() => <Logout setCurrUser={this.setCurrUser} />} />
+          <Route path="/logout" render={() => <Logout/>} />
+
           </div>
       </Router>
     );

@@ -80,7 +80,8 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-  res.redirect("/login");
+  // res.redirect("/login");
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.post("/register", (req, res) => {
@@ -110,7 +111,9 @@ app.post("/register", (req, res) => {
     };
 
     // res.send(users[req.session.user_id]);
-    res.redirect('/');
+    // res.json()
+    res.json(users[Userid].id);
+    // res.redirect('/');
   }
 });
 
