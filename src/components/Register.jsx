@@ -41,7 +41,7 @@ class Register extends Component{
   render() {
     return (
       <div className="super-blue">
-         <h2><i className="material-icons">shopping_cart</i>Market Buddy</h2>
+        <Link to="/main"><h2><i className="material-icons">shopping_cart</i>Market Buddy</h2></Link>
         <form className="vertical-form" onSubmit={this.submitHandle.bind(this)}>
           <h3>Register</h3>
           <div className="row">
