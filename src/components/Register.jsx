@@ -29,7 +29,7 @@ class Register extends Component{
         if(user.message){
           console.log(user.message);
         } else {
-          this.props.setCurrUser(user);
+          this.props.setCurrUser(data);
           this.props.history.push({
             pathname: '/user_id'
           })
@@ -50,7 +50,7 @@ class Register extends Component{
               <label htmlFor="name">Name</label>
             </div>
           </div>
-           
+
           <div className="row">
             <div className="input-field col s12">
               <input id="email" type="email" className="validate" />

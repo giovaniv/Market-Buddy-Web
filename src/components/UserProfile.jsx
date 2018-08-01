@@ -15,7 +15,6 @@ class UserProfile extends Component {
   }
 
   pageConstruct(currState) {
-    console.log(currState);
     if(currState){
       return (<p>You are logged in as {currState.name}</p>);
     }
@@ -24,6 +23,7 @@ class UserProfile extends Component {
 
   render() {
     // console.log(this.state.currUser);
+    console.log(this.props.currUser);
     var page = this.pageConstruct(this.props.currUser);
     return(
       <div>
@@ -39,29 +39,29 @@ class UserProfile extends Component {
           </nav>
         </div>
         <ul className="sidenav" id="mobile-demo">
-          <li><Link to="/logout">Logout</Link></li> 
-        </ul>          
-        
-        <main>   
+          <li><Link to="/logout">Logout</Link></li>
+        </ul>
+
+        <main>
           {/* <!-- Page Layout here --> */}
           <div className="row">
-            <div className="col s12 m4 l3" id="left"> 
+            <div className="col s12 m4 l3" id="left">
               <img src="http://placekitten.com/g/100/100" alt="Placeholder" className="circle responsive-img" />
               <p id="username">{this.props.currUser.name}</p>
               <a className="waves-effect waves-light btn-small">Edit Profile</a>
             </div>
 
-              <div className="col s12 m8 l9" id="right"> 
+              <div className="col s12 m8 l9" id="right">
                 <div className="float-blue">
                   <h5 className="my-lists">My lists</h5>
                   <a className="btn-floating btn-large waves-effect"><i className="material-icons">add</i></a>
-                </div>  
+                </div>
                 <div className="row grid-lists">
                   <div className="card small blue-cl">
                     <div className="card-action">
                       <span className="card-title">Movie snacks</span>
                       <a href="#"><i className="material-icons right">more_vert</i></a>
-                    </div>   
+                    </div>
                   </div>
                 <div className="card small blue-cl">
                   <div className="card-action">
@@ -73,7 +73,7 @@ class UserProfile extends Component {
                   <div className="card-action">
                     <span className="card-title">Last week</span>
                     <a href="#"><i className="material-icons right">more_vert</i></a>
-                  </div>  
+                  </div>
                 </div>
                 <div className="card small blue-cl">
                   <div className="card-action">

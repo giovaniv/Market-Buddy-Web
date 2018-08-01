@@ -12,7 +12,7 @@ const path = require('path');
 //   keys: ['banana'],
 //   maxAge: 24 * 60 * 60 * 1000 })
 // );
-  
+
   // app.use(cookieSession({
   //   name: "cookies",
   //   keys: ["user_id"]
@@ -119,6 +119,7 @@ app.post("/login", (req, res) => {
   for(var user in users) {
     if(users[user].email === req.body.email){
       if(users[user].password === String(req.body.password)){
+        console.log(users[user]);
         loginfailed = false;
         req.session.user_id = users[user].id;
       }
