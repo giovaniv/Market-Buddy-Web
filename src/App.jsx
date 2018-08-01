@@ -68,7 +68,7 @@ class App extends Component {
           <Route path="/user_id/list_id" render={() => <ViewList/>} />
           <Route path="/register" render={()=><Register setCurrUser={this.setCurrUser} />}/>
           <Route path="/login" render={()=><Login setCurrUser={this.setCurrUser} /> } />
-          <Route path="/logout" render={() => <Logout/>} />
+          <Route path="/logout" render={() => <Logout/>} setCurrUser={this.setCurrUser} />
 
           </div>
       </Router>
