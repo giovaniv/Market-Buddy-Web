@@ -23,7 +23,6 @@ class UserProfile extends Component {
 
   render() {
     // console.log(this.state.currUser);
-    console.log(this.props.currUser);
     var page = this.pageConstruct(this.props.currUser);
     return(
       <div>

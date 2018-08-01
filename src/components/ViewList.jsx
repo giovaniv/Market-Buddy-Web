@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import { withRouter } from 'react-router'
 import {post} from 'axios';
 
-class ViewList extends Component{ 
+class ViewList extends Component{
     constructor(props) {
-        super(props); 
+        super(props);
         this.state = {
-          product: 'nothing'
+          product: []
         }
+
+        this.submitHandle = this.submitHandle.bind(this);
       }
 
     submitHandle(e){
@@ -16,17 +18,24 @@ class ViewList extends Component{
 
         var data = {
             item: newProduct,
-          };
+        };
 
-        // console.log(newProduct);
-    
         post('/search', data)
           .then(response => {
-              this.setState({ product: response.data })
+                return response.data
             }
-          );
+          )
+          .then(products => {
+            console.log(products);
+            if(Array.isArray(products)){
+                console.log("I am an array");
+                this.setState( { product: products } );
+            } else {
+                this.setState( { product: "No items found" } );
+            }
+          });
       }
-    
+
     render() {
     return (
         <div>
@@ -47,10 +56,19 @@ class ViewList extends Component{
 
         </form>
         </div>
-       
+
         <div>
             <p>result</p>
-            <p>{this.state.product}</p>
+            {!Array.isArray(this.state.product) ? (
+                <p>{JSON.stringify(this.state.product)}</p>
+               ) : (
+                <ul>
+                    {this.state.product.map(function(product, index){
+                        return <li key={ index }>{product.name}</li>;
+                      })}
+                </ul>
+               )
+            }
         </div>
         </div>
     );
