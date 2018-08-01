@@ -13,7 +13,7 @@ const request = require('request');
 //   keys: ['banana'],
 //   maxAge: 24 * 60 * 60 * 1000 })
 // );
-  
+
   // app.use(cookieSession({
   //   name: "cookies",
   //   keys: ["user_id"]
@@ -120,6 +120,7 @@ app.post("/login", (req, res) => {
   for(var user in users) {
     if(users[user].email === req.body.email){
       if(users[user].password === String(req.body.password)){
+        console.log(users[user]);
         loginfailed = false;
         req.session.user_id = users[user].id;
       }
@@ -139,42 +140,24 @@ app.post("/logout", (req, res) => {
   // req.session = null;
   res.redirect("/login");
 });
-// Test routes
-// app.get("/test", (req, res) => {
-//   res.sendFile(path.join(__dirname, 'index.html'));
-// });
-
-// app.get("/sam", (req, res) => {
-//   res.sendFile(path.join(__dirname, 'index.html'));
-// })
-
-
-// Data routes
-app.get('/turtles', (req, res) => {
-  // res.send({ turtles: ['turtle', 'different turtle'] })
-  res.send({ turtles: ['🐢', '🐢', '🐢', '🐢', '🐢'] })
-});
-
-// app.post('/:user_id/lists,' (req, res) => {
-//   //Add a record to lists database
-// });
 
 app.post("/search", (req, res) => {
   // console.log("in search " + req.body);
   // console.log("in search " + req.body.item);
   let item = req.body.item;
   // let results = [];
-  
+
   request("http://192.168.88.120:7000/products?name=" + item, function (error, response, body) {
-    console.log('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print the HTML for the Google homepage.
+    //console.log('error:', error); // Print the error if one occurred
+    //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+    //console.log('body:', body); // Print the HTML for the Google homepage.
     // body.forEach(function(i){
     //   results.push(body[i].name)
     // });
     // res.send(results);
-    let string = JSON.parse(body);
-    res.send(string[0].name)
+    console.log(body);
+    // let string = JSON.parse(body);
+    res.send(body)
   });
 
   // res.send(product);

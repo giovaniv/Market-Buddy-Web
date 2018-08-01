@@ -22,6 +22,7 @@ class Login extends Component{
       .then(response => response.data)
       .then(user => {
         localStorage.setItem('user_id', user);
+        console.log("The user is: ", user);
         if(user.message){
           console.log(user.message);
         } else {
@@ -37,7 +38,7 @@ class Login extends Component{
   render() {
     return (
       <div className="super-blue2">
-        <h2><i className="material-icons">shopping_cart</i>Market Buddy</h2>
+        <Link to="/main"><h2><i className="material-icons">shopping_cart</i>Market Buddy</h2></Link>
         <form className="vertical-form" onSubmit={this.submitHandle.bind(this)}>
           <h3>Login</h3>
           <div className="row">
