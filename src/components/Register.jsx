@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router'
 import {post} from 'axios';
-import {
-  Link
-} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class Register extends Component{
 
@@ -21,15 +19,16 @@ class Register extends Component{
         confirmPassword: newPasswordConfirm
       };
 
-    //redirect if its a cookie
+    //redirect if its a cookie  
     post('/register', data)
       .then(response => response.data)
       .then(user => {
-        localStorage.setItem('user_id', user);
+        console.log("after regPost " + user);
+        localStorage.setItem('user_id', user.id);
         if(user.message){
           console.log(user.message);
         } else {
-          this.props.setCurrUser(data);
+          this.props.setCurrUser(user);
           this.props.history.push({
             pathname: '/user_id'
           })
@@ -41,47 +40,47 @@ class Register extends Component{
   render() {
     return (
       <div className="super-blue">
-        <Link to="/main"><h2><i className="material-icons">shopping_cart</i>Market Buddy</h2></Link>
-        <form className="vertical-form" onSubmit={this.submitHandle.bind(this)}>
-          <h3>Register</h3>
-          <div className="row">
-            <div className="input-field col s12">
-              <input id="name" type="text" className="validate" />
-              <label htmlFor="name">Name</label>
-            </div>
+      <Link to="/main"><h2><i className="material-icons">shopping_cart</i>Market Buddy</h2></Link>
+      <form className="vertical-form" onSubmit={this.submitHandle.bind(this)}>
+        <h3>Register</h3>
+        <div className="row">
+          <div className="input-field col s12">
+            <input id="name" type="text" className="validate" />
+            <label htmlFor="name">Name</label>
           </div>
+        </div>
 
+        <div className="row">
+          <div className="input-field col s12">
+            <input id="email" type="email" className="validate" />
+            <label htmlFor="email">Email</label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="input-field col s12">
+            <input id="password" type="password" className="validate" />
+            <label htmlFor="password">Password</label>
+          </div>
+        </div>
           <div className="row">
             <div className="input-field col s12">
-              <input id="email" type="email" className="validate" />
-              <label htmlFor="email">Email</label>
+              <input id="confirm_password" type="password" className="validate" />
+              <label htmlFor="confirm_password">Confirm Password</label>
             </div>
           </div>
-          <div className="row">
-            <div className="input-field col s12">
-              <input id="password" type="password" className="validate" />
-              <label htmlFor="password">Password</label>
+        <button className="btn waves-effect " type="submit" name="action">Register
+          <i className="material-icons right">send</i>
+        </button>
+        <div className="row">
+            <div className="col s12 space">
+              Already have an account?
+              <div className="input-field inline">
+              <Link to="/login">Login</Link>
+              </div>
             </div>
           </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input id="confirm_password" type="password" className="validate" />
-                <label htmlFor="confirm_password">Confirm Password</label>
-              </div>
-            </div>
-          <button className="btn waves-effect " type="submit" name="action">Register
-            <i className="material-icons right">send</i>
-          </button>
-          <div className="row">
-              <div className="col s12 space">
-                Already have an account?
-                <div className="input-field inline">
-                <Link to="/login">Login</Link>
-                </div>
-              </div>
-            </div>
-          </form>
-      </div>
+        </form>
+    </div>
     );
   }
 }

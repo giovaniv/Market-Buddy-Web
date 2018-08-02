@@ -6,13 +6,14 @@ class Logout extends Component{
   constructor() {
     super();
   }
-
-  componentWillMount() {
+  componentDidMount() {
+    console.log("mounting");
     post("/logout")
     .then(response => response.data)
     .then(user => {
-      localStorage.setItem('user_id', null);
-      this.props.setCurrUser(null);
+    console.log("posting");
+      localStorage.clear();
+      // this.props.setCurrUser(null);
       this.props.history.push({
         pathname: '/main'
       })

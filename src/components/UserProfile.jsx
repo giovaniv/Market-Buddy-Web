@@ -14,23 +14,24 @@ class UserProfile extends Component {
     this.pageConstruct = this.pageConstruct.bind(this);
   }
 
-  pageConstruct(currState) {
-    if(currState){
-      return (<p>You are logged in as {currState.name}</p>);
+  pageConstruct(currUser) {
+    console.log(currUser);
+    if(currUser){
+      return (<p>You are logged in as {currUser.email}</p>);
     }
     return (<p>You are not logged in</p>);
   }
 
   render() {
-    // console.log(this.state.currUser);
+    console.log("UserProfile user is " + this.props.currUser);
     var page = this.pageConstruct(this.props.currUser);
     return(
       <div>
         <div className="navbar-fixed">
           <nav>
             <div className="nav-wrapper">
-              <a href="#!" className="center brand-logo"><i className="material-icons">shopping_cart</i>Market Buddy</a>
-              <a href="#" data-target="mobile-demo" className="right sidenav-trigger"><i className="material-icons">more_vert</i></a>
+              <Link to="/main" className="center brand-logo"><i className="material-icons">shopping_cart</i>Market Buddy</Link>
+              <Link to="/logout" data-target="mobile-demo" className="right sidenav-trigger"><i className="material-icons">more_vert</i></Link>
               <ul className="right hide-on-med-and-down">
                 <li><Link to="/logout">Logout</Link></li>
               </ul>
@@ -46,7 +47,7 @@ class UserProfile extends Component {
           <div className="row">
             <div className="col s12 m4 l3" id="left">
               <img src="http://placekitten.com/g/100/100" alt="Placeholder" className="circle responsive-img" />
-              <p id="username">{this.props.currUser.name}</p>
+              <p id="username">{this.props.currUser.email}</p>
               <a className="waves-effect waves-light btn-small">Edit Profile</a>
             </div>
 

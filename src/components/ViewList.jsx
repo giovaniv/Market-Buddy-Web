@@ -39,7 +39,7 @@ class ViewList extends Component{
     submitHandle(e){
         e.preventDefault();
         var newProduct = e.target[0].value;
-
+        console.log("before send " + newProduct)
         var data = {
             item: newProduct,
         };

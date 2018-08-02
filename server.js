@@ -80,7 +80,8 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-  res.redirect("/login");
+  // res.redirect("/login");
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.post("/register", (req, res) => {
@@ -110,19 +111,22 @@ app.post("/register", (req, res) => {
     };
 
     // res.send(users[req.session.user_id]);
-    res.redirect('/');
+    // res.json()
+    res.json(users[Userid]);
+    // res.redirect('/');
   }
 });
 
 app.post("/login", (req, res) => {
-  var loginfailed = true;
+  let loginfailed = true;
+  let current_user = null;
 
   for(var user in users) {
     if(users[user].email === req.body.email){
       if(users[user].password === String(req.body.password)){
         console.log(users[user]);
         loginfailed = false;
-        req.session.user_id = users[user].id;
+        current_user = users[user];
       }
     }
   }
@@ -131,8 +135,8 @@ app.post("/login", (req, res) => {
     res.send( {message: "Your email and password did not match our records, please try again."} );
     return;
   }
-
-  res.send(users[req.session.user_id]);
+  console.log("user_id is " + current_user);
+  res.json(current_user);
 
 });
 
