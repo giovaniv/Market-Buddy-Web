@@ -19,16 +19,16 @@ app.use('/build', express.static('build'));
 
 
 // Fake Database
-var Userid = 1;
+// var Userid = 1;
 
-const users = {
-  1: {
-    id: 1,
-    name: "Shark",
-    email: "test@test.com",
-    password: "2"
-  },
-}
+// const users = {
+//   1: {
+//     id: 1,
+//     name: "Shark",
+//     email: "test@test.com",
+//     password: "2"
+//   },
+// }
 
 // View routes (static, to do: use variables)
 app.get("/", (req, res) => {
@@ -63,7 +63,7 @@ app.get("/logout", (req, res) => {
   // res.redirect("/login");
   res.sendFile(path.join(__dirname, "index.html"));
 });
-
+/*
 app.post("/register", (req, res) => {
   var registerfailed = false;
 
@@ -88,7 +88,7 @@ app.post("/register", (req, res) => {
       password: req.body.password
     };
 
-    // curl -d '{"id":"value1", "key2":"value2"}' -H "Content-Type: application/json" -X POST http://localhost:3000/data
+    // curl -d '{"name":"req.body.name", "email": "req.body.email"}' -H "Content-Type: application/json" -X POST http://localhost:3000/data
     var postData = JSON.stringify({user: users[Userid]});
     const options = {
         hostname: '192.168.88.120',
@@ -127,33 +127,73 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  let loginfailed = true;
-  let current_user = null;
+  let current_user = {
+    email: req.body.email,
+    password: req.body.password
+  };
+  let postUser = JSON.stringify({user: current_user});
+  let loggedInUser = {};
 
-  for(var user in users) {
-    if(users[user].email === req.body.email){
-      if(users[user].password === String(req.body.password)){
-        console.log(users[user]);
-        loginfailed = false;
-        current_user = users[user];
-      }
+  const options = {
+    hostname: '192.168.88.120',
+    // hostname: 'localhost',
+    port: 7000,
+    path: '/users/login',
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'accept': 'application/json'
     }
-  }
+  };
 
-  if(loginfailed){
-    res.send( {message: "Your email and password did not match our records, please try again."} );
-    return;
-  }
-
-  request("http://192.168.88.120:7000/signin", function (error, response, body) {
-
+  const reqTest = http.request(options, (res) => {
+    res.setEncoding('utf8');
+    //incoming data arrives here
+    res.on('data', (chunk) => {
+      console.log(`BODY: ${chunk}`);
+      // res.json(chunk) //won't work here
+      loggedInUser = chunk;
+    });
+    res.on('end', () => {
+      console.log('No more data in response.');
+    });
   });
 
-  console.log("user_id is " + current_user);
-  res.json(current_user);
+  req.on('error', (e) => {
+    console.error(`problem with request: ${e.message}`);
+  });
 
+
+  // write data to request body
+  reqTest.write(postUser);
+  reqTest.end();
+  // res.json(chunk); does not have access to chunk
+  console.log("loggedInUser:", loggedInUser);
+  res.json(loggedInUser);
+
+
+  //old code ----------------------------------
+  // let loginfailed = true;
+  // for(var user in users) {
+  //   if(users[user].email === req.body.email){
+  //     if(users[user].password === String(req.body.password)){
+  //       console.log(users[user]);
+  //       loginfailed = false;
+  //       current_user = users[user];
+  //     }
+  //   }
+  // }
+  // if(loginfailed){
+  //   res.send( {message: "Your email and password did not match our records, please try again."} );
+  //   return;
+  // }
+  // request("http://192.168.88.120:7000/signin", function (error, response, body) {
+    
+  // });
+  // res.json(current_user);
+  //old code ---------------------------------
 });
-
+*/
 app.post("/logout", (req, res) => {
   res.redirect("/login");
 });
