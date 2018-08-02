@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import NavBar from './components/NavBar.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import ShowLists from './components/Showlists.jsx';
 import ViewList from './components/ViewList.jsx';
@@ -48,10 +47,6 @@ class App extends Component {
 
     return (
       <Router>
-          {/* <div>
-            <Route path="/" render={() => <NavBar currUser={this.state.currUser} />} />
-          </div> */}
-
           <div>
           <Route path="/main" component={Main} />
           <Route path="/user_id" exact={true} render={() => <UserProfile currUser={this.state.currUser} />} />

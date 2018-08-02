@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router'
 import {post} from 'axios';
+import SearchBar from './SearchBar.jsx';
+import ListItem from './ListItem.jsx'
 
 function searchItem(anArr, target){
     for(var i = 0; i < anArr.length; i++){
@@ -28,7 +30,7 @@ class ViewList extends Component{
           listProduct: []
         }
 
-        this.submitHandle = this.submitHandle.bind(this);
+        this.addSearchList = this.addSearchList.bind(this);
         this.addProduct = this.addProduct.bind(this);
         this.addQuantity = this.addQuantity.bind(this);
         this.minusQuantity = this.minusQuantity.bind(this);
@@ -44,29 +46,14 @@ class ViewList extends Component{
         }
     }
 
-    submitHandle(e){
-        e.preventDefault();
-        var newProduct = e.target[0].value;
-        console.log("before send " + newProduct)
-        var data = {
-            item: newProduct,
-        };
-
-        post('/search', data)
-          .then(response => {
-                return response.data
-            }
-          )
-          .then(products => {
-            if(Array.isArray(products)){
+    addSearchList(products){
+        if(Array.isArray(products)){
                 this.setState( { searchProduct: products } );
-            } else {
-                this.setState( { searchProduct: "No items found" } );
-            }
-        });
+        } else {
+            this.setState( { searchProduct: "No items found" } );
+        }
     }
 
-    // Refactoring stretch into different components
     addProduct(e){
         e.preventDefault();
         var oldList = this.state.listProduct;
@@ -78,12 +65,10 @@ class ViewList extends Component{
             var newList = this.state.listProduct;
             this.setState( { listProduct: newList} );
         } else {
-            console.log("not");
             newItem["quantity"] = 1;
             oldList.push(searchItem(this.state.searchProduct, e.target.innerHTML));
             this.setState( {listProduct: oldList} );
         }
-        console.log(this.state.listProduct);
     }
 
     addQuantity(e){
@@ -113,9 +98,6 @@ class ViewList extends Component{
 
     submitList(e){
         e.preventDefault();
-
-        console.log(this.state.listProduct);
-
         var data = {
             newList: this.state.listProduct
         };
@@ -133,52 +115,9 @@ class ViewList extends Component{
                 <h1 >I Will show a single list with options to add products/delete/edit etc.. </h1>
             </div>
 
-            <div>
-            <form onSubmit={this.submitHandle}>
-            <p>Search Bar</p>
+            <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
 
-            <label><b>Hit Enter</b></label>
-            <input type="text" placeholder="Hit submit to search" name="product" />
-
-            <div>
-                <button type="submit">Submit</button>
-            </div>
-
-            </form>
-            </div>
-
-            <div>
-                <p>result</p>
-                {!Array.isArray(this.state.searchProduct) ? (
-                    <p>{JSON.stringify(this.state.searchProduct)}</p>
-                   ) : (
-                    <ul>
-                        {this.state.searchProduct.map( (product, index) => {
-                            return (<li key={ index }><button onClick={this.addProduct}>{product.name}</button></li>);
-                          })}
-                    </ul>
-                   )
-                }
-            </div>
-
-            <div className="listContent">
-                <h1>Your list</h1>
-                <ul>
-                    {this.state.listProduct.map( (product, index) => {
-                        if(product.quantity > 0){
-                            return (<li key={ index }>
-                                        <span className="prodName">{product.name}</span>
-                                        <button onClick={this.addQuantity}> Add </button>
-                                        <span className="prodQuan">{product.quantity}</span>
-                                        <button onClick={this.minusQuantity}> Minus </button>
-                                        <button onClick={this.deleteItem}> Delete </button>
-                                    </li>);
-                        }
-                    })}
-                </ul>
-            </div>
-
-            <button onClick={this.submitList}>Create List</button>
+            <ListItem listProduct={this.state.listProduct} addQuantity={this.addQuantity} minusQuantity={this.minusQuantity} deleteItem={this.deleteItem}/>
         </div>
     );
 }
