@@ -39,7 +39,7 @@ class UserProfile extends Component {
           </nav>
         </div>
         <ul className="sidenav" id="mobile-demo">
-          <li><Link to="/logout">Logout</Link></li>
+          <li><Link to="/logout" data-target="mobile-demo" className="right sidenav-trigger">Logout</Link></li>
         </ul>
 
         <main>
