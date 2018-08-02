@@ -30,8 +30,8 @@ class UserProfile extends Component {
         <div className="navbar-fixed">
           <nav>
             <div className="nav-wrapper">
-              <a href="#!" className="center brand-logo"><i className="material-icons">shopping_cart</i>Market Buddy</a>
-              <a href="#" data-target="mobile-demo" className="right sidenav-trigger"><i className="material-icons">more_vert</i></a>
+              <Link to="/main" className="center brand-logo"><i className="material-icons">shopping_cart</i>Market Buddy</Link>
+              <Link to="/logout" data-target="mobile-demo" className="right sidenav-trigger"><i className="material-icons">more_vert</i></Link>
               <ul className="right hide-on-med-and-down">
                 <li><Link to="/logout">Logout</Link></li>
               </ul>
@@ -39,7 +39,7 @@ class UserProfile extends Component {
           </nav>
         </div>
         <ul className="sidenav" id="mobile-demo">
-          <li><Link to="/logout" data-target="mobile-demo" className="right sidenav-trigger">Logout</Link></li>
+          <li><Link to="/logout">Logout</Link></li>
         </ul>
 
         <main>
