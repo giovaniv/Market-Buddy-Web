@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 const PORT = 8080;
 const path = require('path');
 const request = require('request');
+const http = require('http');
+
 // const cookieSession = require("cookie-session");
 // const uuidv1 = require('uuid/v1');
 
@@ -110,11 +112,56 @@ app.post("/register", (req, res) => {
       password: req.body.password
     };
 
+  //   // request.post({url: "http://192.168.88.120:7000/users/register", user: JSON.stringify(users[Userid]) }, function (error, response, body) {
+    //   if (error) {
+    //     return console.error('upload failed:', error);
+    //   }
+    //   console.log("user save successful");
+    // });
+
+
+    //CODE WRITTEN BY ROHIT
+    // ==========================
+
+
+    var postData = JSON.stringify({user: users[Userid]});
+    const options = {
+        hostname: '192.168.88.120',
+        port: 7000,
+        path: '/users/register',
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'accept': 'application/json'
+        }
+    };
+
+    const reqTest = http.request(options, (res) => {
+        res.setEncoding('utf8');
+        //incoming data arrives here
+        res.on('data', (chunk) => {
+            console.log(`BODY: ${chunk}`);
+        });
+        res.on('end', () => {
+            console.log('No more data in response.');
+        });
+    });
+
+    req.on('error', (e) => {
+        console.error(`problem with request: ${e.message}`);
+    });
+    // write data to request body
+    reqTest.write(postData);
+    reqTest.end();
+    //CODE WRITTEN BY ROHIT ENDS HERE
+    // =================================
+
     // res.send(users[req.session.user_id]);
     // res.json()
-    res.json(users[Userid]);
+    //res.json(users[Userid]);
     // res.redirect('/');
   }
+
 });
 
 app.post("/login", (req, res) => {
@@ -135,6 +182,11 @@ app.post("/login", (req, res) => {
     res.send( {message: "Your email and password did not match our records, please try again."} );
     return;
   }
+
+  request("http://192.168.88.120:7000/signin", function (error, response, body) {
+
+  });
+
   console.log("user_id is " + current_user);
   res.json(current_user);
 
