@@ -88,8 +88,6 @@ app.post("/register", (req, res) => {
       password: req.body.password
     };
 
-    //CODE WRITTEN BY ROHIT
-    // ==========================
     // curl -d '{"id":"value1", "key2":"value2"}' -H "Content-Type: application/json" -X POST http://localhost:3000/data
     var postData = JSON.stringify({user: users[Userid]});
     const options = {
@@ -121,8 +119,6 @@ app.post("/register", (req, res) => {
     // write data to request body
     reqTest.write(postData);
     reqTest.end();
-    //CODE WRITTEN BY ROHIT ENDS HERE
-    // =================================
 
     res.json(users[Userid]);
     // res.redirect('/');
@@ -159,7 +155,6 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/logout", (req, res) => {
-  // req.session = null;
   res.redirect("/login");
 });
 
@@ -170,15 +165,7 @@ app.post("/search", (req, res) => {
   // let results = [];
 
   request("http://192.168.88.120:7000/products?name=" + item, function (error, response, body) {
-    //console.log('error:', error); // Print the error if one occurred
-    //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    //console.log('body:', body); // Print the HTML for the Google homepage.
-    // body.forEach(function(i){
-    //   results.push(body[i].name)
-    // });
-    // res.send(results);
     console.log(body);
-    // let string = JSON.parse(body);
     res.send(body)
   });
 
