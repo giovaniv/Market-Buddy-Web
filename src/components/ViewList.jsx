@@ -33,6 +33,7 @@ class ViewList extends Component{
         this.addQuantity = this.addQuantity.bind(this);
         this.minusQuantity = this.minusQuantity.bind(this);
         this.submitList = this.submitList.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
       }
 
     submitHandle(e){
@@ -82,18 +83,24 @@ class ViewList extends Component{
         var addQuantityProduct = searchItem(this.state.listProduct, e.target.parentNode.children[0].innerHTML);
         addQuantityProduct.quantity += 1;
         var newList = this.state.listProduct;
-        console.log(newList);
         this.setState( { listProduct: newList} );
     }
 
     minusQuantity(e){
         e.preventDefault();
-        var addQuantityProduct = searchItem(this.state.listProduct, e.target.parentNode.children[0].innerHTML);
-        if(addQuantityProduct.quantity > 0){
-            addQuantityProduct.quantity -= 1;
+        var minusQuantityProduct = searchItem(this.state.listProduct, e.target.parentNode.children[0].innerHTML);
+        if(minusQuantityProduct.quantity > 0){
+            minusQuantityProduct.quantity -= 1;
         }
         var newList = this.state.listProduct;
         this.setState( { listProduct: newList} );
+    }
+
+    deleteItem(e){
+        e.preventDefault();
+        var deleteProduct = searchItem(this.state.listProduct, e.target.parentNode.children[0].innerHTML);
+        deleteProduct.quantity = 0;
+        this.setState( { listProduct: this.state.listProduct } );
     }
 
     submitList(e){
@@ -106,8 +113,8 @@ class ViewList extends Component{
         };
 
         post('/user_id/list_id', data)
-            .then(response => return response.data)
-            .then(b => console.log(b););
+            .then(response => response.data)
+            .then(b => console.log(b));
     }
 
     render() {
@@ -150,12 +157,15 @@ class ViewList extends Component{
                 <h1>Your list</h1>
                 <ul>
                     {this.state.listProduct.map( (product, index) => {
-                        return (<li key={ index }>
-                                    <span className="prodName">{product.name}</span>
-                                    <button onClick={this.addQuantity}> Add </button>
-                                    <span className="prodQuan">{product.quantity}</span>
-                                    <button onClick={this.minusQuantity}> Minus </button>
-                                </li>);
+                        if(product.quantity > 0){
+                            return (<li key={ index }>
+                                        <span className="prodName">{product.name}</span>
+                                        <button onClick={this.addQuantity}> Add </button>
+                                        <span className="prodQuan">{product.quantity}</span>
+                                        <button onClick={this.minusQuantity}> Minus </button>
+                                        <button onClick={this.deleteItem}> Delete </button>
+                                    </li>);
+                        }
                     })}
                 </ul>
             </div>
