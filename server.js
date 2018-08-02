@@ -159,19 +159,19 @@ app.post("/logout", (req, res) => {
 });
 
 app.post("/search", (req, res) => {
-  // console.log("in search " + req.body);
-  // console.log("in search " + req.body.item);
   let item = req.body.item;
-  // let results = [];
 
-  request("http://192.168.88.120:7000/products?name=" + item, function (error, response, body) {
-    console.log(body);
+  request("http://192.168.88.124:7000/products/?name=" + item, function (error, response, body) {
+
     res.send(body)
   });
 
-  // res.send(product);
-  // res.send(responseJson);
+});
 
+app.post('/user_id/list_id', (req, res) => {
+  console.log(req.body);
+
+  res.send("Sucess");
 });
 
 app.listen(PORT, function() {
