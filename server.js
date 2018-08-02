@@ -7,20 +7,6 @@ const path = require('path');
 const request = require('request');
 const http = require('http');
 
-// const cookieSession = require("cookie-session");
-// const uuidv1 = require('uuid/v1');
-
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: ['banana'],
-//   maxAge: 24 * 60 * 60 * 1000 })
-// );
-
-  // app.use(cookieSession({
-  //   name: "cookies",
-  //   keys: ["user_id"]
-  // }));
-
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -43,10 +29,6 @@ const users = {
     password: "2"
   },
 }
-//example request
-// request('http://10.30.33.169:7000/api?/walmart/name=something', function (error, response, body) {
-//   res.send(body);
-// }
 
 // View routes (static, to do: use variables)
 app.get("/", (req, res) => {
@@ -58,10 +40,6 @@ app.get("/main", (req, res) => {
 });
 
 app.get("/user_id", (req, res) => {
-  // if(!req.session.user_id){
-  //   res.redirect("/register");
-  //   return;
-  // }
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -101,10 +79,8 @@ app.post("/register", (req, res) => {
   if(registerfailed){
     res.send({message: "Register Failed."});
   }
-  // set the cookies here
   else {
     Userid += 1;
-    // req.session.user_id = Userid;
     users[Userid] = {
       id: Userid,
       name: req.body.name,
@@ -112,18 +88,9 @@ app.post("/register", (req, res) => {
       password: req.body.password
     };
 
-  //   // request.post({url: "http://192.168.88.120:7000/users/register", user: JSON.stringify(users[Userid]) }, function (error, response, body) {
-    //   if (error) {
-    //     return console.error('upload failed:', error);
-    //   }
-    //   console.log("user save successful");
-    // });
-
-
     //CODE WRITTEN BY ROHIT
     // ==========================
-
-
+    // curl -d '{"id":"value1", "key2":"value2"}' -H "Content-Type: application/json" -X POST http://localhost:3000/data
     var postData = JSON.stringify({user: users[Userid]});
     const options = {
         hostname: '192.168.88.120',
@@ -143,6 +110,7 @@ app.post("/register", (req, res) => {
             console.log(`BODY: ${chunk}`);
         });
         res.on('end', () => {
+            // res.json(users[Userid]);
             console.log('No more data in response.');
         });
     });
@@ -156,9 +124,7 @@ app.post("/register", (req, res) => {
     //CODE WRITTEN BY ROHIT ENDS HERE
     // =================================
 
-    // res.send(users[req.session.user_id]);
-    // res.json()
-    //res.json(users[Userid]);
+    res.json(users[Userid]);
     // res.redirect('/');
   }
 
