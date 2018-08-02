@@ -5,7 +5,8 @@ import {
   Link,
   Switch,
   Redirect
-} from 'react-router-dom'
+} from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 class UserProfile extends Component {
 
@@ -14,17 +15,24 @@ class UserProfile extends Component {
     this.pageConstruct = this.pageConstruct.bind(this);
   }
 
+  componentWillMount() {
+    if(!localStorage.user_name){
+       this.props.history.push({
+            pathname: '/login'
+          })
+    }
+  }
+
   pageConstruct(currUser) {
-    console.log(currUser);
+    console.log("Current user is: ", currUser);
     if(currUser){
-      return (<p>You are logged in as {currUser.email}</p>);
+      return (<p>You are logged in as {currUser}</p>);
     }
     return (<p>You are not logged in</p>);
   }
 
   render() {
-    console.log("UserProfile user is " + this.props.currUser);
-    var page = this.pageConstruct(this.props.currUser);
+    var page = this.pageConstruct(localStorage.user_name);
     return(
       <div>
         <div className="navbar-fixed">
@@ -47,7 +55,7 @@ class UserProfile extends Component {
           <div className="row">
             <div className="col s12 m4 l3" id="left">
               <img src="http://placekitten.com/g/100/100" alt="Placeholder" className="circle responsive-img" />
-              <p id="username">{this.props.currUser.email}</p>
+              <p id="username">{localStorage.user_name}</p>
               <a className="waves-effect waves-light btn-small">Edit Profile</a>
             </div>
 
@@ -95,4 +103,8 @@ class UserProfile extends Component {
   }
 
 }
-export default UserProfile;
+export default withRouter(UserProfile);
+
+
+
+

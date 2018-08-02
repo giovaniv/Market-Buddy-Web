@@ -19,12 +19,12 @@ class Register extends Component{
         confirmPassword: newPasswordConfirm
       };
 
-    //redirect if its a cookie  
+    //redirect if its a cookie
     post('/register', data)
       .then(response => response.data)
       .then(user => {
-        console.log("after regPost " + user);
         localStorage.setItem('user_id', user.id);
+        localStorage.setItem('user_name', user.name);
         if(user.message){
           console.log(user.message);
         } else {

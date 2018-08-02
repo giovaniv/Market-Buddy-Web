@@ -36,6 +36,14 @@ class ViewList extends Component{
         this.deleteItem = this.deleteItem.bind(this);
       }
 
+    componentWillMount() {
+        if(!localStorage.user_name){
+           this.props.history.push({
+                pathname: '/login'
+              })
+        }
+    }
+
     submitHandle(e){
         e.preventDefault();
         var newProduct = e.target[0].value;
