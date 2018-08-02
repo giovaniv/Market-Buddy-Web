@@ -1,21 +1,16 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router'
 import {post} from 'axios';
-import {
-  Link
-} from 'react-router-dom';
 
 class Register extends Component{
 
   submitHandle(e){
     e.preventDefault();
-    var newName = e.target[0].value;
-    var newEmail = e.target[1].value;
-    var newPassword = e.target[2].value;
-    var newPasswordConfirm = e.target[3].value;
+    var newEmail = e.target[0].value;
+    var newPassword = e.target[1].value;
+    var newPasswordConfirm = e.target[2].value;
 
     var data = {
-        name: newName,
         email: newEmail,
         password: newPassword,
         confirmPassword: newPasswordConfirm
@@ -25,11 +20,12 @@ class Register extends Component{
     post('/register', data)
       .then(response => response.data)
       .then(user => {
-        localStorage.setItem('user_id', user);
+        console.log("after regPost " + user);
+        localStorage.setItem('user_id', user.id);
         if(user.message){
           console.log(user.message);
         } else {
-          this.props.setCurrUser(data);
+          this.props.setCurrUser(user);
           this.props.history.push({
             pathname: '/user_id'
           })
@@ -40,48 +36,27 @@ class Register extends Component{
 
   render() {
     return (
-      <div className="super-blue">
-        <Link to="/main"><h2><i className="material-icons">shopping_cart</i>Market Buddy</h2></Link>
-        <form className="vertical-form" onSubmit={this.submitHandle.bind(this)}>
-          <h3>Register</h3>
-          <div className="row">
-            <div className="input-field col s12">
-              <input id="name" type="text" className="validate" />
-              <label htmlFor="name">Name</label>
-            </div>
-          </div>
+        <form onSubmit={this.submitHandle.bind(this)}>
+          <div>
+            <h1>Sign Up</h1>
+            <p>Please fill in this form to create an account.</p>
 
-          <div className="row">
-            <div className="input-field col s12">
-              <input id="email" type="email" className="validate" />
-              <label htmlFor="email">Email</label>
+            <label><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" />
+
+            <label><b>Password</b></label>
+            <input placeholder="Enter Password" name="psw" />
+
+            <label><b>Repeat Password</b></label>
+            <input placeholder="Repeat Password" name="psw-repeat" />
+
+            <div>
+              <button type="button">Cancel</button>
+              <button type="submit">Sign Up</button>
             </div>
+
           </div>
-          <div className="row">
-            <div className="input-field col s12">
-              <input id="password" type="password" className="validate" />
-              <label htmlFor="password">Password</label>
-            </div>
-          </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input id="confirm_password" type="password" className="validate" />
-                <label htmlFor="confirm_password">Confirm Password</label>
-              </div>
-            </div>
-          <button className="btn waves-effect " type="submit" name="action">Register
-            <i className="material-icons right">send</i>
-          </button>
-          <div className="row">
-              <div className="col s12 space">
-                Already have an account?
-                <div className="input-field inline">
-                <Link to="/login">Login</Link>
-                </div>
-              </div>
-            </div>
-          </form>
-      </div>
+        </form>
     );
   }
 }

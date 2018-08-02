@@ -17,13 +17,13 @@ class UserProfile extends Component {
   pageConstruct(currUser) {
     console.log(currUser);
     if(currUser){
-      return (<p>You are logged in as {currUser.name}</p>);
+      return (<p>You are logged in as {currUser.email}</p>);
     }
     return (<p>You are not logged in</p>);
   }
 
   render() {
-    // console.log(this.state.currUser);
+    console.log("UserProfile user is " + this.props.currUser);
     var page = this.pageConstruct(this.props.currUser);
     return(
       <div>
@@ -47,7 +47,7 @@ class UserProfile extends Component {
           <div className="row">
             <div className="col s12 m4 l3" id="left">
               <img src="http://placekitten.com/g/100/100" alt="Placeholder" className="circle responsive-img" />
-              <p id="username">{this.props.currUser.name}</p>
+              <p id="username">{this.props.currUser.email}</p>
               <a className="waves-effect waves-light btn-small">Edit Profile</a>
             </div>
 

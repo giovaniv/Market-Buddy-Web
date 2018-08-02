@@ -112,21 +112,21 @@ app.post("/register", (req, res) => {
 
     // res.send(users[req.session.user_id]);
     // res.json()
-    res.json(users[Userid].id);
+    res.json(users[Userid]);
     // res.redirect('/');
   }
 });
 
 app.post("/login", (req, res) => {
   let loginfailed = true;
-  let user_id = null;
+  let current_user = null;
 
   for(var user in users) {
     if(users[user].email === req.body.email){
       if(users[user].password === String(req.body.password)){
         console.log(users[user]);
         loginfailed = false;
-        user_id = users[user].id;
+        current_user = users[user];
       }
     }
   }
@@ -135,8 +135,8 @@ app.post("/login", (req, res) => {
     res.send( {message: "Your email and password did not match our records, please try again."} );
     return;
   }
-  console.log("user_id is " + user_id);
-  res.json(user_id);
+  console.log("user_id is " + current_user);
+  res.json(current_user);
 
 });
 
