@@ -42,8 +42,9 @@ class App extends Component {
 
   setCurrUser(user){
     this.setState( {currUser: user} );
+
   }
-  
+
 
   render() {
  // <Route exact path="/register" component={Register} />
@@ -54,7 +55,7 @@ class App extends Component {
           {/* <div>
             <Route path="/" render={() => <NavBar currUser={this.state.currUser} />} />
           </div> */}
-          
+
           <div>
           <Route path="/main" component={Main} />
           <Route path="/user_id" exact={true} render={() => <UserProfile currUser={this.state.currUser} />} />
