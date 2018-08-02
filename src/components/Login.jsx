@@ -18,7 +18,8 @@ class Login extends Component{
       };
 
     //redirect if its a cookie
-    post('/login', loginRequest)
+    // post('/api/login', loginRequest)
+    post('http://192.168.88.120:7000/users/login', {user: loginRequest})
       .then(response => response.data)
       .then(user => {
         localStorage.setItem('user_id', user);
@@ -31,6 +32,9 @@ class Login extends Component{
             pathname: '/user_id'
           })
         }
+      })
+      .catch(err => {
+        console.log("some mess during the login post", err);
       });
 
   }
