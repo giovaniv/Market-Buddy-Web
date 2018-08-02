@@ -14,16 +14,10 @@ class UserProfile extends Component {
     this.pageConstruct = this.pageConstruct.bind(this);
   }
 
-<<<<<<< HEAD
-  pageConstruct(currState) {
-    if(currState){
-      return (<p>You are logged in as {currState.name}</p>);
-=======
   pageConstruct(currUser) {
     console.log(currUser);
     if(currUser){
       return (<p>You are logged in as {currUser.name}</p>);
->>>>>>> cookies-round2
     }
     return (<p>You are not logged in</p>);
   }
