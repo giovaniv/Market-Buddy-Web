@@ -10,6 +10,8 @@ import { withRouter } from 'react-router';
 import NavBar from './NavBar.jsx';
 import UserSideBar from './UserSideBar.jsx';
 import UserListHeader from './UserListHeader.jsx'
+import Footer from './Footer.jsx'
+import UserList from './UserList.jsx'
 
 class UserProfile extends Component {
 
@@ -17,16 +19,25 @@ class UserProfile extends Component {
     super();
   }
 
+<<<<<<< HEAD
   componentDidMount() {
     console.log("here");
     if(!localStorage.user){
        this.props.history.push({
             pathname: '/login'
           })
+=======
+  componentWillMount() {
+    if(!localStorage.user_name){
+      this.props.history.push({
+          pathname: '/login'
+      })
+>>>>>>> code-refractor1
     }
   }
 
   render() {
+<<<<<<< HEAD
     if(!localStorage.user){
       return(<div></div>);
     } else {
@@ -73,6 +84,28 @@ class UserProfile extends Component {
           <p className="footer-copy">© 2018 Market Buddy</p>
         </footer>
     </div>
+=======
+    return(
+      <div>
+        <NavBar />
+        <main>
+          {/* <!-- Page Layout here --> */}
+          <div className="row">
+            <UserSideBar />
+              <div className="col s12 m8 l9" id="right">
+                <UserListHeader />
+                <div className="row grid-lists">
+                  <UserList listName={"Movie snacks"} />
+                  <UserList listName={"Movie snacks"} />
+                  <UserList listName={"Movie snacks"} />
+                  <UserList listName={"Movie snacks"} />
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+  </div>
+>>>>>>> code-refractor1
 
      )
     }
