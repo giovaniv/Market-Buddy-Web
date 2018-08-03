@@ -19,72 +19,16 @@ class UserProfile extends Component {
     super();
   }
 
-<<<<<<< HEAD
   componentDidMount() {
     console.log("here");
-    if(!localStorage.user){
+    if(!localStorage.user_name){
        this.props.history.push({
             pathname: '/login'
           })
-=======
-  componentWillMount() {
-    if(!localStorage.user_name){
-      this.props.history.push({
-          pathname: '/login'
-      })
->>>>>>> code-refractor1
     }
   }
 
   render() {
-<<<<<<< HEAD
-    if(!localStorage.user){
-      return(<div></div>);
-    } else {
-      return(
-        <div>
-          <NavBar />
-          <main>
-            {/* <!-- Page Layout here --> */}
-            <div className="row">
-              <UserSideBar />
-                <div className="col s12 m8 l9" id="right">
-                  <UserListHeader />
-                  <div className="row grid-lists">
-                    <div className="card small blue-cl">
-                      <div className="card-action">
-                        <span className="card-title">Movie snacks</span>
-                        <a href="#"><i className="material-icons right">more_vert</i></a>
-                      </div>
-                    </div>
-                  <div className="card small blue-cl">
-                    <div className="card-action">
-                      <span className="card-title">Barbecue</span>
-                      <a href="#"><i className="material-icons right">more_vert</i></a>
-                    </div>
-                  </div>
-                  <div className="card small blue-cl">
-                    <div className="card-action">
-                      <span className="card-title">Last week</span>
-                      <a href="#"><i className="material-icons right">more_vert</i></a>
-                    </div>
-                  </div>
-                  <div className="card small blue-cl">
-                    <div className="card-action">
-                      <span className="card-title">Birthday party</span>
-                      <a href="#"><i className="material-icons right">more_vert</i></a>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </main>
-        <footer className="page-footer">
-          <h5 className="icon-footer"><i className="material-icons">shopping_cart</i>Market Buddy</h5>
-          <p className="footer-copy">© 2018 Market Buddy</p>
-        </footer>
-    </div>
-=======
     return(
       <div>
         <NavBar />
@@ -105,7 +49,6 @@ class UserProfile extends Component {
       </main>
       <Footer />
   </div>
->>>>>>> code-refractor1
 
      )
     }
