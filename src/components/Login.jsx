@@ -17,8 +17,6 @@ class Login extends Component{
         password: newPassword
       };
 
-    loginRequest = JSON.stringify(loginRequest);
-    //redirect if its a cookie
     // post('/api/login', loginRequest)
     post('http://192.168.88.120:7000/users/login', {user: loginRequest})
       .then(response => response.data)
@@ -34,9 +32,8 @@ class Login extends Component{
         }
       })
       .catch(err => {
-        console.log("some mess during the login post", err);
+        console.log("some messed during the login post", err);
       });
-
   }
 
   render() {
