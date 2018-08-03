@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "eslint --ext .jsx,.js src",
     "start": "webpack && node server.js",
+    "dev": "nodemon --watch src src/index.js",
     "webpack": "webpack"
   },
   "repository": {
@@ -53,6 +54,7 @@
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.3",
     "js-cookie": "^2.2.0",
+    "nodemon": "^1.18.3",
     "react": "15.4.2",
     "react-cookie": "^2.2.0",
     "react-dom": "15.4.2",

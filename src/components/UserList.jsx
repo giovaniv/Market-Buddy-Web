@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class UserList extends Component{
   render(){
-    console.log('this.props.listName.name');
+    // console.log(this.props.listName.name);
     return (
       <div className="card small blue-cl">
         <div className="card-action">
