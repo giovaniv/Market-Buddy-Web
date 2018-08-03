@@ -37,7 +37,7 @@ class Login extends Component{
         }
       })
       .catch(err => {
-        console.log("some messed during the login post", err);
+        console.log("some messed up during the login post", err);
       });
   }
 
