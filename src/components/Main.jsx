@@ -4,6 +4,8 @@ import {post} from 'axios';
 import {
   Link
 } from 'react-router-dom';
+import Footer from './Footer.jsx'
+
 
 class Main extends Component{
   render() {
@@ -45,12 +47,8 @@ class Main extends Component{
             <p>Go shopping and save money!</p>
           </div>
         </div>
-
       </main>
-      <footer className="page-footer">
-        <h5 className="icon-footer"><i className="material-icons">shopping_cart</i>Market Buddy</h5>
-        <p className="footer-copy">© 2018 Market Buddy</p>
-      </footer>
+      <Footer />
       {/* <--JavaScript at end of body for optimized loading--> */}
       <script type="text/javascript" src="js/materialize.min.js"></script>
     </div>

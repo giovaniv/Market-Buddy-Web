@@ -10,6 +10,8 @@ import { withRouter } from 'react-router';
 import NavBar from './NavBar.jsx';
 import UserSideBar from './UserSideBar.jsx';
 import UserListHeader from './UserListHeader.jsx'
+import Footer from './Footer.jsx'
+import UserList from './UserList.jsx'
 
 class UserProfile extends Component {
 
@@ -19,9 +21,9 @@ class UserProfile extends Component {
 
   componentWillMount() {
     if(!localStorage.user_name){
-       this.props.history.push({
-            pathname: '/login'
-          })
+      this.props.history.push({
+          pathname: '/login'
+      })
     }
   }
 
@@ -37,38 +39,14 @@ class UserProfile extends Component {
                 <UserListHeader />
                 <div className="row grid-lists">
                   <UserList listName={"Movie snacks"} />
-                  <div className="card small blue-cl">
-                    <div className="card-action">
-                      <span className="card-title">Movie snacks</span>
-                      <a href="#"><i className="material-icons right">more_vert</i></a>
-                    </div>
-                  </div>
-                <div className="card small blue-cl">
-                  <div className="card-action">
-                    <span className="card-title">Barbecue</span>
-                    <a href="#"><i className="material-icons right">more_vert</i></a>
-                  </div>
-                </div>
-                <div className="card small blue-cl">
-                  <div className="card-action">
-                    <span className="card-title">Last week</span>
-                    <a href="#"><i className="material-icons right">more_vert</i></a>
-                  </div>
-                </div>
-                <div className="card small blue-cl">
-                  <div className="card-action">
-                    <span className="card-title">Birthday party</span>
-                    <a href="#"><i className="material-icons right">more_vert</i></a>
-                  </div>
-                </div>
+                  <UserList listName={"Movie snacks"} />
+                  <UserList listName={"Movie snacks"} />
+                  <UserList listName={"Movie snacks"} />
             </div>
           </div>
         </div>
       </main>
-      <footer className="page-footer">
-        <h5 className="icon-footer"><i className="material-icons">shopping_cart</i>Market Buddy</h5>
-        <p className="footer-copy">© 2018 Market Buddy</p>
-      </footer>
+      <Footer />
   </div>
 
    )
