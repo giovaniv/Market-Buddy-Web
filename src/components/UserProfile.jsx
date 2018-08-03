@@ -23,7 +23,8 @@ class UserProfile extends Component {
     if(!localStorage.user){
        this.props.history.push({
             pathname: '/login'
-          })
+          });
+
     }
   }
 
@@ -32,6 +33,11 @@ class UserProfile extends Component {
       console.log("here");
       return(<div></div>);
     } else {
+      const parsedStorage = JSON.parse(localStorage.list); 
+      const userList = parsedStorage.map((list) => {
+        // console.log(list);
+        return <UserList listName={list} />
+      });
       return(
         <div>
         <NavBar />
@@ -42,16 +48,13 @@ class UserProfile extends Component {
               <div className="col s12 m8 l9" id="right">
                 <UserListHeader />
                 <div className="row grid-lists">
-                  <UserList listName={localStorage.list} />
-                  <UserList listName={"Movie snacks"} />
-                  <UserList listName={"Movie snacks"} />
-                  <UserList listName={"Movie snacks"} />
+                  {userList}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </main>
-      <Footer />
-  </div>
+          </main>
+          <Footer />
+      </div>
      )
     }
   }
