@@ -26,7 +26,7 @@ class Login extends Component{
           console.log(user.message);
         } else {
           localStorage.setItem('user_id', user);
-          localStorage.setItem('user_name', user)
+          localStorage.setItem('user_name', user);
           this.props.history.push({
             pathname: '/user_id'
           })

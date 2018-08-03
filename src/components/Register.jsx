@@ -28,7 +28,7 @@ class Register extends Component{
         if(user.message){
         } else {
           localStorage.setItem('user_id', user.id);
-          localStorage.setItem('user_name', user.name);
+          localStorage.setItem('user_name', user.id);
           this.props.history.push({
             pathname: '/user_id'
           })
