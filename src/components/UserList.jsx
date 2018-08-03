@@ -6,7 +6,7 @@ class UserList extends Component{
     return (
       <div className="card small blue-cl">
         <div className="card-action">
-          <span className="card-title">Movie snacks</span>
+          <span className="card-title">{this.props.listName}</span>
           <a href="#"><i className="material-icons right">more_vert</i></a>
         </div>
       </div>

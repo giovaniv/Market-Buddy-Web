@@ -42,7 +42,7 @@ class UserProfile extends Component {
               <div className="col s12 m8 l9" id="right">
                 <UserListHeader />
                 <div className="row grid-lists">
-                  <UserList listName={"Movie snacks"} />
+                  <UserList listName={localStorage.list} />
                   <UserList listName={"Movie snacks"} />
                   <UserList listName={"Movie snacks"} />
                   <UserList listName={"Movie snacks"} />

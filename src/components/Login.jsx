@@ -25,7 +25,10 @@ class Login extends Component{
         if(typeof user === 'string'){
           console.log("The register is not complete", user);
         } else {
+          console.log(user.user.lists[0].name);
+          console.log(user.user);
           localStorage.setItem('user', JSON.stringify(user.user));
+          localStorage.setItem('list', user.user.lists[0].name);
           // console.log(JSON.parse(localStorage.user));
           this.props.history.push({
             pathname: '/user_id'
