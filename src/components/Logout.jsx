@@ -13,7 +13,6 @@ class Logout extends Component{
     .then(user => {
     console.log("posting");
       localStorage.clear();
-      // this.props.setCurrUser(null);
       this.props.history.push({
         pathname: '/main'
       })

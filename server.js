@@ -13,22 +13,8 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-
 app.use(express.static('dist'));
 app.use('/build', express.static('build'));
-
-
-// Fake Database
-// var Userid = 1;
-
-// const users = {
-//   1: {
-//     id: 1,
-//     name: "Shark",
-//     email: "test@test.com",
-//     password: "2"
-//   },
-// }
 
 // View routes (static, to do: use variables)
 app.get("/", (req, res) => {
@@ -60,7 +46,6 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-  // res.redirect("/login");
   res.sendFile(path.join(__dirname, "index.html"));
 });
 /*
@@ -202,15 +187,12 @@ app.post("/search", (req, res) => {
   let item = req.body.item;
 
   request("http://192.168.88.124:7000/products/?name=" + item, function (error, response, body) {
-
     res.send(body)
   });
-
 });
 
 app.post('/user_id/list_id', (req, res) => {
   console.log(req.body);
-
   res.send("Sucess");
 });
 

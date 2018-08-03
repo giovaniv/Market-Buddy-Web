@@ -17,26 +17,24 @@ class Login extends Component{
         password: newPassword
       };
 
-    //redirect if its a cookie
     // post('/api/login', loginRequest)
     post('http://192.168.88.120:7000/users/login', {user: loginRequest})
       .then(response => response.data)
       .then(user => {
-        localStorage.setItem('user_id', user);
         console.log("The user is: ", user);
         if(user.message){
           console.log(user.message);
         } else {
-          this.props.setCurrUser(user);
+          localStorage.setItem('user_id', user);
+          localStorage.setItem('user_name', user)
           this.props.history.push({
             pathname: '/user_id'
           })
         }
       })
       .catch(err => {
-        console.log("some mess during the login post", err);
+        console.log("some messed during the login post", err);
       });
-
   }
 
   render() {
