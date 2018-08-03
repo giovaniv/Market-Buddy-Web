@@ -19,19 +19,17 @@ class Register extends Component{
         confirmPassword: newPasswordConfirm
       };
 
-    //redirect if its a cookie  
+    //redirect if its a cookie
     // post('/api/register', data)
     post('http://192.168.88.120:7000/users/register', {user:data})
 
       .then(response => response.data)
       .then(user => {
-        console.log("after regPost " + user);
-        if(user.message){
-          console.log(user.message);
+        if(typeof user === 'string'){
+          console.log("The register is not complete", user);
         } else {
-          localStorage.setItem('user_id', user.id);
-          localStorage.setItem('user_name', user.name);
-          // this.props.setCurrUser(user);
+          localStorage.setItem('user', JSON.stringify(user.id));
+          console.log("user", user.id);
           this.props.history.push({
             pathname: '/user_id'
           })

@@ -17,17 +17,17 @@ class Login extends Component{
         password: newPassword
       };
 
+    loginRequest = JSON.stringify(loginRequest);
     //redirect if its a cookie
     // post('/api/login', loginRequest)
     post('http://192.168.88.120:7000/users/login', {user: loginRequest})
       .then(response => response.data)
       .then(user => {
-        localStorage.setItem('user_id', user);
-        console.log("The user is: ", user);
-        if(user.message){
-          console.log(user.message);
+        if(typeof user === 'string'){
+          console.log("The register is not complete", user);
         } else {
-          this.props.setCurrUser(user);
+          localStorage.setItem('user', JSON.stringify(user.user));
+          // console.log(JSON.parse(localStorage.user));
           this.props.history.push({
             pathname: '/user_id'
           })

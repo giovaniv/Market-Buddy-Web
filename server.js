@@ -188,7 +188,7 @@ app.post("/login", (req, res) => {
   //   return;
   // }
   // request("http://192.168.88.120:7000/signin", function (error, response, body) {
-    
+
   // });
   // res.json(current_user);
   //old code ---------------------------------
@@ -197,6 +197,7 @@ app.post("/login", (req, res) => {
 app.post("/logout", (req, res) => {
   res.redirect("/login");
 });
+
 
 app.post("/search", (req, res) => {
   let item = req.body.item;
@@ -217,3 +218,14 @@ app.post('/user_id/list_id', (req, res) => {
 app.listen(PORT, function() {
   console.log(`Example app listening on port ${PORT}!`);
 });
+
+
+
+
+
+
+
+
+
+
+
