@@ -30,14 +30,17 @@ class UserProfile extends Component {
 
   render() {
     if(!localStorage.user){
-      console.log("here");
       return(<div></div>);
     } else {
-      const parsedStorage = JSON.parse(localStorage.list); 
-      const userList = parsedStorage.map((list) => {
-        // console.log(list);
-        return <UserList listName={list} />
+      var userList;
+      if(localStorage.list){
+        const parsedStorage = JSON.parse(localStorage.list);
+        userList = parsedStorage.map((list) => {
+        return <UserList listName={list} key={list.id} />
       });
+      } else {
+        userList = function(){return(<p>You does not have any shopping lists</p>)};
+      }
       return(
         <div>
         <NavBar />
