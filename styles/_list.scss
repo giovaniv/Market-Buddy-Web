@@ -1,0 +1,165 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+button, input, select, textarea {
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+.list-name {
+  color: #031b4e;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.div-product-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 2em;
+  background-color: rgba(0, 105, 255, 0.1);
+}
+
+.product-input {
+  width: 80%;
+  margin: auto;
+
+}
+.item-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.bl-btn {
+  color: #0069ff;
+}
+
+.del-btn {
+  background-color: #fff;
+  color: red
+}
+
+.del-btn:hover {
+  background-color: red;
+  color: #fff;
+}
+
+.bl-btn:hover {
+  color: #fff;
+}
+
+
+input[type=search]:not(.browser-default) {
+  // border-bottom-color: #0069ff;
+  width: 80%;
+  // margin: auto;
+  text-align: center;
+  margin: 1em;
+  padding-right: 1em;
+}
+button:visited {
+  background-color: transparent !important;
+}
+
+button.btn-small:visited, button.btn-small:active{
+  background-color: transparent !important;
+}
+
+button[type="submit"].search-btn {
+  margin-right: 1em;
+}
+
+.styles_modal__gNwvD {
+  width:400px;
+}
+
+.items-found {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+input[type="text"].quantity{
+  background-color: white;
+  border: 1px solid #0069ff;
+  width: 10%;
+  text-align: center;
+  height: 2em;
+  border-radius: 3px;
+  margin: 0;
+
+}
+
+.item-ls {
+  padding-left:1em;
+  font-size: 1em;
+}
+
+#right {
+  background-color: rgba(0, 105, 255, 0.1);
+  height:100vh;
+  padding-top: 1em;
+
+}
+
+h5.admin {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.store-list {
+  margin: 0 auto;
+  width: 470px;
+  padding: 2em;
+  border-radius: 3px;
+  background: white;
+  text-align: center;
+}
+
+th.admin {
+  font-size: 1.64em;
+}
+
+.page-footer {
+  text-align: left;
+  background-color: #031b4e;
+  height: 200px;
+  width: 100%;
+
+}
+
+.icon-footer {
+  padding-left: 1em;
+  font-weight: 300;
+  letter-spacing: 0.7px;
+  font-size: 1em;
+}
+
+.footer-copy{
+  color:white;
+  padding-left: 1.5em;
+  font-size: .8em;
+}
+
+.map {
+  margin-top:1em;
+  margin-bottom: 1em;
+  border: 2px solid #0069ff;
+  border-radius: 3px;
+}
+@media (max-width: 850px) {
+  .main-div{
+    display: flex;
+    flex-flow: column;
+  }
+  #left, #right {
+    width: initial;
+    margin-left: 0;
+  }
+}

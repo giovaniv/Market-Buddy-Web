@@ -143,10 +143,10 @@ i.right:hover {
 }
 
 .btn-floating:hover {
-  background-color: #0069ff; 
+  background-color: #0069ff;
 }
 
-@media (max-width: 780px) { 
+@media (max-width: 780px) {
   #left {
     height: 100vh;
   }
@@ -160,11 +160,11 @@ i.right:hover {
     margin-left: 5em;
     justify-content: space-around;
   }
- 
+
 }
 
 
-@media (max-width: 600px) { 
+@media (max-width: 600px) {
   #left {
     height: auto;
   }
@@ -178,10 +178,10 @@ i.right:hover {
     margin-left: 5em;
     justify-content: space-around;
   }
- 
+
 }
 
-@media (max-width: 999px) { 
+@media (max-width: 999px) {
   .card.small{
     height:200px;
     width: 200px;
