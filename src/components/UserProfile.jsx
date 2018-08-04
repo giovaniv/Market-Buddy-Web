@@ -22,9 +22,8 @@ class UserProfile extends Component {
   componentDidMount() {
     if(!localStorage.user){
        this.props.history.push({
-            pathname: '/login'
-          });
-
+          pathname: '/login'
+        });
     }
   }
   render() {
@@ -38,7 +37,7 @@ class UserProfile extends Component {
           return (<UserList listName={list} userId={JSON.parse(localStorage.user).id} key={list.id} />)
       });
       } else {
-        userList = function(){return(<p>You does not have any shopping lists</p>)};
+        userList = function(){return(<p>You do not have any shopping lists</p>)};
       }
       return(
         <div>

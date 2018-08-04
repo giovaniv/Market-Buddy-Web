@@ -123,7 +123,7 @@ class ViewList extends Component{
          <main>
         <div className="row main-div">
         <div className="col s6 m6 l6" id="left">
-          <h5 className="list-name">Movie snacks</h5>
+          <h5 className="list-name">{JSON.parse(localStorage.listObj).title }</h5>
           <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
           <ListItem listProduct={this.state.listProduct}
             addQuantity={this.addQuantity}
@@ -132,7 +132,7 @@ class ViewList extends Component{
             submitList={this.submitList}
             />
         </div>
-          <div className="col s6 m6 l6" id="right">
+          <div className="col s6 m6 l6" id="right-blue">
             <div className="store-list">
               <table>
                 <thead className="list-titles">
