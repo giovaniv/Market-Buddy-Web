@@ -1,4 +1,5 @@
 import React from 'react';
+
 const ShowLists = (props) => {
     let lists = props.test.map((item) => {
         return (
@@ -13,6 +14,9 @@ const ShowLists = (props) => {
             <ul>
                 {lists}
             </ul>
+            <p> incoming data </p>
+            {/* placeholder */}
+            <p> {JSON.parse(localStorage.listObj).title } </p>
         </div>
     );
 }

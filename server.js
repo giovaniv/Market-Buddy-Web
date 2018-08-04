@@ -21,33 +21,37 @@ app.get("/", (req, res) => {
   res.redirect("/main");
 });
 
-app.get("/main", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get("/user_id", (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+// app.get("/main", (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
 
-app.get("/user_id/lists", (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+// app.get("/user_id", (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
 
-app.get("/user_id/list_id", (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+// app.get("/user_id/lists", (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
 
-app.get("/register", (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+// app.get("/user_id/list_id", (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
 
-app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+// app.get("/register", (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
 
-app.get("/logout", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
+// app.get("/login", (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
+
+// app.get("/logout", (req, res) => {
+//   res.sendFile(path.join(__dirname, "index.html"));
+// });
 /*
 app.post("/register", (req, res) => {
   var registerfailed = false;
