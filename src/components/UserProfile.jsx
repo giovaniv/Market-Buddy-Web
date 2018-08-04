@@ -27,7 +27,6 @@ class UserProfile extends Component {
 
     }
   }
-
   render() {
     if(!localStorage.user){
       return(<div></div>);

@@ -8,7 +8,6 @@ Link
 class UserListHeader extends Component {
   constructor() {
     super();
-
     this.state = {
       modalIsOpen: false
     };

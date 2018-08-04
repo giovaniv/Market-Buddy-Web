@@ -20,7 +20,6 @@ app.use('/build', express.static('build'));
 app.get("/", (req, res) => {
   res.redirect("/main");
 });
-
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
