@@ -11,7 +11,7 @@ import NavBar from './NavBar.jsx';
 import UserSideBar from './UserSideBar.jsx';
 import UserListHeader from './UserListHeader.jsx'
 import Footer from './Footer.jsx'
-import UserList from './UserList.jsx' 
+import UserList from './UserList.jsx'
 
 class UserProfile extends Component {
 
@@ -35,7 +35,7 @@ class UserProfile extends Component {
       if(localStorage.list){
         const parsedStorage = JSON.parse(localStorage.list);
         userList = parsedStorage.map((list) => {
-          return <UserList listName={list} userId={JSON.parse(localStorage.user).id} key={list.id} />
+          return (<UserList listName={list} userId={JSON.parse(localStorage.user).id} key={list.id} />)
       });
       } else {
         userList = function(){return(<p>You does not have any shopping lists</p>)};

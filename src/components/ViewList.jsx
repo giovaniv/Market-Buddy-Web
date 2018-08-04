@@ -106,10 +106,12 @@ class ViewList extends Component{
     submitList(e){
         e.preventDefault();
         var data = {
-            newList: this.state.listProduct
-        };
+          list: this.state.listProduct,
+          list_name: "Movie Snack",
+          user: JSON.parse(localStorage.user).id
+        }
 
-        post('/user_id/list_id', data)
+        post('http://192.168.88.120:7000/lists/new', data)
             .then(response => response.data)
             .then(b => console.log(b));
     }
@@ -126,7 +128,9 @@ class ViewList extends Component{
           <ListItem listProduct={this.state.listProduct}
             addQuantity={this.addQuantity}
             minusQuantity={this.minusQuantity}
-            deleteItem={this.deleteItem}/>
+            deleteItem={this.deleteItem}
+            submitList={this.submitList}
+            />
         </div>
           <div className="col s6 m6 l6" id="right">
             <div className="store-list">

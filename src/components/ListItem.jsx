@@ -20,7 +20,7 @@ class ListItem extends Component {
             );
           }
         })}
-        <button className="waves-effect waves-light btn-small">Save List</button>
+        <button onClick={this.props.submitList} className="waves-effect waves-light btn-small">Save List</button>
       </div>
     );
   }
