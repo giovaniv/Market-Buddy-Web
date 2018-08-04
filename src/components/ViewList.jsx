@@ -128,7 +128,7 @@ class ViewList extends Component{
             minusQuantity={this.minusQuantity}
             deleteItem={this.deleteItem}/>
         </div>
-          <div className="col s6 m6 l6" id="right">
+          <div className="col s6 m6 l6" id="right-blue">
             <div className="store-list">
               <table>
                 <thead className="list-titles">

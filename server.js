@@ -33,7 +33,7 @@ app.post("/logout", (req, res) => {
 app.post("/search", (req, res) => {
   let item = req.body.item;
 
-  request("http://192.168.88.124:7000/products/?name=" + item, function (error, response, body) {
+  request("http://192.168.88.120:7000/products/?name=" + item, function (error, response, body) {
     res.send(body)
   });
 });
