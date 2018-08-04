@@ -15,6 +15,7 @@ const ShowLists = (props) => {
                 {lists}
             </ul>
             <p> incoming data </p>
+            
             <p> {JSON.parse(localStorage.listObj).title } </p>
         </div>
     );

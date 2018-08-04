@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { withRouter } from 'react-router';
 import Modal from 'react-modal';
 import {
-  Link
+Link
 } from 'react-router-dom';
 
 class UserListHeader extends Component {
