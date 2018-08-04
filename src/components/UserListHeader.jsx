@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-// import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
 import Modal from 'react-modal';
 import {
   Link
 } from 'react-router-dom';
-
-// Modal.setAppElement('#root');
 
 class UserListHeader extends Component {
   constructor() {
