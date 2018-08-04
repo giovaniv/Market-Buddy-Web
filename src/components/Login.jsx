@@ -26,14 +26,10 @@ class Login extends Component{
         if(typeof user === 'string'){
           console.log("The register is not complete", user);
         } else {
-          console.log(user.user.lists);
-          console.log(user.user);
+          console.log("we are registered");
           localStorage.setItem('user', JSON.stringify(user.user));
           localStorage.setItem('list', JSON.stringify(user.user.lists));
-          // console.log(JSON.parse(localStorage.user));
-          this.props.history.push({
-            pathname: '/user_id'
-          })
+          window.location.href = "/users/"+user.user.id;
         }
       })
       .catch(err => {

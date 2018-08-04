@@ -7,11 +7,9 @@ class Logout extends Component{
     super();
   }
   componentDidMount() {
-    console.log("mounting");
     post("/logout")
     .then(response => response.data)
     .then(user => {
-    console.log("posting");
       localStorage.clear();
       this.props.history.push({
         pathname: '/main'

@@ -6,6 +6,7 @@ import Register from './components/Register.jsx'
 import Login from './components/Login.jsx';
 import Logout from './components/Logout.jsx';
 import Main from './components/Main.jsx';
+import Warning from './components/Warning.jsx';
 
 
 // import route Components here
@@ -29,13 +30,6 @@ class App extends Component {
 
   }
 
-
-  handleThatOneButton() {
-    fetch('/turtles').then(d => d.json()).then(b => {
-      this.setState({turtles: b.turtles})
-    }).catch(err => console.warn(err))
-  }
-
   setCurrUser(user){
     this.setState( {currUser: user} );
 
@@ -43,24 +37,53 @@ class App extends Component {
 
 
   render() {
-    const { testLists } = this.state;
+      return (
+        <Router>
+            <div>
+                {localStorage.user ? (
+                  <Switch>
+                    <Route path="/main" exact component={Main} />
+                    <Route path="/users/:id" exact render={() => <UserProfile/>} />
+                    <Route path="/user_id/list_id" exact render={() => <ViewList/>} />
+                    <Route path="/users/:id/list/new" render={() => <ViewList/>} />
+                    <Route path="/logout" render={() => <Logout/>} setCurrUser={this.setCurrUser} />
+                    <Route path="/warning" component={Warning} />
+                    <Redirect from="/*" to="/warning" />
+                    {/*<Redirect from="/*" to={`/user/${JSON.parse(localStorage.user).id}`} />*/}
 
-    return (
-      <Router>
-          <div>
-          <Route path="/main" component={Main} />
-          <Route path="/user_id" exact={true} render={() => <UserProfile currUser={this.state.currUser} />} />
-          <Route path="/user_id/lists" render={() => <ShowLists test={testLists}/>} />
-          <Route path="/user_id/list_id" render={() => <ViewList/>} />
-          <Route path="/register" render={()=><Register setCurrUser={this.setCurrUser} />}/>
-          <Route path="/login" render={()=><Login setCurrUser={this.setCurrUser} /> } />
-          <Route path="/logout" render={() => <Logout/>} setCurrUser={this.setCurrUser} />
+                  </Switch>
+                ) : (
+                  <Switch>
+                    <Route path="/main" exact component={Main} />
+                    <Route path="/register" exact render={()=><Register setCurrUser={this.setCurrUser} />}/>
+                    <Route path="/login" exact render={()=><Login setCurrUser={this.setCurrUser} /> } />
+                    <Route path="/warning" component={Warning} />
+                    <Redirect from="/*" to="/warning" />
+                  </Switch>
 
-          </div>
-      </Router>
-    );
-  }
+                )}
+            </div>
+        </Router>
+      )
+    }
+    // else {
+    //   console.log("User is not logged in");
+    //   return (
+    //     <Router>
+    //         <div>
+    //           <Switch>
+    //             <Route path="/main" exact component={Main} />
+    //             <Route path="/register" exact render={()=><Register setCurrUser={this.setCurrUser} />}/>
+    //             <Route path="/login" exact render={()=><Login setCurrUser={this.setCurrUser} /> } />
+    //             <Redirect from="/*" to="/login" />
+    //           </Switch>
+    //         </div>
+    //     </Router>
+    //   )
+    // }
+  //}
 }
+
 export default App;
 
 

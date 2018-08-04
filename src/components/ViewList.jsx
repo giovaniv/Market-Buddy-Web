@@ -38,13 +38,13 @@ class ViewList extends Component{
         this.deleteItem = this.deleteItem.bind(this);
       }
 
-    componentWillMount() {
-        if(!localStorage.user_name){
-           this.props.history.push({
-                pathname: '/login'
-              })
-        }
-    }
+    // componentWillMount() {
+    //     if(!localStorage.user_name){
+    //        this.props.history.replace({
+    //             pathname: '/login'
+    //           })
+    //     }
+    // }
 
     addSearchList(products){
         if(Array.isArray(products)){

@@ -30,7 +30,7 @@ class Register extends Component{
         } else {
           localStorage.setItem('user', JSON.stringify(user.id));
           this.props.history.push({
-            pathname: '/user_id'
+            pathname: `/user/${user.id.id}`
           })
         }
       });

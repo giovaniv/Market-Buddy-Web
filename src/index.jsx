@@ -17,8 +17,8 @@ ReactDOM.render(<App/>, document.getElementById('react-root'));
 
 // function Root() {
 //   return (
-//     <CookiesProvider> 
-//       <App /> 
+//     <CookiesProvider>
+//       <App />
 //     </CookiesProvider>
 //   );
 // }
