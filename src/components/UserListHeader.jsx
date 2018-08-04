@@ -30,7 +30,7 @@ class UserListHeader extends Component {
                     console.log("in sending: ", newListObj);
     localStorage.setItem('listObj', JSON.stringify(newListObj));
     this.props.history.push({
-      pathname: '/user_id/lists'
+      pathname: '/users/:id/list/new'
     });
 
   }
