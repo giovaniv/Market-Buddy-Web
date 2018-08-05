@@ -13,11 +13,11 @@ class Register extends Component{
     var newPasswordConfirm = e.target[3].value;
 
     var data = {
-        name: newName,
-        email: newEmail,
-        password: newPassword,
-        confirmPassword: newPasswordConfirm
-      };
+      name: newName,
+      email: newEmail,
+      password: newPassword,
+      confirmPassword: newPasswordConfirm
+    };
 
     // post('/api/register', data)
     post('http://192.168.88.120:7000/users/register', {user:data})
