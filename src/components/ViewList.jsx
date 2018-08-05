@@ -9,6 +9,8 @@ import {
   Link
 } from 'react-router-dom';
 
+import {Collapsible, CollapsibleItem} from 'react-materialize';
+
 function searchItem(anArr, target){
   for(var i = 0; i < anArr.length; i++){
     if(anArr[i].name === target){
@@ -150,57 +152,82 @@ class ViewList extends Component{
      
     }
     return (
-        <div>
-         <NavBar />
-         <main>
-        <div className="row main-div">
-        <div className="col s6 m6 l6" id="left">
-        <Link className="btn-floating btn-large waves-effect back-btn" to="/users/:id"><i className="material-icons">arrow_back</i></Link>
-        {/* <h5 className="list-name">{listItem.name}</h5> */}
-          <h5 className="list-name">{JSON.parse(localStorage.listObj).title }</h5>
-          
-          <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
-          <ListItem listProduct={this.state.listProduct}
-            addQuantity={this.addQuantity}
-            minusQuantity={this.minusQuantity}
-            deleteItem={this.deleteItem}
-            submitList={this.submitList}
-            />
-        </div>
-          <div className="col s6 m6 l6" id="right-blue">
-            <div className="store-list">
-              <table>
-                <thead className="list-titles">
-                  <tr className="table-head list-titles">
-                    <th className="admin">Store</th>
-                    <th className="admin">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Save on Foods</td>
-                    <td>34.22</td>
-                  </tr>
-                  <tr>
-                    <td>Canadian Superstore</td>
-                    <td>30.89</td>
-                  </tr>
-                  <tr>
-                    <td>Safeway</td>
-                    <td>35.87</td>
-                  </tr>
-                  <tr>
-                    <td>Wallmart</td>
-                    <td>32.96</td>
-                  </tr>
-                </tbody>
-              </table>
+      <div>
+        <NavBar />
+        <main>
+          <div className="row main-div">
+            <div className="col s6 m6 l6" id="left">
+            <Link className="btn-floating btn-large waves-effect back-btn" to="/users/:id"><i className="material-icons">arrow_back</i></Link>
+            {/* <h5 className="list-name">{listItem.name}</h5> */}
+              <h5 className="list-name">{JSON.parse(localStorage.listObj).title }</h5>
+              
+              <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
+              <ListItem listProduct={this.state.listProduct}
+                addQuantity={this.addQuantity}
+                minusQuantity={this.minusQuantity}
+                deleteItem={this.deleteItem}
+                submitList={this.submitList}
+                />
             </div>
+            <div className="col s6 m6 l6" id="right-blue">
+              <div className="store-list">
+                <span className="list-titles">
+                  <h5 className="admin">Store</h5>
+                  <h5 className="admin">Total</h5>
+                </span>
+            
+                <Collapsible>
+                  <CollapsibleItem header={(<div className='p-list'><p>Save On Foods</p><p className="p-space"><i className="material-icons">attach_money</i>34.99</p></div>)}icon='shopping_cart' >
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>4.99</p>
+                      </div>
+                    </div>
+                  </CollapsibleItem>
+                  <CollapsibleItem header={(<div className='p-list'><p>Safeway</p><p className="p-space"><i className="material-icons">attach_money</i>31.29</p></div>)} icon='shopping_cart'>
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>4.29</p>
+                      </div>
+                    </div>
+                  </CollapsibleItem>
+                  <CollapsibleItem header={(<div className='p-list'><p>Whole Foods</p><p className="p-space"><i className="material-icons">attach_money</i>33.25</p></div>)} icon='shopping_cart'>
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>3.89</p>
+                      </div>
+                    </div>
+                  </CollapsibleItem>
+                  <CollapsibleItem header={(<div className='p-list'><p>IGA</p><p className="p-space"><i className="material-icons">attach_money</i>33.25</p></div>)} icon='shopping_cart'>
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>3.89</p>
+                      </div>
+                    </div>
+                  </CollapsibleItem>
+                  <CollapsibleItem header={(<div className='p-list'>T & T<p className="p-space"><i className="material-icons">attach_money</i>33.25</p></div>)} icon='shopping_cart'>
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>3.89</p>
+                      </div>
+                    </div>
+                  </CollapsibleItem>
+                </Collapsible>
+               
+              </div>
+            </div>
+          <h5 className="admin">{JSON.parse(localStorage.listObj).title }</h5>
         </div>
-        <h5 className="admin">Movie snacks</h5>
-
-        </div>
-
       </main>
       <Footer/>
     </div>
