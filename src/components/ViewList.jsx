@@ -4,6 +4,7 @@ import {post} from 'axios';
 import SearchBar from './SearchBar.jsx';
 import ListItem from './ListItem.jsx';
 import NavBar from './NavBar.jsx';
+import Footer from './Footer.jsx';
 import {
   Link
 } from 'react-router-dom';
@@ -201,10 +202,7 @@ class ViewList extends Component{
         </div>
 
       </main>
-        <footer className="page-footer">
-          <h5 className="icon-footer"><i className="material-icons">shopping_cart</i>Market Buddy</h5>
-          <p className="footer-copy">© 2018 Market Buddy</p>
-        </footer>
+      <Footer/>
     </div>
     );
   }
