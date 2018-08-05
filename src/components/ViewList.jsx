@@ -4,6 +4,10 @@ import {post} from 'axios';
 import SearchBar from './SearchBar.jsx';
 import ListItem from './ListItem.jsx';
 import NavBar from './NavBar.jsx';
+import Footer from './Footer.jsx';
+import {
+  Link
+} from 'react-router-dom';
 
 function searchItem(anArr, target){
   for(var i = 0; i < anArr.length; i++){
@@ -194,7 +198,10 @@ class ViewList extends Component{
          <main>
         <div className="row main-div">
         <div className="col s6 m6 l6" id="left">
-          <h5 className="list-name">{listItem.name}</h5>
+        <Link className="btn-floating btn-large waves-effect back-btn" to="/users/:id"><i className="material-icons">arrow_back</i></Link>
+        {/* <h5 className="list-name">{listItem.name}</h5> */}
+          <h5 className="list-name">{JSON.parse(localStorage.listObj).title }</h5>
+
           <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
           <ListItem listProduct={this.state.listProduct}
             addQuantity={this.addQuantity}
@@ -236,10 +243,7 @@ class ViewList extends Component{
         </div>
 
       </main>
-        <footer className="page-footer">
-          <h5 className="icon-footer"><i className="material-icons">shopping_cart</i>Market Buddy</h5>
-          <p className="footer-copy">© 2018 Market Buddy</p>
-        </footer>
+      <Footer/>
     </div>
     );
   }
