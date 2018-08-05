@@ -14,6 +14,15 @@ function searchItem(anArr, target){
   return -1;
 }
 
+function searchItemId(anArr, target){
+  for(var i = 0; i < anArr.length; i++){
+    if(String(anArr[i].id) === target){
+      return anArr[i];
+    }
+  }
+  return -1;
+}
+
 function existInList(anArr, target){
   for(var i = 0; i < anArr.length; i++){
     if(anArr[i].name === target){
@@ -107,23 +116,40 @@ class ViewList extends Component{
         e.preventDefault();
         var data = {
           list: this.state.listProduct,
-          list_name: "Movie Snack",
+          name: "Placeholder",
           user: JSON.parse(localStorage.user).id
         }
 
         post('http://192.168.88.120:7000/lists/new', data)
             .then(response => response.data)
-            .then(b => console.log(b));
+            .then(b => {
+              var newList = this.state.listProduct;
+
+              var updatedLists = {
+                id: 10,
+                name: data.list_name,
+                user_id: data.user
+              }
+              console.log(updatedLists);
+              // var updatedList = JSON.parse(localStorage.list).concat(this.state.listProduct);
+              // console.log(updatedList);
+              // localStorage.setItem('list', JSON.stringify(user.id));
+            });
     }
 
   render() {
+    const listId = this.props.location.pathname.slice(15);
+    var listItem = "Placeholder";
+    if(Number(listId) !== NaN){
+      const listItem = searchItemId(JSON.parse(localStorage.list), listId);
+    }
     return (
         <div>
          <NavBar />
          <main>
         <div className="row main-div">
         <div className="col s6 m6 l6" id="left">
-          <h5 className="list-name">{JSON.parse(localStorage.listObj).title }</h5>
+          <h5 className="list-name">{listItem.name}</h5>
           <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
           <ListItem listProduct={this.state.listProduct}
             addQuantity={this.addQuantity}

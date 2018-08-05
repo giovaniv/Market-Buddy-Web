@@ -44,7 +44,7 @@ class App extends Component {
                   <Switch>
                     <Route path="/main" exact component={Main} />
                     <Route path="/users/:id" exact render={() => <UserProfile/>} />
-                    <Route path="/user_id/list_id" exact render={() => <ViewList/>} />
+                    <Route path="/users/:id/lists/:id" exact render={() => <ViewList/>} />
                     <Route path="/users/:id/list/new" render={() => <ViewList/>} />
                     <Route path="/logout" render={() => <Logout/>} setCurrUser={this.setCurrUser} />
                     <Route path="/warning" component={Warning} />

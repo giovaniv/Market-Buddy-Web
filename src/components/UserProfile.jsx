@@ -34,7 +34,7 @@ class UserProfile extends Component {
       if(localStorage.list){
         const parsedStorage = JSON.parse(localStorage.list);
         userList = parsedStorage.map((list) => {
-          return (<UserList listName={list} userId={JSON.parse(localStorage.user).id} key={list.id} />)
+          return (<Link to={`/users/${JSON.parse(localStorage.user).id}/lists/${list.id}`} key={list.id}><UserList listName={list} userId={JSON.parse(localStorage.user).id} /></Link>)
       });
       } else {
         userList = function(){return(<p>You do not have any shopping lists</p>)};
