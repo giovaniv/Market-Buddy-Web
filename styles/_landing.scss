@@ -11,7 +11,7 @@ header {
   height: 100vh;
   color: #fff;
   background: linear-gradient(135deg,rgba(59,99,245,.99),#2a37b3 54%,#120038) 50% no-repeat;
-} 
+}
 
 .landing-nav {
   display: flex;
@@ -97,7 +97,7 @@ img {
   padding: .8em;
   transition: all .5s;
   margin-right: .5em;
- 
+
 }
 .btn-medium:hover {
   background-color: #0069ff;
@@ -109,7 +109,7 @@ img {
 
 .div-wrapper {
   display: flex;
-  flex-flow: row nowrap;  
+  flex-flow: row nowrap;
   justify-content: space-between;
 }
 
@@ -160,14 +160,14 @@ h2 {
   font-size: .8em;
 }
 
-@media (max-width: 900px) { 
+@media (max-width: 900px) {
   .header-layout {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 
-@media (max-width: 600px) { 
+@media (max-width: 600px) {
   .btn-medium {
     padding: .5em;
   }
@@ -183,7 +183,7 @@ h2 {
   }
   .btn-medium {
     font-size: .8em;
-  } 
+  }
 
   h2 {
     margin-bottom: 1em;

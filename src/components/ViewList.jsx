@@ -153,13 +153,19 @@ class ViewList extends Component{
             .then(b => {
               console.log("here");
               var newList = JSON.parse(localStorage.list);
+              var pathName = this.props.location.pathname;
+              var listId = trimListId(pathName);
 
-              console.log(newList);
+              var currList = searchItemId(newList, listId);
+              // console.log(currList.product);
+              currList.product = this.state.listProduct;
+
+              console.log(currList);
 
               var updatedLists = {
                 id: b.id,
                 name: data.name,
-                product: this.state.listProduct,
+                product: currList.product,
                 user_id: data.user
               }
 
@@ -167,7 +173,7 @@ class ViewList extends Component{
 
               localStorage.setItem('list', JSON.stringify(newList));
 
-              window.location.href=window.location.href = "/users/"+ JSON.parse(localStorage.user).id;
+              // window.location.href=window.location.href = "/users/"+ JSON.parse(localStorage.user).id;
 
             });
     }
