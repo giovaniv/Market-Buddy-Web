@@ -24,13 +24,12 @@ class UserListHeader extends Component {
 
   sendToListPage(e) {
     e.preventDefault();
-    let newListObj = {title: e.target.title.value,
+    let newListObj = {name: e.target.title.value,
                       products: []
                     };
-                    console.log("in sending: ", newListObj);
     localStorage.setItem('listObj', JSON.stringify(newListObj));
     this.props.history.push({
-      pathname: '/users/:id/list/new'
+      pathname: `/users/${JSON.parse(localStorage.user).id}/lists/new`
     });
 
   }

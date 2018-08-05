@@ -32,6 +32,11 @@ function existInList(anArr, target){
   return false;
 }
 
+function trimListId(pathName){
+  var stopper = "lists/"
+  return pathName.slice(pathName.indexOf(stopper) + stopper.length);
+}
+
 class ViewList extends Component{
   constructor(props) {
     super(props);
@@ -48,13 +53,19 @@ class ViewList extends Component{
     this.deleteItem = this.deleteItem.bind(this);
   }
 
-    // componentWillMount() {
-    //     if(!localStorage.user_name){
-    //        this.props.history.replace({
-    //             pathname: '/login'
-    //           })
-    //     }
-    // }
+    componentWillMount() {
+      // const listId = this.props.location.pathname.substring(16);
+      var pathName = this.props.location.pathname;
+
+      var listId = trimListId(pathName);
+
+      console.log(listId);
+
+      if(!isNaN(Number(listId))){
+        var currList = searchItemId(JSON.parse(localStorage.list), listId);
+        this.setState({ listProduct: currList.product});
+      }
+    }
 
     addSearchList(products){
       if(Array.isArray(products)){
@@ -114,34 +125,62 @@ class ViewList extends Component{
 
     submitList(e){
         e.preventDefault();
-        var data = {
-          list: this.state.listProduct,
-          name: "Placeholder",
-          user: JSON.parse(localStorage.user).id
+
+        var data = {};
+
+        var pathName = this.props.location.pathname;
+        var listId = trimListId(pathName);
+        if(!isNaN(Number(listId))){
+          var currList = searchItemId(JSON.parse(localStorage.list), listId);
+          currList.product = this.state.listProduct;
+          this.setState({ listProduct: currList.product});
+            data = {
+              list_id: listId,
+              list: this.state.listProduct,
+              name: JSON.parse(localStorage.listObj).name,
+              user: JSON.parse(localStorage.user).id
+            }
+        } else {
+          data = {
+            list: this.state.listProduct,
+            name: JSON.parse(localStorage.listObj).name,
+            user: JSON.parse(localStorage.user).id
+          }
         }
 
         post('http://192.168.88.120:7000/lists/new', data)
             .then(response => response.data)
             .then(b => {
-              var newList = this.state.listProduct;
+              console.log("here");
+              var newList = JSON.parse(localStorage.list);
+
+              console.log(newList);
 
               var updatedLists = {
-                id: 10,
-                name: data.list_name,
+                id: b.id,
+                name: data.name,
+                product: this.state.listProduct,
                 user_id: data.user
               }
-              console.log(updatedLists);
-              // var updatedList = JSON.parse(localStorage.list).concat(this.state.listProduct);
-              // console.log(updatedList);
-              // localStorage.setItem('list', JSON.stringify(user.id));
+
+              newList = newList.concat(updatedLists);
+
+              localStorage.setItem('list', JSON.stringify(newList));
+
+              window.location.href=window.location.href = "/users/"+ JSON.parse(localStorage.user).id;
+
             });
     }
 
   render() {
-    const listId = this.props.location.pathname.slice(15);
-    var listItem = "Placeholder";
-    if(Number(listId) !== NaN){
-      const listItem = searchItemId(JSON.parse(localStorage.list), listId);
+    var pathName = this.props.location.pathname;
+    var listId = trimListId(pathName);
+    var listItem ={} ;
+    if(!isNaN(Number(listId))){
+      listItem = searchItemId(JSON.parse(localStorage.list), listId);
+      localStorage.setItem("listObj", JSON.stringify(listItem))
+    } else {
+      listItem.name = JSON.parse(localStorage.listObj).name
     }
     return (
         <div>
@@ -187,9 +226,7 @@ class ViewList extends Component{
                 </tbody>
               </table>
             </div>
-        </div>
-        <h5 className="admin">Movie snacks</h5>
-
+          </div>
         </div>
 
       </main>

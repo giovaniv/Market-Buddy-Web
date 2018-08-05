@@ -28,8 +28,8 @@ class Main extends Component{
                 <Link to="/login" className="waves-effect waves-light btn-medium">Login</Link>
               </div>
             <img src="build/phone.png" alt="Market Buddy App" className="main-phone" />
-          
-          </div>     
+
+          </div>
       </header>
       <main className="container">
         <h2>How it works</h2>
