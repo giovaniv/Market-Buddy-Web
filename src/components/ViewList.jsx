@@ -141,7 +141,9 @@ class ViewList extends Component{
     const listId = this.props.location.pathname.slice(15);
     var listItem = "Placeholder";
     if(Number(listId) !== NaN){
+      console.log("here yo", listItem)
       const listItem = searchItemId(JSON.parse(localStorage.list), listId);
+     
     }
     return (
         <div>
