@@ -117,13 +117,6 @@ input[type="text"].quantity{
 
 }
 
-// p.p-margin {
-//   margin-right: 12em;
-// }
-
-.collapsible-header {
-  align-items: center;
-}
 
 p.p-space {
   display: flex;
@@ -143,9 +136,21 @@ div.prod-list {
   align-items: center;
 }
 
-.collapsible-body {
-  padding: .5em;
-  background-color: rgba(0, 105, 255, 0.1);;
+.tabs .tab a {
+  color: #031b4e;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  color: #0069ff;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active{
+  background-color: rgba(0, 105, 255, 0.1);
+}
+
+
+.tabs .indicator {
+  background-color: #0069ff;
 }
 
 div.c-list {
