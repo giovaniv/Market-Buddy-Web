@@ -40,7 +40,7 @@ class UserListHeader extends Component {
       <div>
         <div className="float-blue">
           <h5 className="my-lists">My lists</h5>
-          <a className="btn-floating btn-large waves-effect" title="Create a new list" onClick={this.onOpenModal}><i className="material-icons">add</i></a>
+          <a className="btn-floating btn-large waves-effect" alt="Create a new list" onClick={this.onOpenModal}><i className="material-icons">add</i></a>
           <Modal open={open} onClose={this.onCloseModal} center >
             <div>Enter Your List Name</div>
             <form onSubmit={this.sendToListPage}>

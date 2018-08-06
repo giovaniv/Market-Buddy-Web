@@ -3,6 +3,7 @@ import { withRouter } from 'react-router';
 import {
   Link
 } from 'react-router-dom';
+import {Button} from 'react-materialize';
 
 class NavBar extends Component{
 
@@ -15,7 +16,7 @@ class NavBar extends Component{
               <Link to="/user_id" className="center brand-logo"><i className="material-icons">shopping_cart</i>Market Buddy</Link>
               <Link to="/logout" data-target="mobile-demo" className="right sidenav-trigger"><i className="material-icons">more_vert</i></Link>
               <ul className="right hide-on-med-and-down">
-                <li><Link to="/logout">Logout</Link></li>
+                <li><Link to="/logout" tooltip="Log out">Logout</Link></li>
               </ul>
             </div>
           </nav>
@@ -29,3 +30,4 @@ class NavBar extends Component{
 }
 
 export default withRouter(NavBar);
+
