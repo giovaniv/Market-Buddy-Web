@@ -11,8 +11,7 @@ import NavBar from './NavBar.jsx';
 import UserSideBar from './UserSideBar.jsx';
 import UserListHeader from './UserListHeader.jsx'
 import Footer from './Footer.jsx'
-import UserList from './UserList.jsx'
-import {Button} from 'react-materialize'
+import UserList from './UserList.jsx';
 import {post} from 'axios';
 
 

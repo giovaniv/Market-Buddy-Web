@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { withRouter } from 'react-router';
 import NavBar from './NavBar.jsx';
 import Footer from './Footer.jsx';
+import {Table} from 'react-materialize';
 
 class Admin extends Component {
   render() {
@@ -21,14 +22,14 @@ class Admin extends Component {
             </div>  
             <div className="col s12 m8 l9" id="right"> 
               <h5 className="admin">Dashboard</h5>
-              <table>
+              <Table>
                 <thead>
                   <tr className="table-head">
-                    <th>Product</th>
-                    <th>Brand</th>
-                    <th>Price</th>
-                    <th>Store</th>
-                    <th>Action</th>
+                    <th data-field="id">Product</th>
+                    <th data-field="brand">Brand</th>
+                    <th data-field="price">Price</th>
+                    <th data-field="store">Store</th>
+                    <th data-field="action">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -68,7 +69,7 @@ class Admin extends Component {
                   <td> <a className="waves-effect waves-light btn-small">Edit</a> <a className="waves-effect waves-light btn-small advisor">Delete</a></td>
                 </tr>
                 </tbody>
-              </table>
+              </Table>
             </div>
           </div>
         </main>

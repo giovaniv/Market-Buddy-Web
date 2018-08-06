@@ -5,6 +5,8 @@ import {
   Link
 } from 'react-router-dom';
 
+import {Button, Icon, Row, Input} from 'react-materialize';
+
 class Login extends Component{
 
   submitHandle(e){
@@ -13,8 +15,8 @@ class Login extends Component{
     var newPassword = e.target[1].value;
 
     var loginRequest = {
-        email: newEmail,
-        password: newPassword
+      email: newEmail,
+      password: newPassword
       };
 
     loginRequest = JSON.stringify(loginRequest);
@@ -40,32 +42,28 @@ class Login extends Component{
   render() {
     return (
       <div className="super-blue2">
-        <Link to="/main"><h2><i className="material-icons">shopping_cart</i>Market Buddy</h2></Link>
+        <Link to="/main"><h2><Icon >shopping_cart</Icon>Market Buddy</h2></Link>
         <form className="vertical-form" onSubmit={this.submitHandle.bind(this)}>
           <h3>Login</h3>
-          <div className="row">
-              <div className="input-field col s12">
-                <input id="email" type="email" />
-                <label htmlFor="email">Email</label>
-              </div>
-          </div>
-          <div className="row">
-            <div className="input-field col s12">
-              <input id="password" type="password" />
-              <label htmlFor="password">Password</label>
-            </div>
-          </div>
-        <button className="btn waves-effect " type="submit" name="action">Login
-          <i className="material-icons right">send</i>
-        </button>
-        <div className="row">
+          <Row>
+            <Input id="email" s={12}  type="email" label="Email">
+            </Input>
+          </Row>
+          <Row>
+            <Input id="password" s={12}  type="password" label="Password">
+            </Input>
+          </Row>
+          <Button waves="waves-effect" type="submit" name="action">Login
+            <Icon right>send</Icon>
+          </Button>
+        <Row>
           <div className="col s12 space">
             Don't have an account yet?
             <div className="input-field inline">
-            <Link to="/register">Register</Link>
+              <Link to="/register">Register</Link>
             </div>
           </div>
-        </div>
+        </Row>
         </form>
       </div>
     );

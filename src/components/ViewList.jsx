@@ -225,40 +225,39 @@ class ViewList extends Component{
     return (
 
       <div>
-          <NavBar />
-            <main>
-              <div className="row main-div">
-                <div className="col s6 m6 l6" id="left">
-                <Link className="btn-floating btn-large waves-effect back-btn" to={"/users/"+ JSON.parse(localStorage.user).id}><i className="material-icons">arrow_back</i></Link>
-                  <h5 className="list-name">{JSON.parse(localStorage.listObj).name }</h5>
-
-                  <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
-                  <ListItem listProduct={this.state.listProduct}
-                    addQuantity={this.addQuantity}
-                    minusQuantity={this.minusQuantity}
-                    deleteItem={this.deleteItem}
-                    submitList={this.submitList}
-                    />
-                </div>
-                <div className="col s6 m6 l6" id="right-blue">
-                <h3>Nearby Stores</h3>
-                </div>
+        <NavBar />
+          <main>
+            <div className="row main-div">
+              <div className="col s6 m6 l6" id="left">
+              <Link className="btn-floating btn-large waves-effect back-btn" to={"/users/"+ JSON.parse(localStorage.user).id}><i className="material-icons">arrow_back</i></Link>
+                <h3>{JSON.parse(localStorage.listObj).name }</h3>
+                <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
+                <ListItem listProduct={this.state.listProduct}
+                  addQuantity={this.addQuantity}
+                  minusQuantity={this.minusQuantity}
+                  deleteItem={this.deleteItem}
+                  submitList={this.submitList}
+                  />
               </div>
-             <div className="col s6 m6 l6">
-              <h3>Total by Store</h3>
-                <Tabs className='tab-demo z-depth-1'>
-                  <Tab title="test">
-                    <div className="prod-list">
-                      <p>Liquid honey</p>
-                      <div className="c-list">
-                        <i className="material-icons">attach_money</i>
-                        <p>4.99</p>
-                      </div>
-                    </div>
-                  </Tab>
-                  {nearbyStores}
-                </Tabs>
+              <div className="col s6 m6 l6" id="right-blue">
+              <h3>Nearby Stores</h3>
+              </div>
             </div>
+            <div className="col s6 m6 l6">
+            <h3>Total by Store</h3>
+              <Tabs className='tab-demo z-depth-1'>
+                <Tab title="test">
+                  <div className="prod-list">
+                    <p>Liquid honey</p>
+                    <div className="c-list">
+                      <i className="material-icons">attach_money</i>
+                      <p>4.99</p>
+                    </div>
+                  </div>
+                </Tab>
+                {nearbyStores}
+              </Tabs>
+          </div>
       </main>
       <Footer/>
     </div>
