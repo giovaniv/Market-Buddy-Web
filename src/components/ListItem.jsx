@@ -3,7 +3,6 @@ import {post} from 'axios';
 
 class ListItem extends Component {
   render() {
-    console.log(this.props.listProduct);
     return(
       <div>
         {this.props.listProduct.map( (item, index) => {
@@ -12,7 +11,7 @@ class ListItem extends Component {
               <div className="input-field card div-product-input" key={index}>
                 <div className="item-container">
                   <button className="waves-effect waves-light btn-small  bl-btn" onClick={() => this.props.minusQuantity(item)}><i className="material-icons small">remove</i></button>
-                  <input type='text' name='quantity' value={item.quantity} className='quantity'/>
+                  <input type='text' name='quantity' value={item.quantity} readOnly={true} className='quantity' />
                   <button className="waves-effect waves-light btn-small  bl-btn" onClick={() => this.props.addQuantity(item)} ><i className="material-icons small">add</i></button>
                   <p className="s6 item-ls">{item.name}</p>
                 </div>

@@ -4,6 +4,7 @@ import {post, get} from 'axios';
 import SearchBar from './SearchBar.jsx';
 import ListItem from './ListItem.jsx';
 import NavBar from './NavBar.jsx';
+import Stores from './Stores.jsx';
 import Footer from './Footer.jsx';
 import {
   Link
@@ -22,7 +23,7 @@ function searchItem(anArr, target){
 
 function searchItemId(anArr, target){
   for(var i = 0; i < anArr.length; i++){
-    if(String(anArr[i].id) === target){
+    if(anArr[i].id == target){
       return anArr[i];
     }
   }
@@ -48,7 +49,8 @@ class ViewList extends Component{
     super(props);
     this.state = {
       searchProduct: [],
-      listProduct: []
+      listProduct: [],
+      stores: []
     }
 
     this.addSearchList = this.addSearchList.bind(this);
@@ -75,6 +77,12 @@ class ViewList extends Component{
           this.setState( { listProduct: products.products} );
         });
       }
+
+      get("http://192.168.88.120:7000/stores")
+      .then(response => response.data)
+      .then(stores => {
+        this.setState( { stores: stores} );
+      });
     }
 
     addSearchList(products){
@@ -162,8 +170,6 @@ class ViewList extends Component{
           }
         }
 
-        console.log(data);
-
         post('http://192.168.88.120:7000/lists/new', data)
             .then(response => response.data)
             .then(b => {
@@ -179,7 +185,6 @@ class ViewList extends Component{
                 currList.product = this.state.listProduct;
               }
 
-              console.log(b);
               var updatedLists = {
                 id: b.id,
                 name: data.name,
@@ -193,12 +198,14 @@ class ViewList extends Component{
 
               localStorage.setItem('list', JSON.stringify(newList));
 
-              window.location.href=window.location.href = "/users/"+ JSON.parse(localStorage.user).id;
+              window.location.href = "/users/"+ JSON.parse(localStorage.user).id;
 
             });
     }
 
   render() {
+
+    // Setting the local storage if list is an existing list other
     var pathName = this.props.location.pathname;
     var listId = trimListId(pathName);
     var listItem ={} ;
@@ -209,61 +216,21 @@ class ViewList extends Component{
       listItem.name = JSON.parse(localStorage.listObj).name
     }
 
-    console.log(this.state.listProduct);
+    // Mapping out stores near the user
+    const nearbyStores =
+    this.state.stores.map( store => {
+      return (<Stores storeName={store.name} key={store.id} />);
+    });
+
     return (
 
-        // <div>
-        //  <NavBar />
-        //  <main>
-        // <div className="row main-div">
-        // <div className="col s6 m6 l6" id="left">
-        // <Link className="btn-floating btn-large waves-effect back-btn" to={"/users/"+ JSON.parse(localStorage.user).id}><i className="material-icons">arrow_back</i></Link>
-        // {/* <h5 className="list-name">{listItem.name}</h5> */}
-        //   <h5 className="list-name">{ JSON.parse(localStorage.listObj).name }</h5>
-
-        //   <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
-        //   <ListItem listProduct={this.state.listProduct}
-        //     addQuantity={this.addQuantity}
-        //     minusQuantity={this.minusQuantity}
-        //     deleteItem={this.deleteItem}
-        //     submitList={this.submitList}
-        //     />
-        // </div>
-        //   <div className="col s6 m6 l6" id="right-blue">
-        //     <div className="store-list">
-        //       <table>
-        //         <thead className="list-titles">
-        //           <tr className="table-head list-titles">
-        //             <th className="admin">Store</th>
-        //             <th className="admin">Total</th>
-        //           </tr>
-        //         </thead>
-        //         <tbody>
-        //           <tr>
-        //             <td>Save on Foods</td>
-        //             <td>34.22</td>
-        //           </tr>
-        //           <tr>
-        //             <td>Canadian Superstore</td>
-        //             <td>30.89</td>
-        //           </tr>
-        //           <tr>
-        //             <td>Safeway</td>
-        //             <td>35.87</td>
-        //           </tr>
-        //           <tr>
-        //             <td>Wallmart</td>
-        //             <td>32.96</td>
-        //           </tr>
-        //         </tbody>
-        //       </table>
       <div>
           <NavBar />
             <main>
               <div className="row main-div">
                 <div className="col s6 m6 l6" id="left">
-                <Link className="btn-floating btn-large waves-effect back-btn" to="/users/:id"><i className="material-icons">arrow_back</i></Link>
-                  <h5 className="list-name">{JSON.parse(localStorage.listObj).title }</h5>
+                <Link className="btn-floating btn-large waves-effect back-btn" to={"/users/"+ JSON.parse(localStorage.user).id}><i className="material-icons">arrow_back</i></Link>
+                  <h5 className="list-name">{JSON.parse(localStorage.listObj).name }</h5>
 
                   <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
                   <ListItem listProduct={this.state.listProduct}
@@ -274,57 +241,21 @@ class ViewList extends Component{
                     />
                 </div>
                 <div className="col s6 m6 l6" id="right-blue">
-
                 </div>
               </div>
              <div className="col s6 m6 l6">
               <h3>Stores</h3>
                 <Tabs className='tab-demo z-depth-1'>
-                  <Tab title="Save On Foods">
-                  <div className="prod-list">
-                    <p>Liquid honey</p>
-                    <div className="c-list">
-                      <i className="material-icons">attach_money</i>
-                      <p>4.99</p>
-                    </div>
-                  </div>
-                  </Tab>
-                  <Tab title="Safeway">
+                  <Tab title="test">
                     <div className="prod-list">
                       <p>Liquid honey</p>
                       <div className="c-list">
                         <i className="material-icons">attach_money</i>
-                        <p>3.89</p>
+                        <p>4.99</p>
                       </div>
                     </div>
                   </Tab>
-                  <Tab title="Whole Foods">
-                    <div className="prod-list">
-                      <p>Liquid honey</p>
-                      <div className="c-list">
-                        <i className="material-icons">attach_money</i>
-                        <p>5.45</p>
-                      </div>
-                    </div>
-                  </Tab>
-                  <Tab title="IGA">
-                    <div className="prod-list">
-                      <p>Liquid honey</p>
-                      <div className="c-list">
-                        <i className="material-icons">attach_money</i>
-                        <p>4.40</p>
-                      </div>
-                    </div>
-                  </Tab>
-                  <Tab title="T & T">
-                    <div className="prod-list">
-                      <p>Liquid honey</p>
-                      <div className="c-list">
-                        <i className="material-icons">attach_money</i>
-                        <p>4.19</p>
-                      </div>
-                    </div>
-                  </Tab>
+                  {nearbyStores}
                 </Tabs>
             </div>
       </main>
