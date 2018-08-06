@@ -22,6 +22,7 @@ button, input, select, textarea {
 
 a.back-btn {
   float:left;
+  margin-top: 1em;
 }
 
 .div-product-input {
@@ -117,7 +118,6 @@ input[type="text"].quantity{
 
 }
 
-
 p.p-space {
   display: flex;
   align-items: center;
@@ -176,14 +176,6 @@ th.admin {
   font-size: 1.64em;
 }
 
-.page-footer {
-  text-align: left;
-  background-color: #031b4e;
-  height: 200px;
-  width: 100%;
-
-}
-
 .icon-footer {
   padding-left: 1em;
   font-weight: 300;
@@ -208,8 +200,10 @@ th.admin {
     display: flex;
     flex-flow: column;
   }
-  #left, #right {
+  #left, #right-blue {
     width: initial;
     margin-left: 0;
   }
+
+
 }

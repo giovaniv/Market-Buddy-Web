@@ -241,10 +241,11 @@ class ViewList extends Component{
                     />
                 </div>
                 <div className="col s6 m6 l6" id="right-blue">
+                <h3>Nearby Stores</h3>
                 </div>
               </div>
              <div className="col s6 m6 l6">
-              <h3>Stores</h3>
+              <h3>Total by Store</h3>
                 <Tabs className='tab-demo z-depth-1'>
                   <Tab title="test">
                     <div className="prod-list">
