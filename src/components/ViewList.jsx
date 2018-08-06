@@ -38,6 +38,11 @@ function existInList(anArr, target){
   return false;
 }
 
+function trimListId(pathName){
+  var stopper = "lists/"
+  return pathName.slice(pathName.indexOf(stopper) + stopper.length);
+}
+
 class ViewList extends Component{
   constructor(props) {
     super(props);
@@ -54,13 +59,19 @@ class ViewList extends Component{
     this.deleteItem = this.deleteItem.bind(this);
   }
 
-    // componentWillMount() {
-    //     if(!localStorage.user_name){
-    //        this.props.history.replace({
-    //             pathname: '/login'
-    //           })
-    //     }
-    // }
+    componentWillMount() {
+      // const listId = this.props.location.pathname.substring(16);
+      var pathName = this.props.location.pathname;
+
+      var listId = trimListId(pathName);
+
+      console.log(listId);
+
+      if(!isNaN(Number(listId))){
+        var currList = searchItemId(JSON.parse(localStorage.list), listId);
+        this.setState({ listProduct: currList.product});
+      }
+    }
 
     addSearchList(products){
       if(Array.isArray(products)){
@@ -119,108 +130,139 @@ class ViewList extends Component{
     }
 
     submitList(e){
-      e.preventDefault();
-      var data = {
-        list: this.state.listProduct,
-        name: "Placeholder",
-        user: JSON.parse(localStorage.user).id
-      }
+        e.preventDefault();
 
-      post('http://192.168.88.120:7000/lists/new', data)
-        .then(response => response.data)
-        .then(b => {
-          var newList = this.state.listProduct;
+        var data = {};
 
-          var updatedLists = {
-            id: 10,
-            name: data.list_name,
-            user_id: data.user
+        var pathName = this.props.location.pathname;
+        var listId = trimListId(pathName);
+        if(!isNaN(Number(listId))){
+          var currList = searchItemId(JSON.parse(localStorage.list), listId);
+          currList.product = this.state.listProduct;
+          this.setState({ listProduct: currList.product});
+            data = {
+              list_id: listId,
+              list: this.state.listProduct,
+              name: JSON.parse(localStorage.listObj).name,
+              user: JSON.parse(localStorage.user).id
+            }
+        } else {
+          data = {
+            list: this.state.listProduct,
+            name: JSON.parse(localStorage.listObj).name,
+            user: JSON.parse(localStorage.user).id
           }
-          console.log(updatedLists);
-          // var updatedList = JSON.parse(localStorage.list).concat(this.state.listProduct);
-          // console.log(updatedList);
-          // localStorage.setItem('list', JSON.stringify(user.id));
-        });
+        }
+
+        post('http://192.168.88.120:7000/lists/new', data)
+            .then(response => response.data)
+            .then(b => {
+              console.log("here");
+              var newList = JSON.parse(localStorage.list);
+              var pathName = this.props.location.pathname;
+              var listId = trimListId(pathName);
+
+              var currList = searchItemId(newList, listId);
+              // console.log(currList.product);
+              currList.product = this.state.listProduct;
+
+              console.log(currList);
+
+              var updatedLists = {
+                id: b.id,
+                name: data.name,
+                product: currList.product,
+                user_id: data.user
+              }
+
+              newList = newList.concat(updatedLists);
+
+              localStorage.setItem('list', JSON.stringify(newList));
+
+              // window.location.href=window.location.href = "/users/"+ JSON.parse(localStorage.user).id;
+
+            });
     }
 
   render() {
-    const listId = this.props.location.pathname.slice(15);
-    var listItem = "Placeholder";
-    if(Number(listId) !== NaN){
-      const listItem = searchItemId(JSON.parse(localStorage.list), listId); 
+    var pathName = this.props.location.pathname;
+    var listId = trimListId(pathName);
+    var listItem ={} ;
+    if(!isNaN(Number(listId))){
+      listItem = searchItemId(JSON.parse(localStorage.list), listId);
+      localStorage.setItem("listObj", JSON.stringify(listItem))
+    } else {
+      listItem.name = JSON.parse(localStorage.listObj).name
     }
     return (
       <div>
-        <NavBar />
-        <main>
-          <div className="row main-div">
-            <div className="col s6 m6 l6" id="left">
-            <Link className="btn-floating btn-large waves-effect back-btn" to="/users/:id"><i className="material-icons">arrow_back</i></Link>
-            {/* <h5 className="list-name">{listItem.name}</h5> */}
-              <h5 className="list-name">{JSON.parse(localStorage.listObj).title }</h5>
-              
-              <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
-              <ListItem listProduct={this.state.listProduct}
-                addQuantity={this.addQuantity}
-                minusQuantity={this.minusQuantity}
-                deleteItem={this.deleteItem}
-                submitList={this.submitList}
-                />
+          <NavBar />
+            <main>
+              <div className="row main-div">
+                <div className="col s6 m6 l6" id="left">
+                  <h5 className="list-name">{JSON.parse(localStorage.listObj).title }</h5>
+                  <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
+                  <ListItem listProduct={this.state.listProduct}
+                    addQuantity={this.addQuantity}
+                    minusQuantity={this.minusQuantity}
+                    deleteItem={this.deleteItem}
+                    submitList={this.submitList}
+                    />
+                </div>
+                <div className="col s6 m6 l6" id="right-blue">
+                
+                </div>
+              </div>
+             <div className="col s6 m6 l6">
+              <h3>Stores</h3>
+                <Tabs className='tab-demo z-depth-1'>
+                  <Tab title="Save On Foods">
+                  <div className="prod-list">
+                    <p>Liquid honey</p>
+                    <div className="c-list">
+                      <i className="material-icons">attach_money</i>
+                      <p>4.99</p>
+                    </div>
+                  </div>
+                  </Tab>
+                  <Tab title="Safeway">
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>3.89</p>
+                      </div>
+                    </div>
+                  </Tab>
+                  <Tab title="Whole Foods">
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>5.45</p>
+                      </div>
+                    </div>
+                  </Tab>
+                  <Tab title="IGA">
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>4.40</p>
+                      </div>
+                    </div>
+                  </Tab>
+                  <Tab title="T & T">
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>4.19</p>
+                      </div>
+                    </div>
+                  </Tab>
+                </Tabs>
             </div>
-            <div className="col s6 m6 l6" id="right-blue">
-             
-          </div>
-        </div>
-        <div className="col s6 m6 l6">
-          <h3>Stores</h3>
-          <Tabs className='tab-demo z-depth-1'>
-            <Tab title="Save On Foods">
-            <div className="prod-list">
-              <p>Liquid honey</p>
-              <div className="c-list">
-                <i className="material-icons">attach_money</i>
-                <p>4.99</p>
-              </div>
-            </div>
-            </Tab>
-            <Tab title="Safeway">
-              <div className="prod-list">
-                <p>Liquid honey</p>
-                <div className="c-list">
-                  <i className="material-icons">attach_money</i>
-                  <p>3.89</p>
-                </div>
-              </div>
-            </Tab>
-            <Tab title="Whole Foods">
-              <div className="prod-list">
-                <p>Liquid honey</p>
-                <div className="c-list">
-                  <i className="material-icons">attach_money</i>
-                  <p>5.45</p>
-                </div>
-              </div>
-            </Tab>
-            <Tab title="IGA">
-              <div className="prod-list">
-                <p>Liquid honey</p>
-                <div className="c-list">
-                  <i className="material-icons">attach_money</i>
-                  <p>4.40</p>
-                </div>
-              </div>
-            </Tab>
-            <Tab title="T & T">
-              <div className="prod-list">
-                <p>Liquid honey</p>
-                <div className="c-list">
-                  <i className="material-icons">attach_money</i>
-                  <p>4.19</p>
-                </div>
-              </div>
-            </Tab>
-          </Tabs>
-        </div>
       </main>
       <Footer/>
     </div>

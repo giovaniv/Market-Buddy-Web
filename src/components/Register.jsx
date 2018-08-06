@@ -29,6 +29,7 @@ class Register extends Component{
           console.log("The register is not complete", user);
         } else {
           localStorage.setItem('user', JSON.stringify(user.id));
+          localStorage.setItem('list', JSON.stringify([]));
           this.props.history.push({
             pathname: `/user/${user.id.id}`
           })
