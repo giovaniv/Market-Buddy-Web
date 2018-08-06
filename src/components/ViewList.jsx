@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router';
-import {post} from 'axios';
+import {post, get} from 'axios';
 import SearchBar from './SearchBar.jsx';
 import ListItem from './ListItem.jsx';
 import NavBar from './NavBar.jsx';
@@ -63,11 +63,15 @@ class ViewList extends Component{
 
       var listId = trimListId(pathName);
 
-      console.log(listId);
-
       if(!isNaN(Number(listId))){
-        var currList = searchItemId(JSON.parse(localStorage.list), listId);
-        this.setState({ listProduct: currList.product});
+        // var currList = searchItemId(JSON.parse(localStorage.list), listId);
+        // this.setState({ listProduct: currList.product});
+        // console.log(this.state.listProduct);
+        get("http://192.168.88.120:7000/lists/"+listId)
+        .then(response => response.data)
+        .then(products => {
+          this.setState( { listProduct: products.products} );
+        });
       }
     }
 
@@ -79,11 +83,15 @@ class ViewList extends Component{
       }
     }
     addProduct(product){
-      if(!this.state.listProduct.some(item => item.product === product)){
-        this.setState({
-          listProduct: this.state.listProduct.concat({product: product, quantity: 1})
-        });
-      }
+      // if(!this.state.listProduct.some(item => item.product === product)){
+      //   this.setState({
+      //     listProduct: this.state.listProduct.concat({product: product, quantity: 1})
+      //   });
+      // }
+      product["quantity"] = 1;
+
+      var newProduct = this.state.listProduct.concat(product);
+      this.setState( { listProduct: newProduct } );
     }
 
     addQuantity(product){
@@ -91,7 +99,7 @@ class ViewList extends Component{
         return {
           ...oldState,
           listProduct: oldState.listProduct.map((item) => {
-            if(item.product === product){
+            if(item === product){
               return {...item, quantity: item.quantity + 1}
             }
             return item;
@@ -104,7 +112,7 @@ class ViewList extends Component{
         return {
           ...oldState,
           listProduct: oldState.listProduct.map((item) => {
-            if(item.product === product && item.quantity > 0){
+            if(item === product && item.quantity > 0){
               return {...item, quantity: item.quantity - 1}
             }
             return item;
@@ -118,7 +126,7 @@ class ViewList extends Component{
         return {
           ...oldState,
           listProduct: oldState.listProduct.map((item) => {
-            if(item.product === product){
+            if(item === product){
               return {...item, quantity: 0}
             }
             return item;
@@ -152,20 +160,24 @@ class ViewList extends Component{
           }
         }
 
+        console.log(data);
+
         post('http://192.168.88.120:7000/lists/new', data)
             .then(response => response.data)
             .then(b => {
-              console.log("here");
               var newList = JSON.parse(localStorage.list);
               var pathName = this.props.location.pathname;
               var listId = trimListId(pathName);
 
-              var currList = searchItemId(newList, listId);
-              // console.log(currList.product);
-              currList.product = this.state.listProduct;
+              var currList = {};
+               if(!isNaN(Number(listId))){
+                currList = searchItemId(newList, listId);
+                currList.product = this.state.listProduct;
+              } else {
+                currList.product = this.state.listProduct;
+              }
 
-              console.log(currList);
-
+              console.log(b);
               var updatedLists = {
                 id: b.id,
                 name: data.name,
@@ -175,9 +187,11 @@ class ViewList extends Component{
 
               newList = newList.concat(updatedLists);
 
+
+
               localStorage.setItem('list', JSON.stringify(newList));
 
-              // window.location.href=window.location.href = "/users/"+ JSON.parse(localStorage.user).id;
+              window.location.href=window.location.href = "/users/"+ JSON.parse(localStorage.user).id;
 
             });
     }
@@ -192,15 +206,17 @@ class ViewList extends Component{
     } else {
       listItem.name = JSON.parse(localStorage.listObj).name
     }
+
+    console.log(this.state.listProduct);
     return (
         <div>
          <NavBar />
          <main>
         <div className="row main-div">
         <div className="col s6 m6 l6" id="left">
-        <Link className="btn-floating btn-large waves-effect back-btn" to="/users/:id"><i className="material-icons">arrow_back</i></Link>
+        <Link className="btn-floating btn-large waves-effect back-btn" to={"/users/"+ JSON.parse(localStorage.user).id}><i className="material-icons">arrow_back</i></Link>
         {/* <h5 className="list-name">{listItem.name}</h5> */}
-          <h5 className="list-name">{JSON.parse(localStorage.listObj).title }</h5>
+          <h5 className="list-name">{ JSON.parse(localStorage.listObj).name }</h5>
 
           <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
           <ListItem listProduct={this.state.listProduct}

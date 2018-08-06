@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Modal from 'react-responsive-modal';
+import {post} from 'axios';
 
 
 class UserSideBar extends Component{
@@ -17,13 +18,27 @@ class UserSideBar extends Component{
   };
 
   updateProfile = (e) => {
+    e.preventDefault();
     var newName = e.target[0].value;
     var newAvatar = e.target[1].value;
-    console.log(newName, newAvatar);
     var newProfile = JSON.parse(localStorage.getItem('user'));
-    newProfile.name = newName;
-    newProfile.avatar = newAvatar;
-    localStorage.setItem('user', JSON.stringify(newProfile));
+    if(newName && !newAvatar){
+      newProfile.name = newName;
+    }
+    if(!newName && newAvatar){
+      newProfile.avatar = newAvatar;
+    } else if(newName && newAvatar) {
+      newProfile.name = newName;
+      newProfile.avatar = newAvatar;
+    }
+
+    post("http://192.168.88.120:7000/users/edit", newProfile)
+    .then(response => response.data)
+    .then(updated => {
+      localStorage.setItem('user', JSON.stringify(newProfile));
+      this.onCloseModal();
+    });
+
   };
 
   render(){
@@ -34,7 +49,7 @@ class UserSideBar extends Component{
         <img src={currUser.avatar} alt="Placeholder" className="circle responsive-img" />
         <p id="username">{currUser.name}</p>
         <p>{currUser.points}</p>
-        <a className="waves-effect waves-light btn-small" onClick={this.onOpenModal}>Edit Profile</a>
+        <button className="waves-effect waves-light btn-small" onClick={this.onOpenModal}>Edit Profile</button>
           <Modal open={open} onClose={this.onCloseModal} center>
             <form onSubmit={this.updateProfile.bind(this)}>
               <label htmlFor="name">New name:</label>
