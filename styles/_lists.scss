@@ -80,8 +80,6 @@ i.right:hover {
   padding-top: 1em;
   padding-bottom: 1em;
   padding-left: 1em;
-  
-
 }
 
 #right {
@@ -123,9 +121,9 @@ i.right:hover {
 
 button.dl-list {
   position :relative;
-  top: 1em;
+  top: -1em;
   position: relative;
-  right: 6em;
+  right: 10em;
   display: none;
 
 }
@@ -148,6 +146,11 @@ button.dl-list {
   font-size: 1em;
   color: #031b4e;
   margin-right: 0;
+}
+
+.card-container {
+  height: 21em;
+  width: 21em;
 }
 
 .float-blue {
