@@ -15,6 +15,11 @@ button, input, select, textarea {
   padding-bottom: 1em;
 }
 
+.list-titles {
+  display: flex;
+  justify-content: space-between;
+}
+
 a.back-btn {
   float:left;
 }
@@ -110,6 +115,47 @@ input[type="text"].quantity{
   height:100vh;
   padding-top: 1em;
 
+}
+
+
+p.p-space {
+  display: flex;
+  align-items: center;
+}
+
+div.p-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+}
+
+div.prod-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabs .tab a {
+  color: #031b4e;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+  color: #0069ff;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active{
+  background-color: rgba(0, 105, 255, 0.1);
+}
+
+
+.tabs .indicator {
+  background-color: #0069ff;
+}
+
+div.c-list {
+  display: flex;
+  align-items:center;
 }
 
 h5.admin {

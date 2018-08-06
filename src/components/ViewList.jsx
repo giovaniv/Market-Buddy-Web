@@ -9,6 +9,8 @@ import {
   Link
 } from 'react-router-dom';
 
+import {Tab, Tabs} from 'react-materialize';
+
 function searchItem(anArr, target){
   for(var i = 0; i < anArr.length; i++){
     if(anArr[i].name === target){
@@ -209,55 +211,122 @@ class ViewList extends Component{
 
     console.log(this.state.listProduct);
     return (
-        <div>
-         <NavBar />
-         <main>
-        <div className="row main-div">
-        <div className="col s6 m6 l6" id="left">
-        <Link className="btn-floating btn-large waves-effect back-btn" to={"/users/"+ JSON.parse(localStorage.user).id}><i className="material-icons">arrow_back</i></Link>
-        {/* <h5 className="list-name">{listItem.name}</h5> */}
-          <h5 className="list-name">{ JSON.parse(localStorage.listObj).name }</h5>
 
-          <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
-          <ListItem listProduct={this.state.listProduct}
-            addQuantity={this.addQuantity}
-            minusQuantity={this.minusQuantity}
-            deleteItem={this.deleteItem}
-            submitList={this.submitList}
-            />
-        </div>
-          <div className="col s6 m6 l6" id="right-blue">
-            <div className="store-list">
-              <table>
-                <thead className="list-titles">
-                  <tr className="table-head list-titles">
-                    <th className="admin">Store</th>
-                    <th className="admin">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Save on Foods</td>
-                    <td>34.22</td>
-                  </tr>
-                  <tr>
-                    <td>Canadian Superstore</td>
-                    <td>30.89</td>
-                  </tr>
-                  <tr>
-                    <td>Safeway</td>
-                    <td>35.87</td>
-                  </tr>
-                  <tr>
-                    <td>Wallmart</td>
-                    <td>32.96</td>
-                  </tr>
-                </tbody>
-              </table>
+        // <div>
+        //  <NavBar />
+        //  <main>
+        // <div className="row main-div">
+        // <div className="col s6 m6 l6" id="left">
+        // <Link className="btn-floating btn-large waves-effect back-btn" to={"/users/"+ JSON.parse(localStorage.user).id}><i className="material-icons">arrow_back</i></Link>
+        // {/* <h5 className="list-name">{listItem.name}</h5> */}
+        //   <h5 className="list-name">{ JSON.parse(localStorage.listObj).name }</h5>
+
+        //   <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
+        //   <ListItem listProduct={this.state.listProduct}
+        //     addQuantity={this.addQuantity}
+        //     minusQuantity={this.minusQuantity}
+        //     deleteItem={this.deleteItem}
+        //     submitList={this.submitList}
+        //     />
+        // </div>
+        //   <div className="col s6 m6 l6" id="right-blue">
+        //     <div className="store-list">
+        //       <table>
+        //         <thead className="list-titles">
+        //           <tr className="table-head list-titles">
+        //             <th className="admin">Store</th>
+        //             <th className="admin">Total</th>
+        //           </tr>
+        //         </thead>
+        //         <tbody>
+        //           <tr>
+        //             <td>Save on Foods</td>
+        //             <td>34.22</td>
+        //           </tr>
+        //           <tr>
+        //             <td>Canadian Superstore</td>
+        //             <td>30.89</td>
+        //           </tr>
+        //           <tr>
+        //             <td>Safeway</td>
+        //             <td>35.87</td>
+        //           </tr>
+        //           <tr>
+        //             <td>Wallmart</td>
+        //             <td>32.96</td>
+        //           </tr>
+        //         </tbody>
+        //       </table>
+      <div>
+          <NavBar />
+            <main>
+              <div className="row main-div">
+                <div className="col s6 m6 l6" id="left">
+                <Link className="btn-floating btn-large waves-effect back-btn" to="/users/:id"><i className="material-icons">arrow_back</i></Link>
+                  <h5 className="list-name">{JSON.parse(localStorage.listObj).title }</h5>
+
+                  <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
+                  <ListItem listProduct={this.state.listProduct}
+                    addQuantity={this.addQuantity}
+                    minusQuantity={this.minusQuantity}
+                    deleteItem={this.deleteItem}
+                    submitList={this.submitList}
+                    />
+                </div>
+                <div className="col s6 m6 l6" id="right-blue">
+
+                </div>
+              </div>
+             <div className="col s6 m6 l6">
+              <h3>Stores</h3>
+                <Tabs className='tab-demo z-depth-1'>
+                  <Tab title="Save On Foods">
+                  <div className="prod-list">
+                    <p>Liquid honey</p>
+                    <div className="c-list">
+                      <i className="material-icons">attach_money</i>
+                      <p>4.99</p>
+                    </div>
+                  </div>
+                  </Tab>
+                  <Tab title="Safeway">
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>3.89</p>
+                      </div>
+                    </div>
+                  </Tab>
+                  <Tab title="Whole Foods">
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>5.45</p>
+                      </div>
+                    </div>
+                  </Tab>
+                  <Tab title="IGA">
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>4.40</p>
+                      </div>
+                    </div>
+                  </Tab>
+                  <Tab title="T & T">
+                    <div className="prod-list">
+                      <p>Liquid honey</p>
+                      <div className="c-list">
+                        <i className="material-icons">attach_money</i>
+                        <p>4.19</p>
+                      </div>
+                    </div>
+                  </Tab>
+                </Tabs>
             </div>
-          </div>
-        </div>
-
       </main>
       <Footer/>
     </div>
