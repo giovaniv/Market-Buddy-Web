@@ -86,6 +86,7 @@ class UserProfile extends Component {
     post("http://192.168.88.120:7000/lists/delete", list)
     .then(response => response.data)
     .then(deletedUser => {
+      console.log(deletedUser);
       for(var i = 0; i < ownedArray.length; i++){
         if(ownedArray[i].id === list.id){
           ownedArray.splice(i, 1);
