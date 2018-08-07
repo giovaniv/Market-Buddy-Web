@@ -18,8 +18,6 @@ class Login extends Component{
       email: newEmail,
       password: newPassword
       };
-
-    loginRequest = JSON.stringify(loginRequest);
     // post('/api/login', loginRequest)
     post('http://192.168.88.120:7000/users/login', {user: loginRequest})
     // post('http://192.168.88.124/users/login', {user: loginRequest})

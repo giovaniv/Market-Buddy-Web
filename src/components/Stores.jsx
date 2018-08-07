@@ -72,17 +72,14 @@ class Stores extends Component{
     // }
 
     // console.log("List is: ", constructingList);
-
-
+    console.log("looky here looky here look what do we have: ", this.props.products);
     return (
       <Tabs className='tab-demo z-depth-1'>
       {
         this.state.stores.map( store => {
           return (
             <Tab title={store.name}>
-
-                <StoreColumn product={this.state.products} price={this.state.prices} currStore={store}/>
-
+                <StoreColumn product={this.props.products} price={this.state.prices} currStore={store}/>
             </Tab>
           );
       })
@@ -93,4 +90,5 @@ class Stores extends Component{
 }
 
 export default Stores;
+
 

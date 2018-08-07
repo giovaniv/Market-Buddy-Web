@@ -51,11 +51,17 @@ class App extends Component {
                     <Route path="/users/:id/list/new" render={() => <ViewList/>} />
                     <Route path="/logout" render={() => <Logout />} setCurrUser={this.setCurrUser} />
                     <Route path="/warning" component={Warning} />
-                    <Route path="/admin_product" exact render={() => <AdminProduct/>} />
-                    <Route path="/admin_product/new" exact render={() => <AdminProductForm/>} />
-                    <Route path="/admin_store" exact render={() => <AdminStore/>} />
-                    <Route path="/admin_store/new" exact render={() => <AdminStoreForm/>} />
 
+                    { localStorage.user.isadmin &&
+                      (
+                        <div>
+                          <Route path="/admin_product" exact render={() => <AdminProduct/>} />
+                          <Route path="/admin_product/new" exact render={() => <AdminProductForm/>} />
+                          <Route path="/admin_store" exact render={() => <AdminStore/>} />
+                          <Route path="/admin_store/new" exact render={() => <AdminStoreForm/>} />
+                        </div>
+                      )
+                    }
                     <Redirect from="/*" to="/warning" />
                     {/*<Redirect from="/*" to={`/user/${JSON.parse(localStorage.user).id}`} />*/}
 

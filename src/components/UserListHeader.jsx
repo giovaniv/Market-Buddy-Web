@@ -4,6 +4,7 @@ import {
 Link
 } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
+import {Toast} from 'react-materialize';
 
 class UserListHeader extends Component {
   constructor() {
@@ -28,6 +29,8 @@ class UserListHeader extends Component {
                       products: []
                     };
     localStorage.setItem('listObj', JSON.stringify(newListObj));
+    console.log(window.Materialize);
+    window.Materialize.toast('List created!', 1000, 'rounded')
     this.props.history.push({
       pathname: `/users/${JSON.parse(localStorage.user).id}/lists/new`
     });
