@@ -236,7 +236,7 @@ class ViewList extends Component{
               <div className="col s6 m6 l6" id="right-blue">
               <h3>Nearby Stores</h3>
               </div>
-             <div className="col s6 m6 l6">
+             <div className="col s12 m6 l6">
               <h3>Stores</h3>
               <Stores stores={this.state.stores} products={this.state.listProduct} listId={listId} />
           </div>
