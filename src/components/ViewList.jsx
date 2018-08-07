@@ -216,12 +216,6 @@ class ViewList extends Component{
       listItem.name = JSON.parse(localStorage.listObj).name
     }
 
-    // Mapping out stores near the user
-    const nearbyStores =
-    this.state.stores.map( store => {
-      return (<Stores storeName={store.name} key={store.id} />);
-    });
-
     return (
 
       <div>
@@ -245,18 +239,7 @@ class ViewList extends Component{
               </div>
              <div className="col s6 m6 l6">
               <h3>Stores</h3>
-                <Tabs className='tab-demo z-depth-1'>
-                  <Tab title="test">
-                    <div className="prod-list">
-                      <p>Liquid honey</p>
-                      <div className="c-list">
-                        <i className="material-icons">attach_money</i>
-                        <p>4.99</p>
-                      </div>
-                    </div>
-                  </Tab>
-                  {nearbyStores}
-                </Tabs>
+              <Stores stores={this.state.stores} products={this.state.listProduct} />
             </div>
       </main>
       <Footer/>
