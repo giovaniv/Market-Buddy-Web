@@ -226,7 +226,7 @@ class ViewList extends Component{
         <NavBar />
           <main>
             <div className="row main-div">
-              <div className="col s6 m6 l6" id="left">
+              <div className="col s12 m6 l6" id="left-list">
               <Link className="btn-floating btn-large waves-effect back-btn" to={"/users/"+ JSON.parse(localStorage.user).id}><i className="material-icons">arrow_back</i></Link>
                 <h3>{JSON.parse(localStorage.listObj).name }</h3>
                 <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
@@ -240,7 +240,7 @@ class ViewList extends Component{
               <div className="col s6 m6 l6" id="right-blue">
               <h3>Nearby Stores</h3>
               </div>
-             <div className="col s6 m6 l6">
+             <div className="col s12 m12 l12 stores">
               <h3>Stores</h3>
               <Stores stores={this.state.stores} products={this.state.listProduct} listId={listId} />
           </div>

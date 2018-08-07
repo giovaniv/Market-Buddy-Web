@@ -12,12 +12,21 @@ class StoreColumn extends Component{
             <div className="prod-list">
               <p>{product.name}</p>
               <div className="c-list">
-                <p>{product.quantity}</p>
-                <i className="material-icons">attach_money</i>
-                <p>{price.price}</p>
-                <i className="material-icons">attach_money</i>
-                <p>{price.price * product.quantity}</p>
+                <div className="c-list">
+                <p>Quantity: {product.quantity}</p> 
+          
+                </div>
+                <div className="c-list">
+                  <i className="material-icons">attach_money</i>
+                  <p>Price: {price.price}</p>
+                 
+                </div>
+                  <div className="c-list">
+                  <i className="material-icons">shopping_cart</i>
+                  <p>Total :{price.price * product.quantity}</p>
+                  </div>
               </div>
+             
             </div>
           )
         }
