@@ -136,6 +136,11 @@ div.prod-list {
   align-items: center;
 }
 
+#left-list {
+  z-index:0;
+  height:  auto;
+}
+
 .tabs .tab a {
   color: #031b4e;
 }
@@ -156,6 +161,7 @@ div.prod-list {
 div.c-list {
   display: flex;
   align-items:center;
+  margin-right: 1em;
 }
 
 h5.admin {
@@ -189,6 +195,11 @@ th.admin {
   font-size: .8em;
 }
 
+.stores {
+  z-index: 1;
+  margin-top: 1em;
+}
+
 .map {
   margin-top:1em;
   margin-bottom: 1em;
@@ -202,6 +213,7 @@ th.admin {
   }
   #left, #right-blue {
     width: initial;
+  
     margin-left: 0;
   }
 
