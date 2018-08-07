@@ -49,42 +49,26 @@ class Stores extends Component{
   }
 
   render() {
-    // var constructingList = []
+    const storeItems = (
+      // <Tabs className='tab-demo z-depth-1'>
 
-    // // const products = [...this.props.products] || [];
-
-    // constructingList = this.props.stores.map( (store) => {
-    //   return {store, product: {}};
-    // });
-
-    // for(var i = 0; i < constructingList.length; i++){
-    //   for(var j = 0; j < this.props.products.length; j++){
-    //     constructingList[i].product = Object.assign({}, this.props.products[j]);
-    //   }
-    // }
-
-    // for(var i = 0; i < this.state.prices.length; i++){
-    //   for(var j = 0; j < constructingList.length; j++){
-    //     if(this.state.prices[i].store_id === constructingList[j].store.id && this.state.prices[i].product_id === constructingList[j].product.id){
-    //       constructingList[j].product.price = this.state.prices[i].price * constructingList[j].product.quantity;
-    //     }
-    //   }
-    // }
-
-    // console.log("List is: ", constructingList);
-    console.log("looky here looky here look what do we have: ", this.props.products);
+      this.state.stores.map( store => {
+        console.log(store.color);
+        return (
+          <Tab title={<div style={{ color: store.color }}>{store.name}</div>} >
+              <StoreColumn product={this.props.products} price={this.state.prices} currStore={store}/>
+          </Tab>
+        );
+      })
+      // </Tabs>
+    );
     return (
       <Tabs className='tab-demo z-depth-1'>
       {
-        this.state.stores.map( store => {
-          return (
-            <Tab title={store.name}>
-                <StoreColumn product={this.props.products} price={this.state.prices} currStore={store}/>
-            </Tab>
-          );
-      })
-    }
+        storeItems
+      }
       </Tabs>
+
     )
   }
 }
