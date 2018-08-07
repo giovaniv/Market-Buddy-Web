@@ -24,16 +24,18 @@ class Login extends Component{
       .then(response => response.data)
       .then(user => {
         if(typeof user === 'string'){
-          console.log("The register is not complete", user);
+          window.Materialize.toast(`${user}`, 2000, 'fail-alert');
         } else {
-          console.log("we are registered");
           localStorage.setItem('user', JSON.stringify(user.user));
           localStorage.setItem('list', JSON.stringify(user.user.lists));
-          window.location.href = "/users/"+user.user.id;
+          localStorage.setItem('success', "Success");
+          this.props.history.push({
+            pathname: "/users/"+user.user.id,
+          });
         }
       })
       .catch(err => {
-        console.log("some messed up during the login post", err);
+        window.Materialize.toast(`${err}`, 2000, 'fail-alert');
       });
   }
 

@@ -11,6 +11,7 @@ class Logout extends Component{
     .then(response => response.data)
     .then(user => {
       localStorage.clear();
+      window.Materialize.toast("You have logged out", 2000, 'success-alert');
       this.props.history.push({
         pathname: '/main'
       })

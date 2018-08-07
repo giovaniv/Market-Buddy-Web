@@ -37,6 +37,7 @@ class UserSideBar extends Component{
     .then(updated => {
       localStorage.setItem('user', JSON.stringify(newProfile));
       this.onCloseModal();
+      window.Materialize.toast("Your information has been updated", 2000, 'update-alert');
     });
 
   };

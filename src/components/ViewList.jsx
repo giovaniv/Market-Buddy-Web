@@ -10,7 +10,7 @@ import {
   Link
 } from 'react-router-dom';
 
-import {Tab, Tabs} from 'react-materialize';
+import {Tab, Tabs, Toast} from 'react-materialize';
 
 function searchItem(anArr, target){
   for(var i = 0; i < anArr.length; i++){
@@ -195,10 +195,14 @@ class ViewList extends Component{
               newList = newList.concat(updatedLists);
 
 
+              window.Materialize.toast('List saved!', 2000, 'update-alert')
 
               localStorage.setItem('list', JSON.stringify(newList));
 
-              window.location.href = "/users/"+ JSON.parse(localStorage.user).id;
+              this.props.history.push({
+                pathname: "/users/"+ JSON.parse(localStorage.user).id
+              });
+
 
             });
     }

@@ -27,14 +27,18 @@ class Register extends Component{
       .then(user => {
 
         if(typeof user === 'string'){
-          console.log("The register is not complete", user);
+          window.Materialize.toast(`${user}`, 2000, 'fail-alert');
         } else {
           localStorage.setItem('user', JSON.stringify(user.id));
           localStorage.setItem('list', JSON.stringify([]));
+          localStorage.setItem('register', 'success');
           this.props.history.push({
             pathname: `/user/${user.id.id}`
           })
         }
+      })
+      .catch(err => {
+        window.Materialize.toast(`${err}`, 2000, 'fail-alert');
       });
   }
 
@@ -56,7 +60,7 @@ class Register extends Component{
           <Input id="password" s={12}  type="password" label="Password">
           </Input>
         </Row>
-        <Row> 
+        <Row>
           <Input id="confirm_password" s={12}  type="password" label="Confirm Password">
           </Input>
         </Row>

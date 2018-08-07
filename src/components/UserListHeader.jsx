@@ -29,8 +29,9 @@ class UserListHeader extends Component {
                       products: []
                     };
     localStorage.setItem('listObj', JSON.stringify(newListObj));
-    console.log(window.Materialize);
-    window.Materialize.toast('List created!', 1000, 'rounded')
+
+    window.Materialize.toast('List created!', 2000, 'success-alert');
+
     this.props.history.push({
       pathname: `/users/${JSON.parse(localStorage.user).id}/lists/new`
     });

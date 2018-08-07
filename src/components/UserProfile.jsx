@@ -31,52 +31,18 @@ class UserProfile extends Component {
     this.deleteCard = this.deleteCard.bind(this)
   }
 
-  // componentWillMount() {
-
-  //   if(JSON.parse(localStorage.user).isadmin && !localStorage.adminList){
-  //     var adminDashBoard = [];
-  //     get("http://192.168.88.120:7000/products")
-  //     .then(response => response.data)
-  //     .then(products => {
-  //       adminDashBoard = products;
-  //       get("http://192.168.88.120:7000/stores")
-  //       .then(response => response.data)
-  //       .then(stores => {
-  //         for(var i = 0; i < adminDashBoard.length; i++){
-  //           adminDashBoard[i]["stores"] = stores;
-  //         }
-  //         get("http://192.168.88.120:7000/prices")
-  //         .then(response => response.data)
-  //         .then(prices => {
-  //           for(var priceIndex = 0; priceIndex < prices.length; priceIndex++){
-  //             var price = prices[priceIndex];
-
-  //             for(var dashboardIndex = 0; dashboardIndex < adminDashBoard.length; dashboardIndex++){
-  //               var product = adminDashBoard[dashboardIndex];
-
-  //               if(price.product_id === product.id){
-  //                 for(var storeIndex = 0; storeIndex < product.stores.length; storeIndex++){
-  //                   var store = product.stores[storeIndex];
-  //                   if(price.store_id === store.id && !store.price){
-  //                     console.log('');
-  //                     console.log("Item being inserted", price);
-  //                     console.log("The store before for item " + product.name + " is:", store);
-  //                     store.price = price;
-  //                     console.log("Item has been inserted", store.price);
-  //                     console.log("The store is right now:", store);
-  //                     console.log('');
-  //                   }
-  //                 }
-  //               }
-  //             }
-  //           }
-  //           // console.log(adminDashBoard);
-  //           localStorage.setItem("adminList", JSON.stringify(adminDashBoard));
-  //         });
-  //       });
-  //     });
-  //   }
-  // }
+  componentWillMount() {
+    // if(this.props.location.state.detail){
+    //    window.Materialize.toast(`Welcome back ${JSON.parse(localStorage.user).name}`, 2000, 'success-alert');
+    // }
+    if(localStorage.success){
+      window.Materialize.toast(`Welcome back ${JSON.parse(localStorage.user).name}`, 2000, 'success-alert');
+      localStorage.removeItem('success')
+    } else if(localStorage.register) {
+      window.Materialize.toast(`Welcome to Market Buddy ${JSON.parse(localStorage.user).name}!`, 2000, 'success-alert');
+      localStorage.removeItem('register')
+    }
+  }
 
   deleteCard(e, list){
     e.preventDefault();
@@ -93,7 +59,12 @@ class UserProfile extends Component {
         }
       }
       localStorage.setItem('list', JSON.stringify(ownedArray));
-      window.location.href = "/users/"+ JSON.parse(localStorage.user).id;
+
+      window.Materialize.toast(`List ${list.name} has been deleted`, 2000, 'fail-alert');
+
+      this.props.history.push({
+        pathname: "/users/"+ JSON.parse(localStorage.user).id
+      });
     });
   }
 

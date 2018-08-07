@@ -1,5 +1,17 @@
-.rounded {
+.success-alert {
   border-radius: 5px;
-  color: red;
-  background-color: rebeccapurple;
+  background-color: #e7f4e4;
+  color: #212121;
+}
+
+.update-alert {
+  background-color: #e1f3f8;
+  color: #212121;
+  border-radius: 5px;
+}
+
+.fail-alert {
+  background-color: #f9dede;
+  color: #212121;
+  border-radius: 5px;
 }
