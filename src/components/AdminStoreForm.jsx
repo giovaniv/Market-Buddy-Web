@@ -4,8 +4,10 @@ import NavBar from './NavBar.jsx';
 import Footer from './Footer.jsx';
 import _AdminSideBar from './_AdminSideBar.jsx';
 import {post} from 'axios';
+import {Icon, Row, Input, Button} from 'react-materialize';
 
 class AdminStoreForm extends Component {
+
 
   storeButton(e){
     e.preventDefault();
@@ -15,8 +17,8 @@ class AdminStoreForm extends Component {
 
     var storeRequest = {
       name: newName,
-      store: newLogo,
-      price: newWebsite
+      logo: newLogo,
+      website: newWebsite
       };
 
     storeRequest = JSON.stringify(Request);
@@ -34,40 +36,30 @@ class AdminStoreForm extends Component {
       <div>
         <NavBar />
         <main>
-        {/* <!-- Page Layout here --> */}
-          <div className="row">
+          <Row>
             <_AdminSideBar />
             <div className="col s12 m8 l9" id="right"> 
               <h5 className="admin">Dashboard</h5>
-              {/* <a classNameName="waves-effect waves-light btn-small admin-btn">Add Product</a> */}
-
                 <h5 className="admin">Add a Store</h5>
                 <form className="vertical-form" onSubmit={this.storeButton.bind(this)}>
-                <div className="row">
-                  <div className="input-field col s12">
-                    <input id="store_name" type="text" className="validate"/>
-                    <label htmlFor="store_name">Store Name</label>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="input-field col s12">
-                    <input id="logo_url" type="url" className="validate"/>
-                    <label htmlFor="logo_url">store logo url</label>
-                  </div>
-                </div>
-              <div className="row">
-                <div className="input-field col s12">
-                <input id="website" type="url" className="validate"/>
-                <label htmlFor="website">website</label>
-                </div>
-              </div>
-              <button className="btn waves-effect " type="submit" name="action">Submit
-                <i className="material-icons right">send</i>
-              </button>
+                <Row>
+                  <Input id="name" s={12}  type="text" label="Store Name" className="validate">
+                  </Input>
+                </Row>
+                <Row>
+                  <Input id="logo" s={12}  type="url" label="Store logo url" className="validate">
+                  </Input>
+                </Row>
+                <Row>
+                  <Input id="website" s={12}  type="url" label="Website" className="validate">
+                  </Input>
+                </Row>
+                <Button waves="waves-effect" type="submit" name="action">Login
+                  <Icon right>send</Icon>
+                </Button>
               </form>
-
             </div>
-          </div>
+          </Row>
         </main>
         <Footer />
       </div>

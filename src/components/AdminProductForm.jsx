@@ -4,6 +4,7 @@ import NavBar from './NavBar.jsx';
 import Footer from './Footer.jsx';
 import _AdminSideBar from './_AdminSideBar.jsx';
 import {post} from 'axios';
+import {Icon, Row, Input, Button} from 'react-materialize';
 
 class AdminProductForm extends Component {
 
@@ -39,51 +40,39 @@ class AdminProductForm extends Component {
         <NavBar />
         <main>
         {/* <!-- Page Layout here --> */}
-          <div className="row">
+          <Row>
             <_AdminSideBar />
             <div className="col s12 m8 l9" id="right"> 
               <h5 className="admin">Dashboard</h5>
               {/* <a classNameName="waves-effect waves-light btn-small admin-btn">Add Product</a> */}
                 <h5 className="admin">Add a product</h5>
-
                 <form className="vertical-form" onSubmit={this.productButton.bind(this)} >
-                <div className="row">
-                  <div className="input-field col s12">
-                    <input id="product_name" type="text" className="validate"/>
-                    <label htmlFor="product_name">Name</label>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="input-field col s12">
-                    <input id="upc" type="text" className="validate"/>
-                    <label htmlFor="upc">Upc</label>
-                  </div>
-                </div>
-              <div className="row">
-                <div className="input-field col s12">
-                <input id="ean" type="text" className="validate"/>
-                <label htmlFor="ean">Ean</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="prod_img" type="url" className="validate"/>
-                  <label htmlFor="prod_img">Image</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="brand" type="url" className="validate"/>
-                  <label htmlFor="brand">Brand</label>
-                </div>
-                </div>
-              <button className="btn waves-effect " type="submit" name="action">Submit
-                <i className="material-icons right">send</i>
-              </button>
+                  <Row>
+                    <Input id="name" s={12}  type="text" label="Name" className="validate">
+                    </Input>
+                  </Row>
+                  <Row>
+                    <Input id="upc" s={12}  type="text" label="Upc Code" className="validate">
+                    </Input>
+                  </Row>
+                  <Row>
+                  <Input id="ean" s={12}  type="text" label="Ean" className="validate">
+                    </Input>
+                  </Row>
+                  <Row>
+                    <Input id="img" s={12}  type="url" label="Image" className="validate">
+                    </Input>
+                  </Row>
+                  <Row>
+                    <Input id="brand" s={12}  type="text" label="Brand" className="validate">
+                    </Input>
+                  </Row>
+                  <Button waves="waves-effect" type="submit" name="action">Login
+                    <Icon right>send</Icon>
+                  </Button>
               </form>
-
             </div>
-          </div>
+          </Row>
         </main>
         <Footer />
       </div>
