@@ -239,7 +239,7 @@ class ViewList extends Component{
               </div>
              <div className="col s6 m6 l6">
               <h3>Stores</h3>
-              <Stores stores={this.state.stores} products={this.state.listProduct} />
+              <Stores stores={this.state.stores} products={this.state.listProduct} listId={listId} />
             </div>
       </main>
       <Footer/>

@@ -5,6 +5,16 @@ import {
 } from 'react-router-dom';
 import {Tab, Tabs} from 'react-materialize';
 import {get} from 'axios';
+import StoreColumn from './StoreColumn.jsx'
+
+function searchItemId(anArr, target){
+  for(var i = 0; i < anArr.length; i++){
+    if(anArr[i].id == target){
+      return anArr[i];
+    }
+  }
+  return -1;
+}
 
 class Stores extends Component{
 
@@ -12,66 +22,67 @@ class Stores extends Component{
     super();
 
     this.state = {
-      prices: []
+      prices: [],
+      stores: [],
+      products: []
     };
   }
 
   componentWillMount(){
-    get("http://192.168.88.120:7000/prices")
+    get("http://192.168.88.120:7000/lists/" + this.props.listId + "/totals")
     .then(response => response.data)
     .then(prices => {
       this.setState( { prices: prices} );
     });
+
+    get("http://192.168.88.120:7000/stores")
+    .then(response => response.data)
+    .then(stores => {
+      this.setState( { stores: stores} );
+    });
+
+    get("http://192.168.88.120:7000/products")
+    .then(response => response.data)
+    .then(products => {
+      this.setState( { products: products} );
+    });
   }
 
   render() {
-    var constructingList = []
+    // var constructingList = []
 
-    // const products = [...this.props.products] || [];
+    // // const products = [...this.props.products] || [];
 
-    constructingList = this.props.stores.map( (store) => {
-      return {store, product: {}};
-    });
+    // constructingList = this.props.stores.map( (store) => {
+    //   return {store, product: {}};
+    // });
 
-    for(var i = 0; i < constructingList.length; i++){
-      for(var j = 0; j < this.props.products.length; j++){
-        constructingList[i].product = Object.assign({}, this.props.products[j]);
-      }
-    }
+    // for(var i = 0; i < constructingList.length; i++){
+    //   for(var j = 0; j < this.props.products.length; j++){
+    //     constructingList[i].product = Object.assign({}, this.props.products[j]);
+    //   }
+    // }
 
-    for(var i = 0; i < this.state.prices.length; i++){
-      for(var j = 0; j < constructingList.length; j++){
-        if(this.state.prices[i].store_id === constructingList[j].store.id && this.state.prices[i].product_id === constructingList[j].product.id){
-          constructingList[j].price = this.state.prices[i].price * constructingList[j].product.quantity;
-        }
-      }
-    }
+    // for(var i = 0; i < this.state.prices.length; i++){
+    //   for(var j = 0; j < constructingList.length; j++){
+    //     if(this.state.prices[i].store_id === constructingList[j].store.id && this.state.prices[i].product_id === constructingList[j].product.id){
+    //       constructingList[j].product.price = this.state.prices[i].price * constructingList[j].product.quantity;
+    //     }
+    //   }
+    // }
 
-    console.log(constructingList);
+    // console.log("List is: ", constructingList);
 
-      // store.products.map(product => {
-      //   this.state.prices.map( price => {
-      //     if(price.product_id === product.id && price.store_id === store.id) {
-      //       newProduct["price"] = price.price * product.quantity;
-      //     }
-
-      //   });
-      // });
-    // console.log(constructingList);
 
     return (
       <Tabs className='tab-demo z-depth-1'>
       {
-        constructingList.map( store => {
+        this.state.stores.map( store => {
           return (
-            <Tab title={store.store.name}>
-              <div className="prod-list">
-                <p>{store.product.name}</p>
-                <div className="c-list">
-                  <i className="material-icons">attach_money</i>
-                  <p>{store.price}</p>
-                </div>
-              </div>
+            <Tab title={store.name}>
+
+                <StoreColumn product={this.state.products} price={this.state.prices} currStore={store}/>
+
             </Tab>
           );
       })
