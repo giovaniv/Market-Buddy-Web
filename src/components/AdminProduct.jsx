@@ -3,8 +3,16 @@ import { withRouter } from 'react-router';
 import NavBar from './NavBar.jsx';
 import Footer from './Footer.jsx';
 import {Table} from 'react-materialize';
+import _AdminSideBar from './_AdminSideBar.jsx';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 
-class Admin extends Component {
+class AdminProduct extends Component {
   render() {
     return (
       <div>
@@ -12,16 +20,11 @@ class Admin extends Component {
         <main>
         {/* <!-- Page Layout here --> */}
           <div className="row">
-            <div className="col s12 m4 l3" id="left"> 
-              <h5 className="admin">Admin</h5>
-              <div className="admin-sidebar">
-                <a className="waves-effect waves-light btn-small admin-btn">Products</a>
-                <a className="waves-effect waves-light btn-small admin-btn">Stores</a>
-                <a className="waves-effect waves-light btn-small admin-btn">Settings</a>
-              </div>
-            </div>  
+            <_AdminSideBar />
             <div className="col s12 m8 l9" id="right"> 
               <h5 className="admin">Dashboard</h5>
+              <Link className="waves-effect waves-light btn-small admin-btn" to='/admin_product/new' >Add Product</Link>
+
               <Table>
                 <thead>
                   <tr className="table-head">
@@ -79,4 +82,4 @@ class Admin extends Component {
   }
 }
 
-export default withRouter(Admin);
+export default withRouter(AdminProduct);
