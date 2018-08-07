@@ -6,9 +6,11 @@ import Register from './components/Register.jsx'
 import Login from './components/Login.jsx';
 import Logout from './components/Logout.jsx';
 import Main from './components/Main.jsx';
-import Admin from './components/Admin.jsx';
 import Warning from './components/Warning.jsx';
-
+import AdminProduct from './components/AdminProduct.jsx';
+import AdminProductForm from './components/AdminProductForm.jsx';
+import AdminStore from './components/AdminStore.jsx';
+import AdminStoreForm from './components/AdminStoreForm.jsx';
 
 // import route Components here
 import {
@@ -48,8 +50,12 @@ class App extends Component {
                     <Route path="/users/:id/lists/:id" exact render={() => <ViewList/>} />
                     <Route path="/users/:id/list/new" render={() => <ViewList/>} />
                     <Route path="/logout" render={() => <Logout />} setCurrUser={this.setCurrUser} />
-                    <Route path="/admin" component={Admin} />
                     <Route path="/warning" component={Warning} />
+                    <Route path="/admin_product" exact render={() => <AdminProduct/>} />
+                    <Route path="/admin_product/new" exact render={() => <AdminProductForm/>} />
+                    <Route path="/admin_store" exact render={() => <AdminStore/>} />
+                    <Route path="/admin_store/new" exact render={() => <AdminStoreForm/>} />
+
                     <Redirect from="/*" to="/warning" />
                     {/*<Redirect from="/*" to={`/user/${JSON.parse(localStorage.user).id}`} />*/}
 

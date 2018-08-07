@@ -17,7 +17,7 @@ h1, h2, h3,h4, h5, a, li, p, .btn, footer, span {
 }
 
 #left {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  // box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   background-color: #fff;
   text-align:center;
   height: 100vh /* Full-height: remove this if you want "auto" height */
@@ -56,30 +56,11 @@ i.right:hover {
   margin-bottom: 2em;
 }
 
-.page-footer {
-  background-color: #031b4e;
-  height: 200px;
-  width: 100%;
-
-}
-
-.icon-footer {
-  padding-left: 1em;
-  font-weight: 300;
-  letter-spacing: 0.7px;
-  font-size: 1.2em;
-}
-
-.footer-copy{
-  color:white;
-  padding-left: 1.5em;
-}
 
 .my-lists {
   color: #031b4e;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  padding-left: 1em;
+  padding: 1em;
+  margin: 1em;
 }
 
 #right {
@@ -199,6 +180,7 @@ button.dl-list {
     margin-left: 5em;
     justify-content: space-around;
   }
+
 
 }
 

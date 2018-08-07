@@ -219,28 +219,29 @@ class ViewList extends Component{
     return (
 
       <div>
-          <NavBar />
-            <main>
-              <div className="row main-div">
-                <div className="col s6 m6 l6" id="left">
-                <Link className="btn-floating btn-large waves-effect back-btn" to={"/users/"+ JSON.parse(localStorage.user).id}><i className="material-icons">arrow_back</i></Link>
-                  <h5 className="list-name">{JSON.parse(localStorage.listObj).name }</h5>
-
-                  <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
-                  <ListItem listProduct={this.state.listProduct}
-                    addQuantity={this.addQuantity}
-                    minusQuantity={this.minusQuantity}
-                    deleteItem={this.deleteItem}
-                    submitList={this.submitList}
-                    />
-                </div>
-                <div className="col s6 m6 l6" id="right-blue">
-                </div>
+        <NavBar />
+          <main>
+            <div className="row main-div">
+              <div className="col s6 m6 l6" id="left">
+              <Link className="btn-floating btn-large waves-effect back-btn" to={"/users/"+ JSON.parse(localStorage.user).id}><i className="material-icons">arrow_back</i></Link>
+                <h3>{JSON.parse(localStorage.listObj).name }</h3>
+                <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
+                <ListItem listProduct={this.state.listProduct}
+                  addQuantity={this.addQuantity}
+                  minusQuantity={this.minusQuantity}
+                  deleteItem={this.deleteItem}
+                  submitList={this.submitList}
+                  />
+              </div>
+              <div className="col s6 m6 l6" id="right-blue">
+              <h3>Nearby Stores</h3>
               </div>
              <div className="col s6 m6 l6">
               <h3>Stores</h3>
               <Stores stores={this.state.stores} products={this.state.listProduct} listId={listId} />
-            </div>
+          </div>
+          </div>
+
       </main>
       <Footer/>
     </div>
