@@ -240,7 +240,7 @@ class ViewList extends Component{
               </div>
               <div className="col s6 m6 l6" id="right-blue">
               <h3>Nearby Stores</h3>
-              <iframe src='http://192.168.88.120:7000/maps?at=49.28,-123.11'  allow='geolocation' width='600' height='600' frameBorder='0'/>
+              <iframe src='http://192.168.88.120:7000/maps?at=49.28,-123.11'  allow='geolocation' width='100%' height='100%' frameBorder='0'/>
               </div>
              <div className="col s12 m12 l12 stores">
               <h3>Stores</h3>

@@ -40,7 +40,7 @@ class StoreColumn extends Component{
     return (
       <div>
         {list}
-        <p className="p-total">Total: {total}</p>
+        <p className="p-total waves-effect  btn-large">Total: {total}</p>
         </div>
     )
   }

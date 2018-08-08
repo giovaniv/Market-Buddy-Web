@@ -25,6 +25,10 @@ a.back-btn {
   margin-top: 1em;
 }
 
+.btn-large:hover, .btn-small:hover {
+  background-color: #00a1ff;
+}
+
 .list-name {
   text-transform: capitalize;
 }
