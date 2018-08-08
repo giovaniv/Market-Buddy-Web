@@ -32,11 +32,20 @@ class App extends Component {
     this.setCurrUser = this.setCurrUser.bind(this);
 
   }
+  componentWillMount(){
+    navigator.geolocation.watchPosition(showPosition);
+    function showPosition(position) {
+      localStorage.setItem('latitude', position.coords.latitude);
+      localStorage.setItem('longitude', position.coords.longitude);
+    }
+  }
 
   setCurrUser(user){
     this.setState( {currUser: user} );
 
   }
+
+  
 
 
   render() {
