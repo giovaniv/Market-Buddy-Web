@@ -53,7 +53,6 @@ class Stores extends Component{
       // <Tabs className='tab-demo z-depth-1'>
 
       this.state.stores.map( store => {
-        console.log(store.color);
         return (
           <Tab title={<div style={{ color: store.color }}>{store.name}</div>} >
               <StoreColumn product={this.props.products} price={this.state.prices} currStore={store}/>

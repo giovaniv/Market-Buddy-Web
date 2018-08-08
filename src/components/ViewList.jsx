@@ -95,15 +95,22 @@ class ViewList extends Component{
     addProduct(product){
       product["quantity"] = 1;
 
-       if(searchItemId(this.state.listProduct, product.id) === -1){
-         var newProduct = this.state.listProduct.concat(product);
-         this.setState( { listProduct: newProduct } );
-       }
-       if(searchItemId(this.state.listProduct, product.id).quantity === 0){
-         var newProduct = searchItemId(this.state.listProduct, product.id);
-         newProduct.quantity += 1;
-         this.setState( { listProduct: this.state.listProduct } );
-       }
+      get("http://192.168.88.120:7000/products/" + product.id + "/prices")
+      .then(response => response.data)
+      .then(prices => {
+        product.prices = prices;
+      });
+
+
+     if(searchItemId(this.state.listProduct, product.id) === -1){
+       var newProduct = this.state.listProduct.concat(product);
+       this.setState( { listProduct: newProduct } );
+     }
+     if(searchItemId(this.state.listProduct, product.id).quantity === 0){
+       var newProduct = searchItemId(this.state.listProduct, product.id);
+       newProduct.quantity += 1;
+       this.setState( { listProduct: this.state.listProduct } );
+     }
     }
 
     addQuantity(product){
