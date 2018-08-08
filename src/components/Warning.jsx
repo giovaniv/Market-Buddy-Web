@@ -7,8 +7,10 @@ class Warning extends Component{
 
   componentWillMount() {
     if(localStorage.user) {
+      console.log('user logged in');
       window.location.href = "/users/"+ JSON.parse(localStorage.user).id;
     } else {
+      console.log('register');
       window.location.href = "/login";
     }
   }

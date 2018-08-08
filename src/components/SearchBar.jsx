@@ -33,6 +33,10 @@ class SearchBar extends Component{
     (this.refs.textInput.value = '')
     .then(products => {
       if(Array.isArray(products)){
+        if(products.length > 10){
+          products = products.slice(0, 10);
+          console.log(products);
+        }
         this.setState( { searchProduct: products } );
       } else {
         this.setState( { searchProduct: "No items found" } );
@@ -59,22 +63,25 @@ class SearchBar extends Component{
               <input type="search" className="s6" placeholder="Enter a product" ref="textInput" />
               <button onClick={this.onOpenModal} type="submit" className="waves-effect  btn-small search-btn">Search</button>
               <Modal open={open} onClose={this.onCloseModal} center className="list-modal">
-            <div>
-              <p>Do you mean?</p>
-              {!Array.isArray(this.state.searchProduct) ? (
-                <p>{JSON.stringify(this.state.searchProduct)}</p>
-                ) : (
-                  <ul>
-                    {this.state.searchProduct.map( (product, index) => {
-                      return (<li className="items-found" key={ index }>{product.name}
-                              <button onClick={() => this.props.addProduct(product)} className="waves-effect btn-small"> Add
-                              </button>
-                              </li>);
-                    })}
-                  </ul>
-                )
-              }
-            </div>
+                <div>
+                  <p>Do you mean?</p>
+                  {!Array.isArray(this.state.searchProduct) ? (
+                    <p>{JSON.stringify(this.state.searchProduct)}</p>
+                    ) : (
+                      <ul>
+                        {this.state.searchProduct.map( (product, index) => {
+
+                          return (
+                            <button onClick={() => this.props.addProduct(product)} className="waves-effect btn-small items-found">
+                            <li key={ index }> <p>{product.name}</p>
+
+                                  </li>
+                            </button>);
+                        })}
+                      </ul>
+                    )
+                  }
+                </div>
             </Modal>
           </form>
         </div>

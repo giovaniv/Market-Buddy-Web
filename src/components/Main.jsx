@@ -16,7 +16,7 @@ class Main extends Component{
               <a href="#!" className="main-logo"><i className="material-icons">shopping_cart</i>Market Buddy</a>
               <div className="main-menu">
               <Link to="/login">Login</Link>
-              <Link to="/register">Register</Link>
+              <a href="/register">Register</a>
               </div>
             </div>
             <div className="header-layout">
