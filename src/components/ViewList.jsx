@@ -93,13 +93,7 @@ class ViewList extends Component{
       }
     }
     addProduct(product){
-      // if(!this.state.listProduct.some(item => item.product === product)){
-      //   this.setState({
-      //     listProduct: this.state.listProduct.concat({product: product, quantity: 1})
-      //   });
-      // }
       product["quantity"] = 1;
-
       var newProduct = this.state.listProduct.concat(product);
       this.setState( { listProduct: newProduct } );
     }
@@ -185,6 +179,9 @@ class ViewList extends Component{
                 currList.product = this.state.listProduct;
               }
 
+              console.log("curr", currList);
+              console.log("new", newList);
+
               var updatedLists = {
                 id: b.id,
                 name: data.name,
@@ -192,7 +189,17 @@ class ViewList extends Component{
                 user_id: data.user
               }
 
-              newList = newList.concat(updatedLists);
+              if(searchItemId(newList, updatedLists.id) === -1){
+                newList = newList.concat(updatedLists);
+              } else {
+                for(var i = 0; i < newList.lenght; i++){
+                  if(newList[i].id === updatedLists.id){
+                    newList[i] = updatedLists;
+                  }
+                }
+              }
+
+              // newList = newList.concat(updatedLists);
 
 
               window.Materialize.toast('List saved!', 2000, 'update-alert')

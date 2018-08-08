@@ -10,12 +10,14 @@ class ListItem extends Component {
             return(
               <div className="input-field card div-product-input" key={index}>
                 <div className="item-container">
-                  <button className="waves-effect waves-light btn-small  bl-btn" onClick={() => this.props.minusQuantity(item)}><i className="material-icons small">remove</i></button>
-                  <input type='text' name='quantity' value={item.quantity} readOnly={true} className='quantity' />
-                  <button className="waves-effect waves-light btn-small  bl-btn" onClick={() => this.props.addQuantity(item)} ><i className="material-icons small">add</i></button>
-                  <p className="s6 item-ls">{item.name}</p>
+                  <div className="btn-group">
+                    <button className="waves-effect waves-light btn-small bl-btn" onClick={() => this.props.minusQuantity(item)}><i className="material-icons small icons-button">remove</i></button>
+                    <input type='text' name='quantity' value={item.quantity} readOnly={true} className='quantity' />
+                    <button className="waves-effect waves-light btn-small bl-btn" onClick={() => this.props.addQuantity(item)} ><i className="material-icons small icons-button">add</i></button>
+                  </div>
+                  <p className="s6 item-ls">{item.name} <span className="tooltip">{item.name}</span></p>
+                  <button className="waves-effect waves-light btn-small del-btn" onClick={() => this.props.deleteItem(item)}><i className="material-icons small">cancel</i></button>
                 </div>
-                <button className="waves-effect waves-light btn-small del-btn" onClick={() => this.props.deleteItem(item)}><i className="material-icons small">cancel</i></button>
               </div>
             );
           }
