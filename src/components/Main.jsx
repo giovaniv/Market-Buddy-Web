@@ -23,7 +23,7 @@ class Main extends Component{
               <div className="left-header">
                 <h1>Market Buddy</h1>
                 <h3>Your smart grocery shopping list</h3>
-                <p>Create shopping lists and search nearby stores to see the total price of your list. Use our mobile app to view your lists and scan item barcodes to update an item price.</p>
+                <p>Create shopping lists and search nearby stores to see the total price of your list. Use our mobile app to view your lists and check off your items as you shop.</p>
                 <Link to="/register" className="waves-effect waves-light btn-medium">Create Account</Link>
                 <Link to="/login" className="waves-effect waves-light btn-medium">Login</Link>
               </div>
