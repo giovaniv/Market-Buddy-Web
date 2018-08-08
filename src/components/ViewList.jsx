@@ -100,8 +100,10 @@ class ViewList extends Component{
       // }
       product["quantity"] = 1;
 
-      var newProduct = this.state.listProduct.concat(product);
-      this.setState( { listProduct: newProduct } );
+      if(searchItem(this.state.listProduct, product.name) === -1){
+        var newProduct = this.state.listProduct.concat(product);
+        this.setState( { listProduct: newProduct } );
+      }
     }
 
     addQuantity(product){
@@ -194,7 +196,6 @@ class ViewList extends Component{
 
               newList = newList.concat(updatedLists);
 
-
               window.Materialize.toast('List saved!', 2000, 'update-alert')
 
               localStorage.setItem('list', JSON.stringify(newList));
@@ -228,7 +229,7 @@ class ViewList extends Component{
             <div className="row main-div">
               <div className="col s12 m6 l6" id="left-list">
               <Link className="btn-floating btn-large waves-effect back-btn" to={"/users/"+ JSON.parse(localStorage.user).id}><i className="material-icons">arrow_back</i></Link>
-                <h3>{JSON.parse(localStorage.listObj).name }</h3>
+                <h3 className="list-name">{JSON.parse(localStorage.listObj).name }</h3>
                 <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
                 <ListItem listProduct={this.state.listProduct}
                   addQuantity={this.addQuantity}

@@ -25,11 +25,14 @@ a.back-btn {
   margin-top: 1em;
 }
 
+.list-name {
+  text-transform: capitalize;
+}
 .div-product-input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
   margin: auto;
   margin-bottom: 2em;
   background-color: rgba(0, 105, 255, 0.1);
