@@ -5,9 +5,12 @@ class StoreColumn extends Component{
   render() {
     // console.log(this.props.product);
 
+    var total = 0 ;
+
     const list = this.props.price.map( price => {
       return this.props.product.map( product => {
         if(price.product_id === product.id && price.store_id === this.props.currStore.id){
+          total += price.price * product.quantity;
           return (
             <div className="prod-list">
               <p>{product.name}</p>
@@ -21,10 +24,10 @@ class StoreColumn extends Component{
                   <p>Price: {price.price}</p>
                  
                 </div>
-                  <div className="c-list">
+                  {/* <div className="c-list">
                   <i className="material-icons">shopping_cart</i>
                   <p>Total :{price.price * product.quantity}</p>
-                  </div>
+                  </div> */}
               </div>
              
             </div>
@@ -32,11 +35,12 @@ class StoreColumn extends Component{
         }
       })
     })
-
+    total = total.toFixed(2);
 
     return (
       <div>
         {list}
+        <p className="p-total">Total: {total}</p>
         </div>
     )
   }

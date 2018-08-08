@@ -49,7 +49,7 @@ class UserSideBar extends Component{
       <div className="col s12 m4 l3" id="left-avatar">
         <img src={currUser.avatar} alt="Placeholder" className="circle responsive-img" />
         <p id="username">{currUser.name}</p>
-        <p>{currUser.points} rewards points</p>
+        {/* <p>{currUser.points} rewards points</p> */}
         <button className="waves-effect waves-light btn-small" onClick={this.onOpenModal}>Edit Profile</button>
           <Modal open={open} onClose={this.onCloseModal} center>
             <form onSubmit={this.updateProfile.bind(this)}>
