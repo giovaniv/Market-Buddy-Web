@@ -53,7 +53,7 @@ class Login extends Component{
             <Input id="password" s={12}  type="password" label="Password">
             </Input>
           </Row>
-          <Button waves="waves-effect" type="submit" name="action">Login
+          <Button className="waves-effect" type="submit" name="action">Login
             <Icon right>send</Icon>
           </Button>
         <Row>
