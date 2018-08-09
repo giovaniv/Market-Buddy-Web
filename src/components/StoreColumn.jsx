@@ -15,10 +15,10 @@ class StoreColumn extends Component{
             <div className="prod-list">
               <p>{product.name}</p>
               <div className="c-list">
-                <div className="c-list">
+                {/* <div className="c-list">
                 <p>Quantity: {product.quantity}</p>
 
-                </div>
+                </div> */}
                 <div className="c-list">
                   <i className="material-icons">attach_money</i>
                   <p>Price: {price.price}</p>
