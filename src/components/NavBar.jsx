@@ -13,7 +13,7 @@ class NavBar extends Component{
         <div className="navbar-fixed">
           <nav>
             <div className="nav-wrapper">
-              <Link to="/user_id" className="center brand-logo"><i className="material-icons">shopping_cart</i>Market Buddy</Link>
+              <Link to="/user_id" className="center brand-logo"><i className="material-icons medium">shopping_cart</i>Market Buddy</Link>
               <Link to="/logout" data-target="mobile-demo" className="right sidenav-trigger"><i className="material-icons">more_vert</i></Link>
               <ul className="right hide-on-med-and-down">
                 <li><Link to="/logout">Logout</Link></li>
