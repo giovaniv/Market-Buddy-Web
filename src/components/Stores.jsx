@@ -49,6 +49,7 @@ class Stores extends Component{
   }
 
   render() {
+    // console.log((this.props.products[0])? this.props.products[0] : 'no' );
     const storeItems = (
       // <Tabs className='tab-demo z-depth-1'>
 

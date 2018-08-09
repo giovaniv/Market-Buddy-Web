@@ -98,19 +98,21 @@ class ViewList extends Component{
       get("http://192.168.88.120:7000/products/" + product.id + "/prices")
       .then(response => response.data)
       .then(prices => {
+        // console.log("price edited", prices);
         product.prices = prices;
+
+
+        if(searchItemId(this.state.listProduct, product.id) === -1){
+          var newProduct = this.state.listProduct.concat(product);
+          this.setState( { listProduct: newProduct } );
+        }
+        if(searchItemId(this.state.listProduct, product.id).quantity === 0){
+          var newProduct = searchItemId(this.state.listProduct, product.id);
+          newProduct.quantity += 1;
+          this.setState( { listProduct: this.state.listProduct } );
+        }
+
       });
-
-
-     if(searchItemId(this.state.listProduct, product.id) === -1){
-       var newProduct = this.state.listProduct.concat(product);
-       this.setState( { listProduct: newProduct } );
-     }
-     if(searchItemId(this.state.listProduct, product.id).quantity === 0){
-       var newProduct = searchItemId(this.state.listProduct, product.id);
-       newProduct.quantity += 1;
-       this.setState( { listProduct: this.state.listProduct } );
-     }
     }
 
     addQuantity(product){
