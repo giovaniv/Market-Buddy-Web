@@ -37,10 +37,10 @@ class ListItem extends Component {
         })}
         <div className="div-btns">
           <button onClick={this.props.submitList} className="waves-effect waves-light btn-small">Save List</button>
-          <button className="waves-effect waves-light btn-small btn-space" onClick={this.onOpenModal}>Open Map</button>
-          <Modal open={this.state.open} onClose={this.onCloseModal} center className="map-modal">
+          <a className="waves-effect waves-light btn-small btn-space" target="_blank" href='http://192.168.88.120:7000/maps?at=49.28,-123.11'>Open Map</a>
+          {/* <Modal open={this.state.open} onClose={this.onCloseModal} center className="map-modal">
           <iframe src='http://192.168.88.120:7000/maps?at=49.28,-123.11'  allow='geolocation' width='100%' height='100%' frameBorder='0'/>
-          </Modal>
+          </Modal> */}
       
         </div>
       </div>
