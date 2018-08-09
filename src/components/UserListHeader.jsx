@@ -41,21 +41,24 @@ class UserListHeader extends Component {
   render(){
     const { open } = this.state;
     return (
-      <div>
-        <div className="float-blue">
-          <h5 className="my-lists">My lists</h5>
+      <div className="float-blue">
+          <h3 className="my-lists">My lists</h3>
           <a className="btn-floating btn-large waves-effect" alt="Create a new list" onClick={this.onOpenModal}><i className="material-icons">add</i></a>
-          <Modal open={open} onClose={this.onCloseModal} center >
-            <div>Enter Your List Name</div>
+          <Modal open={open} onClose={this.onCloseModal} center style={{width: '400px;'}}>
+            <div className="new-list">
+            
             <form onSubmit={this.sendToListPage}>
-              <input name="title" />
+            Enter Your List Name
+              <input type="search" name="title" />
                 {/* <Link to="/user_id/lists" className="center brand-logo">To list</Link> */}
                 <button type="submit" className="waves-effect btn-small search-btn">Save</button>
               {/* <input type="submit" value="send" /> */}
-            </form>
+              </form>
+              </div>
+           
+           
           </Modal>
         </div>
-      </div>
     );
   }
 }

@@ -1,15 +1,20 @@
 nav {
-  background-color: #fff;
+  background-color: #0069ff;
+  height:5em
 }
 
 nav ul a, nav a {
-  color: #0069ff;
+  color: #fff;
 }
 
 nav .brand-logo {
-  color: #0069ff;
-  font-size: 1em;
+  color: #fff;
+  font-size: 2em;
 
+}
+
+.search-btn {
+  margin-top:2em;
 }
 
 h1, h2, h3,h4, h5, a, li, p, .btn, footer, span {
@@ -119,6 +124,9 @@ button.dl-list {
 
 }
 
+.newlist {
+  display: flex;
+}
 .card-action a {
   margin-right: 0;
 }
@@ -138,6 +146,8 @@ button.dl-list {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: 6em;
+  margin-right: 6em;
 }
 
 .btn-floating {

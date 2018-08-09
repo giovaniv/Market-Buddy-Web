@@ -10,7 +10,7 @@ class UserList extends Component{
   render(){
     return (
       <div className="card small blue-cl">
-      <Button onClick={(e) => this.props.deleteCard(e, this.props.listName)} floating className='red dl-list' waves='light' icon='clear' />
+      <Button onClick={(e) => this.props.deleteCard(e, this.props.listName)} floating large className='red dl-list' waves='light' icon='clear' />
           <Link to={`/users/${JSON.parse(localStorage.user).id}/lists/${this.props.listName.id}`}>
             <div className="card-action">
               <span className="card-title">{this.props.listName.name}</span>
