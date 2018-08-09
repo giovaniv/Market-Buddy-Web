@@ -21,7 +21,7 @@ class Register extends Component{
     };
 
     // post('/api/register', data)
-    post('http://192.168.88.120:7000/users/register', {user:data})
+    post('http://localhost:7000/users/register', {user:data})
 
       .then(response => response.data)
       .then(user => {

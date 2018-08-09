@@ -25,7 +25,7 @@ class AdminProductForm extends Component {
       };
 
     productRequest = JSON.stringify(productRequest);
-    post('http://192.168.88.120:7000/admin/product', {product: productRequest})
+    post('http://localhost:7000/admin/product', {product: productRequest})
       .then(response => {
           alert("Product Saved");
       })

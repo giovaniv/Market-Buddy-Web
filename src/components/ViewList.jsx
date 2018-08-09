@@ -71,14 +71,14 @@ class ViewList extends Component{
         // var currList = searchItemId(JSON.parse(localStorage.list), listId);
         // this.setState({ listProduct: currList.product});
         // console.log(this.state.listProduct);
-        get("http://192.168.88.120:7000/lists/"+listId)
+        get("http://localhost:7000/lists/"+listId)
         .then(response => response.data)
         .then(products => {
           this.setState( { listProduct: products.products} );
         });
       }
 
-      get("http://192.168.88.120:7000/stores")
+      get("http://localhost:7000/stores")
       .then(response => response.data)
       .then(stores => {
         this.setState( { stores: stores} );
@@ -172,7 +172,7 @@ class ViewList extends Component{
           }
         }
 
-        post('http://192.168.88.120:7000/lists/new', data)
+        post('http://localhost:7000/lists/new', data)
             .then(response => response.data)
             .then(b => {
               var newList = JSON.parse(localStorage.list);

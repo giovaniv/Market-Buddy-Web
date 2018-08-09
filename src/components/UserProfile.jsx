@@ -47,7 +47,7 @@ class UserProfile extends Component {
   deleteCard(e, list){
     e.preventDefault();
 
-    post("http://192.168.88.120:7000/lists/delete", list)
+    post("http://localhost:7000/lists/delete", list)
     .then(response => response.data)
     .then(deletedUser => {
 

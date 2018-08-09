@@ -29,19 +29,19 @@ class Stores extends Component{
   }
 
   componentWillMount(){
-    get("http://192.168.88.120:7000/lists/" + this.props.listId + "/totals")
+    get("http://localhost:7000/lists/" + this.props.listId + "/totals")
     .then(response => response.data)
     .then(prices => {
       this.setState( { prices: prices} );
     });
 
-    get("http://192.168.88.120:7000/stores")
+    get("http://localhost:7000/stores")
     .then(response => response.data)
     .then(stores => {
       this.setState( { stores: stores} );
     });
 
-    get("http://192.168.88.120:7000/products")
+    get("http://localhost:7000/products")
     .then(response => response.data)
     .then(products => {
       this.setState( { products: products} );

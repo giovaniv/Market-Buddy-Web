@@ -32,7 +32,7 @@ class UserSideBar extends Component{
       newProfile.avatar = newAvatar;
     }
 
-    post("http://192.168.88.120:7000/users/edit", newProfile)
+    post("http://localhost:7000/users/edit", newProfile)
     .then(response => response.data)
     .then(updated => {
       localStorage.setItem('user', JSON.stringify(newProfile));

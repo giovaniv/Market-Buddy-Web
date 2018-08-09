@@ -22,7 +22,7 @@ class AdminStoreForm extends Component {
       };
 
     storeRequest = JSON.stringify(Request);
-    post('http://192.168.88.120:7000/admin/product', {product: storeRequest})
+    post('http://localhost:7000/admin/product', {product: storeRequest})
       .then(response => {
           alert("Store Saved");
       })

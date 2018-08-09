@@ -3,9 +3,16 @@ import {post} from 'axios';
 import Modal from 'react-responsive-modal';
 
 class ListItem extends Component {
-  state = {
-    open: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      open: false
+    };
+  // state = {
+  //   open: false,
+    this.onOpenModal = this.onOpenModal.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
+  }
 
   onOpenModal = () => {
     this.setState({ open: true });
@@ -16,6 +23,21 @@ class ListItem extends Component {
   };
 
   render() {
+
+    const { open } = this.state;
+
+    const pStyle = {
+      margin: 0,
+      width: '900',
+      height: '600',
+      padding: '5'
+    };
+
+    const divStyle = {
+      backgroundColor: 'yellow',
+      height: '400'
+    };
+
     return(
       <div>
         {this.props.listProduct.map( (item, index) => {
@@ -37,11 +59,18 @@ class ListItem extends Component {
         })}
         <div className="div-btns">
           <button onClick={this.props.submitList} className="waves-effect waves-light btn-small">Save List</button>
-          <a className="waves-effect waves-light btn-small btn-space" target="_blank" href='http://192.168.88.120:7000/maps?at=49.28,-123.11'>Open Map</a>
+          <a className="waves-effect waves-light btn-small btn-space" onClick={this.onOpenModal}>Open Map</a>
           {/* <Modal open={this.state.open} onClose={this.onCloseModal} center className="map-modal">
-          <iframe src='http://192.168.88.120:7000/maps?at=49.28,-123.11'  allow='geolocation' width='100%' height='100%' frameBorder='0'/>
+          <iframe src='http://localhost:7000/maps?at=49.28,-123.11'  allow='geolocation' width='100%' height='100%' frameBorder='0'/>
           </Modal> */}
-      
+
+          <Modal open={open} onClose={this.onCloseModal} center style={pStyle}>
+            {/* <div className="new-list"> */}
+            <div style={divStyle}>
+            <iframe src='http://localhost:7000/maps?at=49.28,-123.11' allow="geolocation *;" width="100%" height="100%" frameBorder='0'/>
+            </div>
+          </Modal>
+
         </div>
       </div>
     );

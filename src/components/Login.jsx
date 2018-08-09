@@ -19,8 +19,8 @@ class Login extends Component{
       password: newPassword
       };
     // post('/api/login', loginRequest)
-    post('http://192.168.88.120:7000/users/login', {user: loginRequest})
-    // post('http://192.168.88.124/users/login', {user: loginRequest})
+    post('http://localhost:7000/users/login', {user: loginRequest})
+    // post('http://localhost:7000/users/login', {user: loginRequest})
       .then(response => response.data)
       .then(user => {
         if(typeof user === 'string'){
