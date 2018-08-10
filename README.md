@@ -21,7 +21,11 @@ npm start
 
 And now you have to project up and running. Time to explore our App!
 
-### Static Files
+### Screen Shots
+!["Landing page"](https://github.com/leor8/Market-Buddy-Web/blob/master/docs/Screen%20Shot%202018-08-10%20at%202.04.31%20PM.png)
+!["User profile"](https://github.com/leor8/Market-Buddy-Web/blob/master/docs/Screen%20Shot%202018-08-10%20at%202.05.34%20PM.png)
+!["Product search"](https://github.com/leor8/Market-Buddy-Web/blob/master/docs/Screen%20Shot%202018-08-10%20at%202.05.58%20PM.png)
+!["Price comparing"](https://github.com/leor8/Market-Buddy-Web/blob/master/docs/Screen%20Shot%202018-08-10%20at%202.06.55%20PM.png)
 
 ### Dependencies
 
