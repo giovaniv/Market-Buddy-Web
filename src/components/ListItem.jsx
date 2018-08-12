@@ -34,7 +34,7 @@ class ListItem extends Component {
     };
 
     const divStyle = {
-      backgroundColor: 'yellow',
+      //backgroundColor: 'yellow',
       height: '400'
     };
 
