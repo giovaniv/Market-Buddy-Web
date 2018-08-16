@@ -57,4 +57,3 @@ And now you have to project up and running. Time to explore our App!
 * Cristiane Silva: [https://github.com/cristianeams]
 * Giovani Raymundo de Vasconcelos: [https://github.com/giovaniv]
 * Leo Ruan: [www.github.com/leor8]
-

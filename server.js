@@ -6,13 +6,15 @@ const PORT = 8080;
 const path = require('path');
 const request = require('request');
 const http = require('http');
+var cors = require('cors')
+
 
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
 app.use(bodyParser.json());
-
+app.use(cors());
 app.use(express.static('dist'));
 app.use('/build', express.static('build'));
 
@@ -33,7 +35,7 @@ app.post("/logout", (req, res) => {
 app.post("/search", (req, res) => {
   let item = req.body.item;
 
-  request("http://192.168.88.120:7000/products/?name=" + item, function (error, response, body) {
+  request("http://localhost:7000/products/?name=" + item, function (error, response, body) {
     res.send(body)
   });
 });
